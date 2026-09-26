@@ -37,4 +37,7 @@ Pause menu:
 - Quit
 
 
+Title, Readings, Shop
 
+
+The main character has KARMA(points) that start at 100 -> 
