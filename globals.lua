@@ -19,6 +19,7 @@ require("states/readings")
 require("states/arena")
 require("states/shop")
 require("states/end")
+require("states/settings")
 
 KEYPRESSED[-2] = function(key)
 	if key == "return" then
@@ -46,6 +47,8 @@ GAME_STATE = TITLE
 -- 4 - arena
 -- 5 - shop
 -- 6 - ending
+-- 7 - settings
+-- 8 - 
 
 GAME_MAIN_VOLUME = 1
 GAME_MUSIC_VOLUME = 1

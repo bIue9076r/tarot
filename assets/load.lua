@@ -70,3 +70,10 @@ Image.new("c22_1", "/assets/22neutral.png")
 Image.new("c22_2","/assets/22talk.png")
 Image.new("c22_3","/assets/22blink.png")
 Image.new("c22_4","/assets/22blinktalk.png")
+
+
+-- Songs
+Sound.new("arena","/assets/arena.mp3")
+Sound.new("shop","/assets/shop.mp3")
+Sound.new("voice_1","/assets/VoiceHigh.mp3","static")
+Sound.new("voice_2","/assets/VoiceLow.mp3","static")

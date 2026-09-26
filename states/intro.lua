@@ -10,7 +10,7 @@ end
 
 KEYPRESSED[INTRO] = function(key)
     if key == "return" then
-        GAME_STATE = 3
+        Switch_State(READINGS)
     end
 
 end
