@@ -29,17 +29,13 @@ DRAW[-2] = function()
 	LPrint(PANIC_REASON,50,50)
 end
 
-<<<<<<< Updated upstream
 function Load_State(State)
 	local f = LOAD[State]
 	if f then f() end
 	GAME_STATE = State
 end
 
-GAME_STATE = 1
-=======
 GAME_STATE = TITLE
->>>>>>> Stashed changes
 -- States:
 -- 1 - title
 -- 2 - intro
