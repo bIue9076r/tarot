@@ -44,6 +44,10 @@ GAME_STATE = TITLE
 -- 5 - shop
 -- 6 - ending
 
+function DT()
+	return love.timer.getDelta()
+end
+
 function Panic(caller)
 	GAME_STATE = -2
 	if caller then
