@@ -10,6 +10,8 @@ KEYPRESSED = {}
 MOUSEPRESSED = {}
 DRAW = {}
 
+TEXT = {}
+
 require("states/title")
 require("states/intro")
 require("states/readings")
@@ -54,5 +56,17 @@ function Panic(caller)
 		PANIC_REASON = "Panic called by "..caller
 	else
 		PANIC_REASON = "Panic"
+	end
+end
+
+function GetText(path)
+	path = path or "/assets/DD.txt"
+	local info = love.filesystem.getInfo(path)
+	if info then
+		if info.type == "file" then
+			for v in love.filesystem.lines(path) do
+			table.insert(TEXT,v)
+			end
+		end
 	end
 end
