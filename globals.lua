@@ -30,6 +30,13 @@ DRAW[-2] = function()
 end
 
 GAME_STATE = 1
+-- States:
+-- 1 - title
+-- 2 - intro
+-- 3 - readings
+-- 4 - arena
+-- 5 - shop
+-- 6 - ending
 
 function Panic(caller)
 	GAME_STATE = -2
