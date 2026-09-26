@@ -29,7 +29,7 @@ DRAW[-2] = function()
 	LPrint(PANIC_REASON,50,50)
 end
 
-function Load_State(State)
+function Switch_State(State)
 	local f = LOAD[State]
 	if f then f() end
 	GAME_STATE = State
