@@ -74,3 +74,7 @@ function GetText(path)
 		end
 	end
 end
+
+function Text(n)
+	return TEXT[n] or ""
+end
