@@ -186,6 +186,20 @@ function Space:findFirst(type)
 	end
 end
 
+function Space:find(type)
+	local R = {}
+	for i,v in pairs(self.objects) do
+		if v.t == type then
+			table.insert(R,v)
+		end
+	end
+	
+	if not(#R == 0) then
+		return R
+	end
+	return nil
+end
+
 function Space:remove(obj)
 	for i,v in pairs(self.objects) do
 		if (obj == v) then

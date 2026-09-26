@@ -15,7 +15,7 @@ end
 function Play_Sfx(index, volume)
 	volume = volume or 1
 	local sound = Sound.get(index)
-	sound:setVolume(volume * SFX_Volume)
+	sound:setVolume(volume * GAME_SFX_VOLUME)
 	sound:seek(0)
 	Put(sound)
 end

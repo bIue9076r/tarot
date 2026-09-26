@@ -10,6 +10,9 @@ Arena_Max_Velocity_Y = 400
 Arena_Combo = Combo.new()
 Empty_Combo = Combo.new()
 
+PLAYER_IDLE = 0
+PLAYER_IDLE = 0
+
 Arena_Combo_List = ComboList.new({
 	{name = "Ground Circle", cmb = Combo.new({"d","w","a","s"})},
 	{name = "Aireal Circle", cmb = Combo.new({"w","d","w","a","s"})},
@@ -104,7 +107,7 @@ function Arena_Move_None_X()
 	if A then
 		A:ANoneX()
 		if (A.vy == 0) and (A.vx == 0) then
-			A.state = 0
+			A.state = PLAYER_IDLE
 		else
 			if A.vy == 0 then
 				if A.x > 0 then
@@ -134,7 +137,7 @@ function Arena_Move_None_Y()
 		
 		A:ANoneY(Arena_Space.G)
 		if (A.vy == 0) and (A.vx == 0) then
-			A.state = 0
+			A.state = PLAYER_IDLE
 		else
 			if A.vy == 0 then
 				if A.x > 0 then

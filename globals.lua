@@ -46,6 +46,10 @@ GAME_STATE = TITLE
 -- 5 - shop
 -- 6 - ending
 
+GAME_MAIN_VOLUME = 1
+GAME_MUSIC_VOLUME = 1
+GAME_SFX_VOLUME = 1
+
 function DT()
 	return love.timer.getDelta()
 end
