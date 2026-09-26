@@ -3,6 +3,7 @@ require("modules/sfx")
 require("modules/button")
 require("modules/draggable")
 require("modules/lgraphics")
+require("assets/load")
 
 LOAD = {}
 UPDATE = {}

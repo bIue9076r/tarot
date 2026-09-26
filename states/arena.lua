@@ -11,7 +11,13 @@ Arena_Combo = Combo.new()
 Empty_Combo = Combo.new()
 
 PLAYER_IDLE = 0
-PLAYER_IDLE = 0
+PLAYER_RIGHT = 1
+PLAYER_LEFT = 2
+PLAYER_DOWN = 3
+PLAYER_JUMP = 4
+
+PLAYER_SLIDE_RIGHT = 7
+PLAYER_SLIDE_LEFT = 8
 
 Arena_Combo_List = ComboList.new({
 	{name = "Ground Circle", cmb = Combo.new({"d","w","a","s"})},
@@ -67,7 +73,7 @@ function Arena_Move_Up()
 	local A = Arena_Space:findFirst(1)
 	if A then
 		A:AUp(Arena_Space.G);
-		A.state = 4
+		A.state = PLAYER_JUMP
 		if A.falling then
 			return false
 		end
@@ -78,18 +84,18 @@ end
 
 function Arena_Move_Down()
 	local A = Arena_Space:findFirst(1)
-	if A then A:ADown(); A.state = 3 end
+	if A then A:ADown(); A.state = PLAYER_DOWN end
 end
 
 function Arena_Move_Left()
 	local A = Arena_Space:findFirst(1)
-	if A then A:ALeft(); A.state = 2 end
+	if A then A:ALeft(); A.state = PLAYER_LEFT end
 	return true
 end
 
 function Arena_Move_Right()
 	local A = Arena_Space:findFirst(1)
-	if A then A:ARight(); A.state = 1 end
+	if A then A:ARight(); A.state = PLAYER_RIGHT end
 	return true
 end
 
@@ -111,9 +117,9 @@ function Arena_Move_None_X()
 		else
 			if A.vy == 0 then
 				if A.x > 0 then
-					A.state = 7
+					A.state = PLAYER_SLIDE_RIGHT
 				else
-					A.state = 8
+					A.state = PLAYER_SLIDE_LEFT
 				end
 			else
 				if A.vy > 0 then

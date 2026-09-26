@@ -1,3 +1,7 @@
+require("reading_stuff.customer")
+require("reading_stuff.random")
+require("reading_stuff.tarot_cards")
+require("reading_stuff.mc")
 READINGS = 3
 
 READINGS_LOAD = {}
