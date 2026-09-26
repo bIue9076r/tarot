@@ -1,16 +1,16 @@
 -- birthday randomizer
 
 function RandomBd()
-    Month = love.math.random(12)
+	Month = love.math.random(12)
 
-    if Month == 4 or 6 or 9 or 11 then
-        Day = love.math.random(30)
-    elseif Month == 2 then
-        Day = love.math.random(29)
-    else
-        Day = love.math.random(31)
-    end
-    return {Month,Day}
+	if Month == 4 or 6 or 9 or 11 then
+		Day = love.math.random(30)
+	elseif Month == 2 then
+		Day = love.math.random(29)
+	else
+		Day = love.math.random(31)
+	end
+	return {Month,Day}
 end
 
 --------------------------------------------------------
