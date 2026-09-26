@@ -15,26 +15,26 @@ end
 
 --------------------------------------------------------
 
-TheFool_BD = RandomBd()
-TheMagician_BD = RandomBd()
-TheHighPriestess_BD = RandomBd()
-TheEmpress_BD = RandomBd()
-TheEmperor_BD = RandomBd()
-TheHIerophant_BD = RandomBd()
-TheLovers_BD = RandomBd()
-TheChariot_BD = RandomBd()
-Strength_BD = RandomBd()
-TheHermit_BD = RandomBd()
-WheelOfFortune_BD = RandomBd()
-Justice_BD = RandomBd()
-TheHangedMan_BD = RandomBd()
-Temperance_BD = RandomBd()
-TheDevil_BD = RandomBd()
-TheTower_BD = RandomBd()
-TheStar_BD = RandomBd()
-TheMoon_BD = RandomBd()
-TheSun_BD = RandomBd()
-Judgement_BD = RandomBd()
-TheWorld_BD = RandomBd()
+TheFool_BD = 1
+TheMagician_BD = 2
+TheHighPriestess_BD = 3
+TheEmpress_BD = 4
+TheEmperor_BD = 5
+TheHIerophant_BD = 6
+TheLovers_BD = 7
+TheChariot_BD = 8
+Strength_BD = 9
+TheHermit_BD = 10
+WheelOfFortune_BD = 11
+Justice_BD = 12
+TheHangedMan_BD = 13
+Temperance_BD = 14
+TheDevil_BD = 15
+TheTower_BD = 16
+TheStar_BD = 17
+TheMoon_BD = 18
+TheSun_BD = 19
+Judgement_BD = 20
+TheWorld_BD = 21
 
 --------------------------------------------------------
