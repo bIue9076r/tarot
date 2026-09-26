@@ -1,0 +1,40 @@
+1. Title Screen 
+- New game
+- Load a save
+- Settings
+
+Start of each day we do the reading for ourselves
+
+2. Intro: reading - introduce the idea of dying to a customer
+
+3. Each day is a new substate: (readings)
+    5 days:
+        - 4 customers
+
+- Start of the day:
+    - 1 preset character for each day (tied to another character)
+    - 3 random characters
+
+    ask for the birthday -> do the reading
+
+    16 cards; shuffle between each reading;
+    can pick from 4 random cards from the table
+
+4. Arena:
+
+
+5. Shop (gatcha)
+
+6. Endings:
+    <-------|------------------|-------------------|--------------->
+       die     interpretation     customer dies       nobody dies
+
+
+Pause menu:
+- Can save the game
+- Load a save
+- Settings
+- Quit
+
+
+
