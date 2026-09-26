@@ -9,15 +9,20 @@ Arena_Max_Velocity_Y = 400
 
 Arena_Combo = Combo.new()
 Empty_Combo = Combo.new()
+Arena_Combo_Delay = 0.5
 
+PLAYER_IDLE_IMPATIENT = -1
 PLAYER_IDLE = 0
 PLAYER_RIGHT = 1
 PLAYER_LEFT = 2
 PLAYER_DOWN = 3
 PLAYER_JUMP = 4
-
+PLAYER_FLOAT = 5
+PLAYER_FALL = 6
 PLAYER_SLIDE_RIGHT = 7
 PLAYER_SLIDE_LEFT = 8
+
+Arena_Idle_Time = 0
 
 Arena_Combo_List = ComboList.new({
 	{name = "Ground Circle", cmb = Combo.new({"d","w","a","s"})},
@@ -123,9 +128,9 @@ function Arena_Move_None_X()
 				end
 			else
 				if A.vy > 0 then
-					A.state = 5
+					A.state = PLAYER_FLOAT
 				else
-					A.state = 6
+					A.state = PLAYER_FALL
 				end
 			end
 		end
@@ -147,15 +152,15 @@ function Arena_Move_None_Y()
 		else
 			if A.vy == 0 then
 				if A.x > 0 then
-					A.state = 7
+					A.state = PLAYER_SLIDE_RIGHT
 				else
-					A.state = 8
+					A.state = PLAYER_SLIDE_LEFT
 				end
 			else
 				if A.vy > 0 then
-					A.state = 5
+					A.state = PLAYER_FLOAT
 				else
-					A.state = 6
+					A.state = PLAYER_FALL
 				end
 			end
 		end
@@ -166,7 +171,7 @@ function Arena_Move_Combo()
 	-- Cool down for break combo
 	local dt = DT()
 	Arena_Combo.fresh = Arena_Combo.fresh + dt
-	if Arena_Combo.fresh >= 0.5 then
+	if Arena_Combo.fresh >= Arena_Combo_Delay then
 		Arena_Combo_List:validate(Arena_Combo)
 		if not Arena_Combo:compare(Empty_Combo) then
 			local combo = "Combo: "

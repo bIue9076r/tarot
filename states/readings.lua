@@ -11,7 +11,11 @@ READINGS_MOUSEPRESSED = {}
 READINGS_DRAW = {}
 READINGS_DAY = DAY_ONE
 
-require("dayOne")
+require("/states/dayOne")
+require("/states/dayTwo")
+require("/states/dayThree")
+require("/states/dayFour")
+require("/states/dayFive")
 
 LOAD[READINGS] = function()
 	local f = READINGS_LOAD[READINGS_DAY]
