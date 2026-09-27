@@ -181,13 +181,13 @@ function Arena_Move_Combo()
 			local cmb = Arena_Combo_List:compare(Arena_Combo)
 			if cmb then
 				combo = combo..cmb.name
+				Arena_Combo_Show = combo
+				Arena_Combo_Show_T = Arena_Combo_Show_Delay
 			else
 				for i,v in ipairs(Arena_Combo.moveset) do
-					-- combo = combo..v.." "
+					combo = combo..v.." "
 				end
 			end
-			Arena_Combo_Show = combo
-			Arena_Combo_Show_T = Arena_Combo_Show_Delay
 			Arena_Combo:clear()
 		end
 	end
