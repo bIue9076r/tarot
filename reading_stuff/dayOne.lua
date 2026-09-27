@@ -1,133 +1,211 @@
 require("reading_stuff.interactions")
 DAY_ONE = 1
-Current_C = 1
-Current_T = 0
-Current_TBL = {}
 
-Is_Intro = true
-Is_Intro2 = false
-Is_CardPick = false
-Is_Response = false
-Is_Fade = false
+Reading_Interactions_Index = 1
+Reading_Interactions = {
+	[1] = Interaction_Hierophant
+}
+Reading_Customers = {}
+Reading_Customers_Cards = {}
+Reading_Player_Choice = "Bad"
+Reading_Card_t = 0
 
-Fade_t = 0
+Readings_Intro = 1
+Readings_Crystal = 2
+Readings_Card = 3
+Readings_Results = 4
+
+Readings_state = Readings_Intro
+
+Readings_Subupdate = {
+	[Readings_Intro] = function(dt)
+		
+	end,
+
+	[Readings_Crystal] = function(dt)
+		
+	end,
+
+	[Readings_Card] = function(dt)
+		
+	end,
+
+	[Readings_Results] = function(dt)
+		
+	end,
+}
+
+Readings_Subkeypressed = {
+	[Readings_Intro] = function(key)
+		local dialogue = Reading_Interactions[Reading_Interactions_Index].Intro
+		if key == "space" then
+			dialogue:next()
+		end
+
+		if key == "return" and dialogue:over() then
+			Readings_state = Readings_Crystal
+		end
+	end,
+
+	[Readings_Crystal] = function(key)
+		local dialogue = Reading_Interactions[Reading_Interactions_Index].Crystal
+		if key == "space" then
+			dialogue:next()
+		end
+
+		if key == "return" and dialogue:over() then
+			Readings_state = Readings_Card
+		end
+	end,
+
+	[Readings_Card] = function(key)
+		
+	end,
+
+	[Readings_Results] = function(key)
+		
+	end,
+}
+
+Readings_Submousepressed = {
+	[Readings_Intro] = function(x,y,button)
+		local dialogue = Reading_Interactions[Reading_Interactions_Index].Intro
+		if dialogue:over() then
+			if ((x - 400)*(x - 400) + (y - 440)*(y - 440) < 50*50) then
+				Readings_state = Readings_Crystal
+			end
+		end
+	end,
+
+	[Readings_Crystal] = function(x,y,button)
+		
+	end,
+
+	[Readings_Card] = function(x,y,button)
+		
+	end,
+
+	[Readings_Results] = function(x,y,button)
+		
+	end,
+}
+
+Readings_Subdraw = {
+	[Readings_Intro] = function()
+		local dialogue = Reading_Interactions[Reading_Interactions_Index].Intro
+		local text = dialogue:get()
+		local customer = Reading_Customers[Reading_Interactions_Index]
+		if text.speaker == SPEAKER_CHARACTER then
+			customer.yap = true
+		else
+			customer.yap = false
+		end
+
+		customer:draw()
+		local img = Image.get("dialogue_"..text.speaker)
+		if text.speaker == SPEAKER_PLAYER then
+			love.graphics.setColor(0.7,0,0.7)
+		elseif text.speaker == SPEAKER_BALL then
+			love.graphics.setColor(0.7,0.7,0)
+		else
+			love.graphics.setColor(1,1,1)
+		end
+		love.graphics.draw(img,0,-15,0,1,0.5)
+		love.graphics.printf({{0,0,0},Text(text.text)},130,100,370,"left")
+		love.graphics.setColor(1,1,1)
+		if text.speaker == SPEAKER_BALL then
+			img = Image.get("ballsmug")
+			love.graphics.draw(img,350,390)
+		end
+	end,
+
+	[Readings_Crystal] = function()
+		local dialogue = Reading_Interactions[Reading_Interactions_Index].Crystal
+		local text = dialogue:get()
+		local customer = Reading_Customers[Reading_Interactions_Index]
+		if text.speaker == SPEAKER_CHARACTER then
+			customer.yap = true
+		else
+			customer.yap = false
+		end
+
+		customer:draw()
+		local img = Image.get("dialogue_"..text.speaker)
+		if text.speaker == SPEAKER_PLAYER then
+			love.graphics.setColor(0.7,0,0.7)
+		elseif text.speaker == SPEAKER_BALL then
+			love.graphics.setColor(0.7,0.7,0)
+		else
+			love.graphics.setColor(1,1,1)
+		end
+		love.graphics.draw(img,0,-15,0,1,0.5)
+		love.graphics.printf({{0,0,0},Text(text.text)},130,100,370,"left")
+		love.graphics.setColor(1,1,1)
+		if text.speaker == SPEAKER_BALL then
+			img = Image.get("ballsmug")
+			love.graphics.draw(img,350,390)
+		end
+	end,
+
+	[Readings_Card] = function()
+		local customer = Reading_Customers[Reading_Interactions_Index]
+		local cards = Reading_Customers_Cards[Reading_Interactions_Index]
+		customer.yap = false
+		customer:draw()
+		for i = 1,4 do
+			Reading_Card_t = Reading_Card_t + DT()
+			local t = math.min(Reading_Card_t,1)
+			TAROTCARDS[cards[i]]:draw(i,t)
+		end
+	end,
+
+	[Readings_Results] = function()
+		local dialogue = Reading_Interactions[Reading_Interactions_Index].Choices[Reading_Player_Choice]
+		local text = dialogue:get()
+		local customer = Reading_Customers[Reading_Interactions_Index]
+		if text.speaker == SPEAKER_CHARACTER then
+			customer.yap = true
+		else
+			customer.yap = false
+		end
+
+		customer:draw()
+		local img = Image.get("dialogue_"..text.speaker)
+		love.graphics.draw(img,0,-15,0,1,0.5)
+		love.graphics.printf({{0,0,0},Text(text.text)},130,100,370,"left")
+	end,
+}
 
 READINGS_LOAD[DAY_ONE] = function()
-    Customer_List1 = {Characters[5], Characters[1], Characters[22]}
-    Cust = {}
-    Cust[1] = {TAROTCARDS[RandomCard()], TAROTCARDS[RandomCard()], TAROTCARDS[RandomCard()], TAROTCARDS[RandomCard()]}
-    Cust[2] = {TAROTCARDS[RandomCard()], TAROTCARDS[RandomCard()], TAROTCARDS[RandomCard()], TAROTCARDS[RandomCard()]}
-    Cust[3] = {TAROTCARDS[RandomCard()], TAROTCARDS[RandomCard()], TAROTCARDS[RandomCard()], TAROTCARDS[RandomCard()]}
-    --Cust[4] = {TAROTCARDS[RandomCard()], TAROTCARDS[RandomCard()], TAROTCARDS[RandomCard()], TAROTCARDS[RandomCard()]}
-
+	Reading_Customers = {
+		Characters[5],
+		Characters[RandomCustomer()],
+		Characters[RandomCustomer()],
+	}
+    
+	Reading_Customers_Cards = {}
+	Reading_Customers_Cards[1] = RandomCards(READINGS_DAY)
+	Reading_Customers_Cards[2] = RandomCards(READINGS_DAY)
+	Reading_Customers_Cards[3] = RandomCards(READINGS_DAY)
+	Reading_Customers_Cards[4] = RandomCards(READINGS_DAY)
 end
 
 READINGS_UPDATE[DAY_ONE] = function(dt)
-    if Current_C > 3 then
-        --GoToArena()
-        NextDay()
-    end
-    SetTable()
-	SetResponse()
+	local f = Readings_Subupdate[Readings_state]
+	if f then f(dt) end
 end
 
 READINGS_KEYPRESSED[DAY_ONE] = function(key)
-    if Is_Intro or Is_Intro2 then
-       if key == "space" then
-            Current_I = Current_I + 1
-            if Current_I > #Current_TBL then
-                Current_I = #Current_TBL
-            end
-        end
-    elseif Is_CardPick then
-        CheckCard(key)
-    elseif Is_Response then
-        if key == "space" then
-            Current_I = Current_I + 1
-            if Current_I > #Current_TBL then
-                Current_I = #Current_TBL
-            end
-        end
-        if key == "return" then
-            Is_Response = false
-            Is_Fade = true
-            Customer_List1[Current_C].yap = false
-            Customer_List1[Current_C]:animate()
-        end
-    end
+	local f = Readings_Subkeypressed[Readings_state]
+	if f then f(key) end
 end
 
 READINGS_MOUSEPRESSED[DAY_ONE] = function(x,y,button)
-    if Is_Intro then
-        if Current_I == #Current_TBL then
-            if CheckBall(x,y,button) then
-                Is_Intro = false
-                Is_Intro2 = true
-                Current_I = 1
-            end
-        end
-    elseif Is_Intro2 then
-        if Current_I == #Current_TBL then
-            if CheckBall(x,y,button) then
-                Is_Intro2 = false
-                Is_CardPick = true
-                Current_I = 1
-            end
-        end
-    end
+	local f = Readings_Submousepressed[Readings_state]
+	if f then f(x,y,button) end
 end
 
 READINGS_DRAW[DAY_ONE] = function()
-    if Is_Intro then
-        print(Customer_List1,Current_C)
-        Customer_List1[Current_C].yap = true
-        if not (Getspeaker(Current_TBL) == SPEAKER_CHARACTER) then
-           Customer_List1[Current_C].yap = false
-        end
-        Customer_List1[Current_C]:animate()
-        PrintIntros(Current_TBL)
-
-    elseif Is_Intro2 then
-        Customer_List1[Current_C].yap = true
-        if not (Getspeaker(Current_TBL) == SPEAKER_CHARACTER) then
-           Customer_List1[Current_C].yap = false
-        end
-        Customer_List1[Current_C]:animate()
-        PrintIntros(Current_TBL)
-
-    elseif Is_CardPick then
-        Customer_List1[Current_C].yap = true
-        if not (Getspeaker(Current_TBL) == SPEAKER_CHARACTER) then
-           Customer_List1[Current_C].yap = false
-        end
-        Customer_List1[Current_C]:animate()
-        for i = 1,4 do
-            Current_T = Current_T + 0.6*DT()
-            Tarot_Cards:draw(i,Cust[Current_C],math.min(Current_T,1))
-        end
-
-    elseif Is_Response then
-        Customer_List1[Current_C].yap = true
-        if not (Getspeaker(Current_TBL) == SPEAKER_CHARACTER) then
-           Customer_List1[Current_C].yap = false
-        end
-        Customer_List1[Current_C]:animate()
-        DrawResponse()
-    elseif Is_Fade then
-        Fade_t = Fade_t + 3.5*DT()
-        local t = math.min(Fade_t,1)
-        love.graphics.setColor(0,0,0,(0.5*(1 - t) - 1)*(0.5*(1 - t) - 1))
-        love.graphics.rectangle("fill",0,0,800,600)
-        Customer_List1[Current_C]:animate()
-        love.graphics.setColor(1,1,1)
-        if Fade_t >= 10 then
-            Current_C = Current_C + 1
-            Is_Fade = false
-            Is_Intro = true
-            Current_I = 1
-            PICK = 0
-            Current_T = 0
-            Fade_t = 0
-        end
-    end
+	local f = Readings_Subdraw[Readings_state]
+	if f then f() end
 end

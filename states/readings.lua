@@ -56,9 +56,7 @@ DRAW[READINGS] = function()
 			song:play()
 		end
 	end
-	love.graphics.setBackgroundColor(1,0,1)
 	love.graphics.setColor(1,1,1)
-
 	local bg = Image.get("tent")
 	love.graphics.draw(bg)
 

@@ -35,18 +35,30 @@ function RandomCustomer()
     return list[n]
 end
 
-function RandomCard()
-    if READINGS_DAY == 1 then
-        local card = love.math.random(1,5)
-        return card
-    elseif READINGS_DAY == 2 then
-        local card = love.math.random(1,6)
-        return card
-    elseif READINGS_DAY == 3 then
-        local card = love.math.random(1,7)
-        return card
-    elseif READINGS_DAY == 4 then
-        local card = love.math.random(1,8)
-        return card
-    end
+function Duplicate(tbl,val)
+	for i,v in pairs(tbl) do
+		if(v == val) then
+			return true
+		end
+	end
+	return false
+end
+
+function RandomCards(day)
+	local tbl = {}
+	for i = 1,4 do
+		local n = love.math.random(1,4 + day)
+		if Duplicate(tbl,n) then
+			for _ = 1,5 do
+				n = love.math.random(1,4 + day)
+				if not Duplicate(tbl,n) then
+					break
+				end
+			end
+		else
+			table.insert(tbl,n)
+		end
+	end
+
+	return tbl
 end

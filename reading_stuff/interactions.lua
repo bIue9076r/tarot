@@ -2,19 +2,20 @@ SPEAKER_PLAYER = 1
 SPEAKER_CHARACTER = 2
 SPEAKER_BALL = 3
 
-Text = {speaker = SPEAKER_PLAYER, text = ""}
+Text = {speaker = SPEAKER_PLAYER, text = 0}
 function Text.new(t,s)
-	return {text = t or "", speaker = s or SPEAKER_CHARACTER}
+	return {text = t or 0, speaker = s or SPEAKER_CHARACTER}
 end
 
 Dialogue = {
-	index = 0,
+	index = 1,
 	textlist = {},
 }
+
 function Dialogue.new(texts)
 	local tbl = {
 		textlist = texts or {},
-		index = 0,
+		index = 1,
 	}
 
 	local mt = {
@@ -22,6 +23,13 @@ function Dialogue.new(texts)
 	}
 
 	return setmetatable(tbl,mt)
+end
+
+function Dialogue:get()
+	local r = self.textlist[self.index]
+	if r then
+		return r
+	end
 end
 
 function Dialogue:next()
@@ -32,12 +40,41 @@ function Dialogue:next()
 	end
 end
 
+function Dialogue:over()
+	return self.index >= #self.textlist
+end
+
 Interaction = {
 	Intro = Dialogue.new(),
 	Crystal = Dialogue.new(),
 	Cards = {},
-	Choices = Dialogue.new(),
+	Choices = {
+		Best = Dialogue.new(),
+		Neutral = Dialogue.new(),
+		Bad = Dialogue.new(),
+		Worst = Dialogue.new()
+	},
 }
+
+function Interaction.new(intro,crystal,choices)
+	local tbl = {
+		Intro = intro or Dialogue.new(),
+		Crystal = crystal or Dialogue.new(),
+		Cards = {},
+		Choices = choices or {
+			Best = Dialogue.new(),
+			Neutral = Dialogue.new(),
+			Bad = Dialogue.new(),
+			Worst = Dialogue.new()
+		}
+	}
+
+	local mt = {
+		__index = Interaction
+	}
+
+	return setmetatable(tbl,mt)
+end
 
 Current_I = 1
 
@@ -234,7 +271,47 @@ All_Tables = {
     },
 }
 
--- Interaction_Hierophant = Interaction.new(
--- 	Dialogue.new(),
--- 	Dialogue.new()
--- )
+Interaction_Hierophant = Interaction.new(
+	-- Intro
+	Dialogue.new({
+		Text.new(1,SPEAKER_CHARACTER),
+		Text.new(2,SPEAKER_PLAYER),
+		Text.new(3,SPEAKER_CHARACTER),
+		Text.new(4,SPEAKER_PLAYER),
+	}),
+
+	-- Crystal
+	Dialogue.new({
+		Text.new(5,SPEAKER_CHARACTER),
+		Text.new(6,SPEAKER_CHARACTER),
+		Text.new(7,SPEAKER_CHARACTER),
+		Text.new(8,SPEAKER_BALL),
+	}),
+
+	-- Choices
+	{
+		Best = Dialogue.new({
+			Text.new(11,SPEAKER_PLAYER),
+			Text.new(12,SPEAKER_CHARACTER),
+			Text.new(13,SPEAKER_CHARACTER),
+		}),
+
+		Neutral = Dialogue.new({
+			Text.new(14,SPEAKER_PLAYER),
+			Text.new(15,SPEAKER_CHARACTER),
+			Text.new(16,SPEAKER_CHARACTER),
+		}),
+
+		Bad = Dialogue.new({
+			Text.new(17,SPEAKER_PLAYER),
+			Text.new(18,SPEAKER_CHARACTER),
+		}),
+
+		Worst = Dialogue.new({
+			Text.new(19,SPEAKER_PLAYER),
+			Text.new(20,SPEAKER_CHARACTER),
+			Text.new(21,SPEAKER_CHARACTER),
+		}),
+	}
+)
+

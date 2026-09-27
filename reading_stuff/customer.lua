@@ -10,14 +10,12 @@ function Customer.new(name, birth_date, sprite)
     return setmetatable(table, metaTable)
 end
 
-function Customer:animate(f)
+function Customer:draw()
 	self.sprite = self.sprite + DT()
 	if self.yap then
 		local n = (math.floor(2*self.sprite) % 2) + 1
 		local l = math.max((math.floor(self.sprite) % 5) - 3,0) * 2
 		local img = Image.get("c"..self.birth_date.."_"..(n + l))
-        print(self.birth_date)
-        print("c"..self.birth_date.."_"..(n + l))
 		love.graphics.draw(img, 250, 180)
         local v = Sound.get("voice_1")
         if v and (not v:isPlaying()) then
@@ -32,6 +30,7 @@ function Customer:animate(f)
            v:stop()
         end
 	end
+	
     local TABL = Image.get("table")
     love.graphics.draw(TABL)
     local BALLZ = Image.get("ball")

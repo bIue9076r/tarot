@@ -132,12 +132,26 @@ Image.new("t8v2", "/assets/threecup_good.png")
 Image.new("t8v3", "/assets/threecup_bad1.png")
 Image.new("t8v4", "/assets/threecup_bad2.png")
 
+Image.new("tm6","/assets/6lovers.png")
+Image.new("tm7","/assets/7chariot.png")
+Image.new("tm9","/assets/9hermit.png")
+Image.new("tm10","/assets/10wheeloffortune.png")
+Image.new("tm12","/assets/12hangedman.png")
+Image.new("tm15","/assets/15devil.png")
+Image.new("tm16","/assets/16tower.png")
+Image.new("tm20","/assets/20judgement.png")
+
 --------------------------------------------------------
 --BACKGROUNDS
 Image.new("tent","/assets/background.png")
 Image.new("table_n_ball","/assets/table_and_ball.png")
 Image.new("table","/assets/table.png")
 Image.new("ball","/assets/ball.png")
+Image.new("ballsmug","/assets/ballsmug.png")
+
+Image.new("dialogue_1","/assets/dialogue_1.png")
+Image.new("dialogue_2","/assets/dialogue_2.png")
+Image.new("dialogue_3","/assets/dialogue.png")
 
 Image.new("arena_sky","/assets/arena_assets/arena_sky.png")
 Image.new("arena_far","/assets/arena_assets/arena_farcity.png")
