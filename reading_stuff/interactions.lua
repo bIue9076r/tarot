@@ -344,3 +344,138 @@ Interaction_Temperance = Interaction.new(
         }),
     }
 )
+
+-- THIRD DAY
+Interaction_Hermit = Interaction.new(
+    -- Intro
+    Dialogue.new({
+        Text.new(121,SPEAKER_CHARACTER),
+        Text.new(2,SPEAKER_PLAYER),
+        Text.new(122,SPEAKER_CHARACTER),
+        Text.new(4, SPEAKER_PLAYER)
+    }),
+
+    -- Crystal
+    Dialogue.new({
+        Text.new(123, SPEAKER_CHARACTER),
+        Text.new(124, SPEAKER_CHARACTER),
+        Text.new(125, SPEAKER_CHARACTER),
+        Text.new(126, SPEAKER_BALL)
+    }),
+
+    {
+        Best = Dialogue.new({
+            Text.new(127, SPEAKER_PLAYER),
+            Text.new(128, SPEAKER_CHARACTER),
+            Text.new(129, SPEAKER_CHARACTER)
+        }),
+        Neutral = Dialogue.new({
+            Text.new(130, SPEAKER_PLAYER),
+            Text.new(131, SPEAKER_CHARACTER),
+            Text.new(132, SPEAKER_CHARACTER)
+        }),
+        Bad = Dialogue.new({
+            Text.new(133, SPEAKER_PLAYER),
+            Text.new(134, SPEAKER_CHARACTER),
+            Text.new(135, SPEAKER_CHARACTER)
+            
+        }),
+        Worst = Dialogue.new({
+            Text.new(136, SPEAKER_PLAYER),
+            Text.new(137, SPEAKER_CHARACTER),
+            Text.new(138, SPEAKER_CHARACTER),
+            Text.new(139, SPEAKER_CHARACTER)
+        }),
+    }
+)
+
+Interaction_Lovers = Interaction.new(
+    -- Intro
+    Dialogue.new({
+        Text.new(140,SPEAKER_CHARACTER),
+        Text.new(2,SPEAKER_PLAYER),
+        Text.new(141,SPEAKER_CHARACTER),
+        Text.new(4, SPEAKER_PLAYER)
+    }),
+
+    -- Crystal
+    Dialogue.new({
+        Text.new(142, SPEAKER_CHARACTER),
+        Text.new(143, SPEAKER_CHARACTER),
+        Text.new(144, SPEAKER_CHARACTER),
+        Text.new(145, SPEAKER_CHARACTER),
+        Text.new(146, SPEAKER_BALL)
+    }),
+
+    {
+        Best = Dialogue.new({
+            Text.new(147, SPEAKER_PLAYER),
+            Text.new(148, SPEAKER_CHARACTER),
+            Text.new(149, SPEAKER_CHARACTER)
+        }),
+        Neutral = Dialogue.new({
+            Text.new(150, SPEAKER_PLAYER),
+            Text.new(151, SPEAKER_CHARACTER),
+            Text.new(152, SPEAKER_CHARACTER)
+        }),
+        Bad = Dialogue.new({
+            Text.new(153, SPEAKER_PLAYER),
+            Text.new(154, SPEAKER_CHARACTER),
+            Text.new(155, SPEAKER_CHARACTER)
+            
+        }),
+        Worst = Dialogue.new({
+            Text.new(156, SPEAKER_PLAYER),
+            Text.new(157, SPEAKER_CHARACTER),
+            Text.new(158, SPEAKER_CHARACTER)
+        }),
+    }
+)
+
+Interaction_Devil = Interaction.new(
+    -- Intro
+    Dialogue.new({
+        Text.new(159,SPEAKER_CHARACTER),
+        Text.new(2,SPEAKER_PLAYER),
+        Text.new(160,SPEAKER_CHARACTER),
+        Text.new(4, SPEAKER_PLAYER)
+    }),
+
+    -- Crystal
+    Dialogue.new({
+        Text.new(161, SPEAKER_CHARACTER),
+        Text.new(162, SPEAKER_CHARACTER),
+        Text.new(163, SPEAKER_CHARACTER),
+        Text.new(164, SPEAKER_CHARACTER),
+        Text.new(165, SPEAKER_BALL)
+    }),
+
+    {
+        Best = Dialogue.new({
+            Text.new(166, SPEAKER_PLAYER),
+            Text.new(167, SPEAKER_CHARACTER),
+            Text.new(168, SPEAKER_CHARACTER),
+            Text.new(169, SPEAKER_CHARACTER)
+        }),
+        Neutral = Dialogue.new({
+            Text.new(170, SPEAKER_PLAYER),
+            Text.new(171, SPEAKER_CHARACTER),
+            Text.new(172, SPEAKER_CHARACTER)
+        }),
+        Bad = Dialogue.new({
+            Text.new(173, SPEAKER_PLAYER),
+            Text.new(174, SPEAKER_CHARACTER),
+            Text.new(175, SPEAKER_CHARACTER),
+            Text.new(176, SPEAKER_CHARACTER)
+            
+        }),
+        Worst = Dialogue.new({
+            Text.new(177, SPEAKER_PLAYER),
+            Text.new(178, SPEAKER_CHARACTER),
+            Text.new(179, SPEAKER_CHARACTER),
+            Text.new(180, SPEAKER_CHARACTER)
+        }),
+    }
+)
+
+-- FOURTH DAY
