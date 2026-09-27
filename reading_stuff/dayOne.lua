@@ -78,7 +78,9 @@ Readings_Submousepressed = {
 	end,
 
 	[Readings_Crystal] = function(x,y,button)
-		
+		if dialogue:over() then
+			Readings_state = Readings_Card
+		end
 	end,
 
 	[Readings_Card] = function(x,y,button)
