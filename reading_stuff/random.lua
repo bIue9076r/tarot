@@ -4,7 +4,7 @@ TheMagician_BD = 1
 TheHighPriestess_BD = 2
 TheEmpress_BD = 3
 TheEmperor_BD = 4
-TheHIerophant_BD = 5
+TheHierophant_BD = 5
 TheLovers_BD = 6
 TheChariot_BD = 7
 Strength_BD = 8
@@ -23,3 +23,8 @@ TheWorld_BD = 21
 TheFool_BD = 22
 
 --------------------------------------------------------
+
+function RandomCustomer()
+    local n = love.math.random(21)
+    return n
+end

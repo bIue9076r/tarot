@@ -4,6 +4,7 @@ love.graphics.setDefaultFilter("nearest", "nearest")
 require("globals")
 
 function love.load()
+	GetText()
 	local f = LOAD[GAME_STATE]
 	if f then
 		f()
