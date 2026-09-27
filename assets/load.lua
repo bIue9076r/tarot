@@ -271,5 +271,9 @@ Sound.new("arena","/assets/arena.ogg")
 Sound.new("arenaIntro", "/assets/arenaIntro.ogg")
 Sound.new("shop","/assets/shop.ogg")
 Sound.new("thePsychic","assets/thePyschic.ogg")
+Sound.new("gloomy", "assets/gloomy.ogg")
+Sound.new("triumph","assets/triumph.ogg")
+
+-- SFX
 Sound.new("voice_1","/assets/VoiceHigh.mp3","static")
 Sound.new("voice_2","/assets/VoiceLow.mp3","static")
