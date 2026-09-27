@@ -12,7 +12,7 @@ IntroHierophant = {
 
 Current_I = 1
 function Printin(general_table)
-    print(general_table[Current_I][1],Text(general_table[Current_I][1]))
+    love.graphics.print(Text(general_table[Current_I][1]), 10, 20)
 end
 
 function Getspeaker(general_table)
@@ -20,7 +20,6 @@ function Getspeaker(general_table)
 end
 
 function PrintIntros(general_table)
-    love.graphics.circle("fill", 400, 350, 50)
     Printin(general_table)
 end
 
@@ -29,10 +28,7 @@ function CheckBall(x,y,button)
     local k = 350
     local h = 400
     if ((x - h)*(x - h) + (y - k)*(y - k)) < r*r then
-        Is_Intro = false
-        Is_Intro2 = true
-        Current_TBL = Intro2Hierophant
-        Current_I = 1
+        return true
     end
 end
 
@@ -43,4 +39,22 @@ Intro2Hierophant = {
     {speaker=SPEAKER_CHARACTER, 6},
     {speaker=SPEAKER_CHARACTER, 7},
     {speaker=SPEAKER_BALL, 8}
+}
+
+
+-- CardPick
+CardPickHierophant = {
+    {speaker=SPEAKER_PLAYER, 9},
+    {speaker=SPEAKER_PLAYER, 10},
+    {speaker=SPEAKER_PLAYER, 11},
+    {speaker=SPEAKER_CHARACTER, 12},
+    {speaker=SPEAKER_CHARACTER, 13},
+    {speaker=SPEAKER_PLAYER, 14},
+    {speaker=SPEAKER_CHARACTER, 15},
+    {speaker=SPEAKER_CHARACTER, 16},
+    {speaker=SPEAKER_PLAYER, 17},
+    {speaker=SPEAKER_CHARACTER, 18},
+    {speaker=SPEAKER_PLAYER, 19},
+    {speaker=SPEAKER_CHARACTER, 20},
+    {speaker=SPEAKER_CHARACTER, 21}
 }
