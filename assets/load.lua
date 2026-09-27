@@ -168,6 +168,12 @@ Image.new("settingsbox","/assets/settingsbox.png")
 Image.new("exit","/assets/exit_button.png")
 Image.new("boss","/assets/Boss_Defeated.png")
 
+Image.new("n_wasd","/assets/blank_wasd.png")
+Image.new("w_wasd","/assets/w_wasd.png")
+Image.new("a_wasd","/assets/a_wasd.png")
+Image.new("s_wasd","/assets/s_wasd.png")
+Image.new("d_wasd","/assets/d_wasd.png")
+
 -- Quads
 Image.new("arena_player","/assets/arena_assets/Sprite-mc-Sheet.png")
 local plr = Image.get("arena_player")

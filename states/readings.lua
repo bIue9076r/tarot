@@ -36,11 +36,15 @@ READINGS_DAY = 0
 
 function NextDay()
 	READINGS_DAY = READINGS_DAY + 1
-	if READINGS_DAY >= 2 then
+
+	if READINGS_DAY == 3 then
 		-- Ending
-		if READINGS_DAY >= 3 then
-			GoToArena() -- Endless boss fight
-		end
+		Switch_State(ENDING)
+		return
+	end
+
+	if READINGS_DAY >= 4 then
+		GoToArena() -- Endless boss fight
 		return
 	end
 

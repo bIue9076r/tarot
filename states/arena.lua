@@ -9,7 +9,7 @@ Arena_Max_Velocity_Y = 400
 
 Arena_Combo = Combo.new()
 Empty_Combo = Combo.new()
-Arena_Combo_Delay = 0.5
+Arena_Combo_Delay = 0.25
 Arena_Combo_Show = ""
 Arena_Combo_Show_T = 0
 Arena_Combo_Show_Delay = 2
@@ -30,6 +30,7 @@ Arena_Idle_Time = 0
 Arena_Dead = 0
 Arena_Ending = 0
 
+Arena_Key = ""
 
 Arena_Combo_List = ComboList.new({
 	{name = "Right Blast", cmb = Combo.new({"d","d"})},
@@ -59,7 +60,7 @@ Arena_Combo_List = ComboList.new({
 Arena_Combo_Enact = {
 	["Ground Circle"] = function()
 		local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
-		for i = 1,10 do
+		for i = 1,11 do
 			Arena_Space:add(Projectile.joe(5,A.x,A.y,5,5,-math.pi * (i - 1)/10,400))
 		end
 	end,
@@ -270,6 +271,7 @@ function Arena_Move_Combo()
 			end
 			Arena_Combo:clear()
 		end
+		Arena_Key = ""
 	end
 end
 
@@ -294,6 +296,15 @@ end
 function Arena_FrontParalax()
 	local img = Image.get("arena_lamp")
 	love.graphics.draw(img,-800 -1.25*Arena_Space.Xlax,-110,0,2,1)
+end
+
+function Arena_KeyShow()
+	if not(Arena_Key == "w" or Arena_Key == "a" or Arena_Key == "s" or Arena_Key == "d") then
+		Arena_Key = "n"
+	end
+
+	local img = Image.get(Arena_Key.."_wasd")
+	love.graphics.draw(img,600,-150,0,0.5)
 end
 
 function Arena_Animate()
@@ -372,6 +383,16 @@ function Arena_BossEnd()
 			love.graphics.draw(img, Magician_Quad2[N],v.x - Arena_Space.Xlax,v.y - Arena_Space.Ylax)
 		end
 	end
+
+	local img = Image.get("boss")
+	love.graphics.draw(img)
+end
+
+function Arena_Hp_Show()
+	local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
+	if A then
+		love.graphics.print(string.format("%.2f HP",A.hp),0,0,0,2)
+	end
 end
 
 LOAD[ARENA] = function()
@@ -393,13 +414,12 @@ LOAD[ARENA] = function()
 	local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
 	A.hp = 100
 	local intro = Sound.get("arenaIntro")
-		if intro then
-			intro:setVolume(Logarithming(GAME_MUSIC_VOLUME))
-			if not intro:isPlaying() and not INTRO_PLAYED then
-
-				intro:play()
-			end
+	if intro then
+		intro:setVolume(Logarithming(GAME_MUSIC_VOLUME))
+		if not intro:isPlaying() and not INTRO_PLAYED then
+			intro:play()
 		end
+	end
 end
 
 UPDATE[ARENA] = function(dt)
@@ -489,6 +509,7 @@ KEYPRESSED[ARENA] = function(key)
 	end
 
 	Arena_Combo:addMove(key)
+	Arena_Key = key
 end
 
 MOUSEPRESSED[ARENA] = function(x,y,button)
@@ -524,16 +545,19 @@ DRAW[ARENA] = function()
 					intro:stop()
 				end
 
-				NextDay()
+				Switch_State(READINGS)
 			end
 		end
 		
 		Arena_FrontParalax()
 
+		Arena_KeyShow()
 		if Arena_Combo_Show_T >= 0 then
 			love.graphics.print(Arena_Combo_Show,0,30,0,2)
 			Arena_Combo_Show_T = Arena_Combo_Show_T - DT()
 		end
+
+		Arena_Hp_Show()
 	else
 		local song = Sound.get("arena")
 		local intro = Sound.get("arenaIntro")
