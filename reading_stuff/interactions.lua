@@ -40,20 +40,17 @@ Interaction = {
 }
 
 Current_I = 1
-function Printin(general_table)
-    love.graphics.print(Text(general_table[Current_I][1]), 10, 20)
+
+function Printin(Gentbl)
+    love.graphics.print(Text(Gentbl[Current_I][1]), 10, 20)
 end
 
-function Getspeaker(general_table)
-    return general_table[Current_I].speaker
+function Getspeaker(Gentbl)
+    return Gentbl[Current_I].speaker
 end
 
-function GetResponseSpeaker()
-    return
-end
-
-function PrintIntros(general_table)
-    Printin(general_table)
+function PrintIntros(Gentbl)
+    Printin(Gentbl)
 end
 
 function CheckBall(x,y,button)
@@ -78,13 +75,13 @@ end
 function SetResponse()
     if Is_Response then
         if PICK == 2 then
-            Current_TBL = All_Tables[Current_C][3][2][Current_I][1]
+            Current_TBL = All_Tables[Current_C][3][2]
         elseif PICK == 1 then
-            Current_TBL = All_Tables[Current_C][3][3][Current_I][1]
+            Current_TBL = All_Tables[Current_C][3][3]
         elseif PICK == -1 then
-            Current_TBL = All_Tables[Current_C][3][4][Current_I][1]
+            Current_TBL = All_Tables[Current_C][3][4]
         elseif PICK == -2 then
-            Current_TBL = All_Tables[Current_C][3][5][Current_I][1]
+            Current_TBL = All_Tables[Current_C][3][5]
         end
     end
 end

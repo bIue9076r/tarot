@@ -7,6 +7,10 @@ Current_TBL = {}
 Is_Intro = true
 Is_Intro2 = false
 Is_CardPick = false
+Is_Response = false
+Is_Fade = false
+
+Fade_t = 0
 
 READINGS_LOAD[DAY_ONE] = function()
     Customer_List1 = {Characters[5], Characters[RandomCustomer()], Characters[RandomCustomer()], Characters[RandomCustomer()]}
@@ -20,7 +24,7 @@ end
 
 READINGS_UPDATE[DAY_ONE] = function(dt)
     SetTable()
-	
+	SetResponse()
 end
 
 READINGS_KEYPRESSED[DAY_ONE] = function(key)
@@ -39,8 +43,12 @@ READINGS_KEYPRESSED[DAY_ONE] = function(key)
             if Current_I > #Current_TBL then
                 Current_I = #Current_TBL
             end
+        if Current_I == #Current_TBL and key == "space" then
+            Is_Response = false
+            Is_Fade = true
         end
     end
+end
 end
 
 READINGS_MOUSEPRESSED[DAY_ONE] = function(x,y,button)
@@ -70,8 +78,8 @@ READINGS_DRAW[DAY_ONE] = function()
         if not (Getspeaker(Current_TBL) == SPEAKER_CHARACTER) then
            Customer_List1[Current_C].yap = false
         end
-    Customer_List1[Current_C]:animate()
-    PrintIntros(Current_TBL)
+        Customer_List1[Current_C]:animate()
+        PrintIntros(Current_TBL)
 
     elseif Is_Intro2 then
         Customer_List1[Current_C].yap = true
@@ -91,11 +99,26 @@ READINGS_DRAW[DAY_ONE] = function()
             Current_T = Current_T + 0.6*DT()
             Tarot_Cards:draw(i,Cust[Current_C],math.min(Current_T,1))
         end
+
     elseif Is_Response then
         Customer_List1[Current_C].yap = true
         if not (Getspeaker(Current_TBL) == SPEAKER_CHARACTER) then
            Customer_List1[Current_C].yap = false
         end
+        Customer_List1[Current_C]:animate()
         DrawResponse()
+    elseif Is_Fade then
+        Fade_t = Fade_t + DT()
+        local t = math.min(Fade_t,1)
+        love.graphics.setColor(1,1,1,t)
+        Customer_List1[Current_C]:animate()
+        love.graphics.setColor(1,1,1)
+        if Fade_t >= 4 then
+            Current_C = Current_C + 1
+            Is_Fade = false
+            Is_Intro = true
+            Current_I = 1
+            PICK = 0
+        end
     end
 end
