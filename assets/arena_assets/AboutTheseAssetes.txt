@@ -16,3 +16,8 @@ Scale these up to two time original size
 
 
 The parking lot + lamp have two sets, one is cropped on a 1600*650 canvas, one is the original uncropped copy.
+
+
+The magician have 2 sheets, one is 64*64, another is 170*80.
+The 64*64 sheet contains the magician, the item it holds, an 3 frame animation, defeat animation + obtain tarot animation (these are seamless)
+To make it have the same pixel size as the player, and to make it more intimidating, scale it up by two.
