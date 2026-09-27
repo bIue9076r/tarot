@@ -1,9 +1,9 @@
 require("reading_stuff.random")
 
-Customer = {name = "Name", birth_date = 0, sprite = 0, yap = false, deepVoice = false}
+Customer = {name = "Name", birth_date = 0, deepVoice = false, sprite = 0, yap = false}
 
-function Customer.new(name, birth_date, sprite)
-    local table = {name = name, birth_date = birth_date, sprite = sprite}
+function Customer.new(name, birth_date, deepVoice, sprite)
+    local table = {name = name, birth_date = birth_date, deepVoice = deepVoice, sprite = sprite, }
 
     local metaTable = {__index = Customer}
 
@@ -50,13 +50,13 @@ end
 --------------------------------------------------------
 
 Characters = {
-    [TheMagician_BD] = Customer.new("The Magician", TheMagician_BD),
+    [TheMagician_BD] = Customer.new("The Magician", TheMagician_BD, true),
     -- doctor
 
     [TheHighPriestess_BD] = Customer.new("The High Priestess", TheHighPriestess_BD),
     -- egotistical woman
 
-    [TheEmpress_BD] = Customer.new("The Empress", TheEmpress_BD),
+    [TheEmpress_BD] = Customer.new("The Empress", TheEmpress_BD, true),
     -- businessman
 
     [TheEmperor_BD] = Customer.new("The Emperor", TheEmperor_BD),
@@ -68,7 +68,7 @@ Characters = {
     [TheLovers_BD] = Customer.new("The Lovers", TheLovers_BD),
     --cheater
 
-    [TheChariot_BD] = Customer.new("The Chariot", TheChariot_BD),
+    [TheChariot_BD] = Customer.new("The Chariot", TheChariot_BD, true),
     --high school student
 
     [Strength_BD] = Customer.new("Strength", Strength_BD),
@@ -86,16 +86,16 @@ Characters = {
     [TheHangedMan_BD] = Customer.new("The Hanged Man", TheHangedMan_BD),
     --celebrity
 
-    [Temperance_BD] = Customer.new("Temperance", Temperance_BD),
+    [Temperance_BD] = Customer.new("Temperance", Temperance_BD, true),
     -- beetroot enterpreneur
 
     [TheDevil_BD] = Customer.new("The Devil", TheDevil_BD),
     --a rule follower 
 
-    [TheTower_BD] = Customer.new("The Tower", TheTower_BD),
+    [TheTower_BD] = Customer.new("The Tower", TheTower_BD, true),
     --a father who lost his son
 
-    [TheStar_BD] = Customer.new("The Star", TheStar_BD),
+    [TheStar_BD] = Customer.new("The Star", TheStar_BD, true),
     --a patient in hospital
 
     [TheMoon_BD] = Customer.new("The Monn", TheMoon_BD),
@@ -104,7 +104,7 @@ Characters = {
     [TheSun_BD] = Customer.new("The Sun", TheSun_BD),
     --birthday
 
-    [Judgement_BD] = Customer.new("Judgement", Judgement_BD),
+    [Judgement_BD] = Customer.new("Judgement", Judgement_BD, true),
     --ut alumni
 
     [TheWorld_BD] = Customer.new("The World", TheWorld_BD),
