@@ -77,7 +77,8 @@ Image.new("table","/assets/table.png")
 Image.new("ball","/assets/ball.png")
 
 -- Songs
-Sound.new("arena","/assets/arena.mp3")
-Sound.new("shop","/assets/shop.mp3")
+Sound.new("arena","/assets/arena.ogg")
+Sound.new("arenaIntro", "/assets/arenaIntro.ogg")
+Sound.new("shop","/assets/shop.ogg")
 Sound.new("voice_1","/assets/VoiceHigh.mp3","static")
 Sound.new("voice_2","/assets/VoiceLow.mp3","static")

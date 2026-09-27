@@ -27,6 +27,8 @@ PLAYER_SLIDE_LEFT = 8
 
 Arena_Idle_Time = 0
 
+INTRO_PLAYED = false
+
 Arena_Combo_List = ComboList.new({
 	{name = "Ground Circle", cmb = Combo.new({"d","w","a","s"})},
 	{name = "Aireal Circle", cmb = Combo.new({"w","d","w","a","s"})},
@@ -231,9 +233,17 @@ end
 
 DRAW[ARENA] = function()
 	local song = Sound.get("arena")
-	if song then
+	local intro = Sound.get("arenaIntro")
+	if intro then
+		intro:setVolume(Logarithming(GAME_MUSIC_VOLUME))
+		if not intro:isPlaying() and not INTRO_PLAYED then
+			INTRO_PLAYED = true
+			intro:play()
+		end
+	end
+	if song and intro then
 		song:setVolume(Logarithming(GAME_MUSIC_VOLUME))
-		if not song:isPlaying() then
+		if not song:isPlaying() and not intro:isPlaying() then
 			song:play()
 		end
 	end
