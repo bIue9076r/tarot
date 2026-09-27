@@ -28,3 +28,19 @@ function RandomCustomer()
     local n = love.math.random(21)
     return n
 end
+
+function RandomCard()
+    if READINGS_DAY == 1 then
+        local card = love.math.random(1,5)
+        return card
+    elseif READINGS_DAY == 2 then
+        local card = love.math.random(1,6)
+        return card
+    elseif READINGS_DAY == 3 then
+        local card = love.math.random(1,7)
+        return card
+    elseif READINGS_DAY == 4 then
+        local card = love.math.random(1,8)
+        return card
+    end
+end

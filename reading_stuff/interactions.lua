@@ -25,7 +25,7 @@ end
 
 function CheckBall(x,y,button)
     local r = 50
-    local k = 350
+    local k = 440
     local h = 400
     if ((x - h)*(x - h) + (y - k)*(y - k)) < r*r then
         return true

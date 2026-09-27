@@ -19,7 +19,6 @@ require("reading_stuff.dayFive")
 READINGS_DAY = DAY_ONE
 
 LOAD[READINGS] = function()
-	print("hi")
 	local f = READINGS_LOAD[READINGS_DAY]
 	if f then f() end
 end
@@ -40,8 +39,19 @@ MOUSEPRESSED[READINGS] = function(x,y,button)
 end
 
 DRAW[READINGS] = function()
+	local song = Sound.get("shop")
+	if song then
+		song:setVolume(GAME_MUSIC_VOLUME)
+		if not song:isPlaying() then
+			song:play()
+		end
+	end
 	love.graphics.setBackgroundColor(1,0,1)
 	love.graphics.setColor(1,1,1)
+
+	local bg = Image.get("tent")
+	love.graphics.draw(bg)
+	
 	local f = READINGS_DRAW[READINGS_DAY]
 	if f then f() end
 end

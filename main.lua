@@ -33,6 +33,7 @@ function love.mousepressed(x,y,button)
 end
 
 function love.draw()
+	Draw_Sfx()
 	local f = DRAW[GAME_STATE]
 	if f then
 		f()

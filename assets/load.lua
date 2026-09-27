@@ -1,4 +1,8 @@
 -- Images
+
+--------------------------------------------------------
+--CUSTOMERS
+
 -- the magician
 Image.new("c1_1","/assets/1neutral.png")
 Image.new("c1_2","/assets/1talk.png")
@@ -71,6 +75,50 @@ Image.new("c22_2","/assets/22talk.png")
 Image.new("c22_3","/assets/22blink.png")
 Image.new("c22_4","/assets/22blinktalk.png")
 
+--------------------------------------------------------
+--CARDS
+Image.new("t1v1", "/assets/acesword_neutral.png")
+Image.new("t1v2", "/assets/acesword_good.png")
+Image.new("t1v3", "/assets/acesword_bad1.png")
+Image.new("t1v4", "/assets/acesword_bad2.png")
+
+Image.new("t2v1", "/assets/eightsword_neutral.png")
+Image.new("t2v2", "/assets/eightsword_good.png")
+Image.new("t2v3", "/assets/eightsword_bad1.png")
+Image.new("t2v4", "/assets/eightsword_bad2.png")
+
+Image.new("t3v1", "/assets/fourpentacle_neutral.png")
+Image.new("t3v2", "/assets/fourpentacle_good.png")
+Image.new("t3v3", "/assets/fourpentacle_bad1.png")
+Image.new("t3v4", "/assets/fourpentacle_bad2.png")
+
+Image.new("t4v1", "/assets/knightsword_neutral.png")
+Image.new("t4v2", "/assets/knightsword_good.png")
+Image.new("t4v3", "/assets/knightsword_bad1.png")
+Image.new("t4v4", "/assets/knightsword_bad2.png")
+
+Image.new("t5v1", "/assets/sevenwand_neutral.png")
+Image.new("t5v2", "/assets/sevenwand_good.png")
+Image.new("t5v3", "/assets/sevenwand_bad1.png")
+Image.new("t5v4", "/assets/sevenwand_bad2.png")
+
+Image.new("t6v1", "/assets/sixsword_neutral.png")
+Image.new("t6v2", "/assets/sixsword_good.png")
+Image.new("t6v3", "/assets/sixsword_bad1.png")
+Image.new("t6v4", "/assets/sixsword_bad2.png")
+
+Image.new("t7v1", "/assets/tenwand_neutral.png")
+Image.new("t7v2", "/assets/tenwand_good.png")
+Image.new("t7v3", "/assets/tenwand_bad1.png")
+Image.new("t7v4", "/assets/tenwand_bad2.png")
+
+Image.new("t8v1", "/assets/threecup_neutral.png")
+Image.new("t8v2", "/assets/threecup_good.png")
+Image.new("t8v3", "/assets/threecup_bad1.png")
+Image.new("t8v4", "/assets/threecup_bad2.png")
+
+--------------------------------------------------------
+--BACKGROUNDS
 Image.new("tent","/assets/background.png")
 Image.new("table_n_ball","/assets/table_and_ball.png")
 Image.new("table","/assets/table.png")

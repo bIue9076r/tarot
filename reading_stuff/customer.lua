@@ -16,12 +16,25 @@ function Customer:animate()
 		local n = (math.floor(2*self.sprite) % 2) + 1
 		local l = math.max((math.floor(self.sprite) % 5) - 3,0) * 2
 		local img = Image.get("c"..self.birth_date.."_"..(n + l))
-		love.graphics.draw(img)
+		love.graphics.draw(img, 250, 180)
+        local v = Sound.get("voice_1")
+        if v and (not v:isPlaying()) then
+           v:play()
+        end
 	else
 		local m = 2*(math.max(math.floor(self.sprite) % 5 - 3,0)) + 1
 		local img = Image.get("c"..self.birth_date.."_"..(m))
-		love.graphics.draw(img)
+		love.graphics.draw(img, 250, 180)
+        local v = Sound.get("voice_1")
+        if v then
+           v:stop()
+        end
 	end
+    local TABL = Image.get("table")
+    love.graphics.draw(TABL)
+    local BALLZ = Image.get("ball")
+    love.graphics.draw(BALLZ)
+    --love.graphics.circle("fill", 400, 440, 50)
 end
 
 --------------------------------------------------------
