@@ -284,3 +284,7 @@ Sound.new("triumph","assets/triumph.ogg")
 -- SFX
 Sound.new("voice_1","/assets/VoiceHigh.mp3","static")
 Sound.new("voice_2","/assets/VoiceLow.mp3","static")
+Sound.new("crunch","/assets/crunch.mp3","static")
+Sound.new("lowWhoosh","/assets/lowWhoosh.mp3","static")
+Sound.new("highWhoosh","/assets/highWhoosh.mp3","static")
+Sound.new("murder","/assets/Murder.mp3","static")
