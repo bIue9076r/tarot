@@ -37,17 +37,7 @@ READINGS_DAY = 0
 function NextDay()
 	READINGS_DAY = READINGS_DAY + 1
 
-	if READINGS_DAY == 3 then
-		-- Ending
-		Switch_State(ENDING)
-		return
-	end
-
-	if READINGS_DAY >= 4 then
-		GoToArena() -- Endless boss fight
-		return
-	end
-
+	Reading_Interactions_Index = 1
 	Reading_Player_Choice = "Bad"
 	Reading_Card_t = 0
 	Reading_Card_fade = 0
@@ -63,7 +53,6 @@ function NextDay()
 end
 
 READINGS_LOAD[1] = function()
-	Reading_Interactions_Index = 1
 	Reading_Interactions = {
 		Interaction_Hierophant,
 		Interaction_Magician,
@@ -84,7 +73,6 @@ READINGS_LOAD[1] = function()
 end
 
 READINGS_LOAD[2] = function()
-	Reading_Interactions_Index = 1
 	Reading_Interactions = {
 		Interaction_Star,
 		Interaction_Chariot,
@@ -95,6 +83,46 @@ READINGS_LOAD[2] = function()
 		Characters[TheStar_BD],
 		Characters[TheChariot_BD],
 		Characters[Temperance_BD],
+	}
+
+	Reading_Customers_Cards = {
+		RandomCards(READINGS_DAY),
+		RandomCards(READINGS_DAY),
+		RandomCards(READINGS_DAY),
+	}
+end
+
+READINGS_LOAD[3] = function()
+	Reading_Interactions = {
+		Interaction_Hermit,
+		Interaction_Lovers,
+		Interaction_Devil,
+	}
+
+	Reading_Customers = {
+		Characters[TheHermit_BD],
+		Characters[TheLovers_BD],
+		Characters[TheDevil_BD],
+	}
+
+	Reading_Customers_Cards = {
+		RandomCards(READINGS_DAY),
+		RandomCards(READINGS_DAY),
+		RandomCards(READINGS_DAY),
+	}
+end
+
+READINGS_LOAD[4] = function()
+	Reading_Interactions = {
+		Interaction_Moon,
+		Interaction_HngedMan,
+		Interaction_Empress,
+	}
+
+	Reading_Customers = {
+		Characters[TheMoon_BD],
+		Characters[TheHangedMan_BD],
+		Characters[TheEmpress_BD],
 	}
 
 	Reading_Customers_Cards = {

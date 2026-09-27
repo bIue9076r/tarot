@@ -29,7 +29,9 @@ function Tarot_Cards:draw(n,t)
     local img = Image.get("t"..self.sprite.."v"..k)
     local ox = 270*(1 - t) + self:Px(n)*t
     local oy = 400*(1 - t) + self:Py(n)*t
-    love.graphics.draw(img, ox, oy, 0, 0.9)
+	if img then
+		love.graphics.draw(img, ox, oy, 0, 0.9)
+	end
 end
 
 --------------------------------------------------------

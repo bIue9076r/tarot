@@ -545,7 +545,16 @@ DRAW[ARENA] = function()
 					intro:stop()
 				end
 
-				Switch_State(READINGS)
+				if (READINGS_DAY + 1) <= 4 then
+					Switch_State(READINGS)
+				else
+					if (READINGS_DAY + 1) == 5 then
+						READINGS_DAY = (READINGS_DAY + 1)
+						Switch_State(ENDING)
+					else
+						GoToArena() -- Endless boss fight
+					end
+				end
 			end
 		end
 		
