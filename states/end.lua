@@ -21,5 +21,8 @@ MOUSEPRESSED[ENDING] = function(x,y,button)
 end
 
 DRAW[ENDING] = function()
-
+	if Finale == 4 then
+		local img = Image.get("jumpscare")
+		love.graphics.draw(img,0,0,DT()*2)
+	end
 end

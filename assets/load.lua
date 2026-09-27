@@ -167,6 +167,7 @@ Image.new("minus","/assets/minus.png")
 Image.new("settingsbox","/assets/settingsbox.png")
 Image.new("exit","/assets/exit_button.png")
 Image.new("boss","/assets/Boss_Defeated.png")
+Image.new("jumpscare","/assets/jumpscare.png")
 
 Image.new("n_wasd","/assets/blank_wasd.png")
 Image.new("w_wasd","/assets/w_wasd.png")
