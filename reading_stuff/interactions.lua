@@ -154,123 +154,7 @@ end
 
 --------------------------------------------------------
 -- Intro
-All_Tables = {
-    { -- HIEROPHANT
-        { -- Intro Hierophant
-            {speaker=SPEAKER_CHARACTER, 1},
-            {speaker=SPEAKER_PLAYER, 2},
-            {speaker=SPEAKER_CHARACTER, 3},
-            {speaker=SPEAKER_PLAYER, 4},
-        },
-        { --Intro2 Hierophant 
-            {speaker=SPEAKER_CHARACTER, 5},
-            {speaker=SPEAKER_CHARACTER, 6},
-            {speaker=SPEAKER_CHARACTER, 7},
-            {speaker=SPEAKER_BALL, 8}
-        },
-        { -- Card Pick Hierophant
-            { -- while picking
-                {speaker=SPEAKER_PLAYER, 9},
-                {speaker=SPEAKER_PLAYER, 10},
-            },
-            { -- Best choice
-                {speaker=SPEAKER_PLAYER, 11},
-                {speaker=SPEAKER_CHARACTER, 12},
-                {speaker=SPEAKER_CHARACTER, 13},
-            },
-            { -- Neutral choice
-                {speaker=SPEAKER_PLAYER, 14},
-                {speaker=SPEAKER_CHARACTER, 15},
-                {speaker=SPEAKER_CHARACTER, 16},
-            },
-            { -- Bad choice
-                {speaker=SPEAKER_PLAYER, 17},
-                {speaker=SPEAKER_CHARACTER, 18},
-            },
-            { -- The worst choice
-                {speaker=SPEAKER_PLAYER, 19},
-                {speaker=SPEAKER_CHARACTER, 20},
-                {speaker=SPEAKER_CHARACTER, 21}
-            }
-        }
-    },
-    { -- 
-        { -- Intro
-            {speaker=SPEAKER_CHARACTER, 22},
-            {speaker=SPEAKER_PLAYER, 23},
-            {speaker=SPEAKER_CHARACTER, 24},
-            {speaker=SPEAKER_PLAYER, 25}
-        },
-        { -- Intro 2
-            {speaker=SPEAKER_CHARACTER, 26},
-            {speaker=SPEAKER_BALL, 27}
-
-        },
-        { -- Card Pick
-            {
-                {speaker=SPEAKER_PLAYER, 9},
-                {speaker=SPEAKER_PLAYER, 10},
-            },
-            {
-                {speaker=SPEAKER_PLAYER, 28},
-                {speaker=SPEAKER_CHARACTER, 29},
-            },
-            {
-                {speaker=SPEAKER_PLAYER, 30},
-                {speaker=SPEAKER_CHARACTER, 31},
-            },
-            {
-                {speaker=SPEAKER_PLAYER, 32},
-                {speaker=SPEAKER_CHARACTER, 33},
-            },
-            {
-                {speaker=SPEAKER_PLAYER, 34},
-                {speaker=SPEAKER_CHARACTER, 35}
-            }
-        }
-
-    },
-    { -- HIEROPHANT
-        { -- Intro Hierophant
-            {speaker=SPEAKER_CHARACTER, 1},
-            {speaker=SPEAKER_PLAYER, 2},
-            {speaker=SPEAKER_CHARACTER, 3},
-            {speaker=SPEAKER_PLAYER, 4},
-        },
-        { --Intro2 Hierophant 
-            {speaker=SPEAKER_CHARACTER, 5},
-            {speaker=SPEAKER_CHARACTER, 6},
-            {speaker=SPEAKER_CHARACTER, 7},
-            {speaker=SPEAKER_BALL, 8}
-        },
-        { -- Card Pick Hierophant
-            { -- while picking
-                {speaker=SPEAKER_PLAYER, 9},
-                {speaker=SPEAKER_PLAYER, 10},
-            },
-            { -- Best choice
-                {speaker=SPEAKER_PLAYER, 11},
-                {speaker=SPEAKER_CHARACTER, 12},
-                {speaker=SPEAKER_CHARACTER, 13},
-            },
-            { -- Neutral choice
-                {speaker=SPEAKER_PLAYER, 14},
-                {speaker=SPEAKER_CHARACTER, 15},
-                {speaker=SPEAKER_CHARACTER, 16},
-            },
-            { -- Bad choice
-                {speaker=SPEAKER_PLAYER, 17},
-                {speaker=SPEAKER_CHARACTER, 18},
-            },
-            { -- The worst choice
-                {speaker=SPEAKER_PLAYER, 19},
-                {speaker=SPEAKER_CHARACTER, 20},
-                {speaker=SPEAKER_CHARACTER, 21}
-            }
-        }
-    },
-}
-
+-- FIRST DAY
 Interaction_Hierophant = Interaction.new(
 	-- Intro
 	Dialogue.new({
@@ -315,3 +199,224 @@ Interaction_Hierophant = Interaction.new(
 	}
 )
 
+Interaction_Magician = Interaction.new(
+    -- Intro
+    Dialogue.new({
+        Text.new(22,SPEAKER_CHARACTER),
+        Text.new(2,SPEAKER_PLAYER),
+        Text.new(23,SPEAKER_CHARACTER),
+        Text.new(4,SPEAKER_PLAYER),
+    }),
+
+    -- Crystal
+    Dialogue.new({
+        Text.new(24, SPEAKER_CHARACTER),
+        Text.new(25, SPEAKER_CHARACTER),
+        Text.new(26, SPEAKER_CHARACTER),
+        Text.new(27, SPEAKER_CHARACTER),
+        Text.new(28, SPEAKER_BALL)
+    }),
+
+    {
+        Best = Dialogue.new({
+            Text.new(29, SPEAKER_PLAYER),
+            Text.new(30,SPEAKER_CHARACTER)
+        }),
+        Neutral = Dialogue.new({
+            Text.new(31, SPEAKER_PLAYER),
+            Text.new(32, SPEAKER_CHARACTER),
+            Text.new(33, SPEAKER_CHARACTER),
+            Text.new(34, SPEAKER_CHARACTER)
+        }),
+        Bad = Dialogue.new({
+            Text.new(35, SPEAKER_PLAYER),
+            Text.new(36, SPEAKER_CHARACTER),
+            Text.new(37, SPEAKER_CHARACTER),
+            Text.new(38, SPEAKER_CHARACTER),
+            
+        }),
+        Worst = Dialogue.new({
+            Text.new(39, SPEAKER_PLAYER),
+            Text.new(40, SPEAKER_CHARACTER),
+            Text.new(41, SPEAKER_CHARACTER)
+           
+        }),
+    }
+)
+
+Interaction_Fool = Interaction.new(
+    -- Intro
+    Dialogue.new({
+        Text.new(42,SPEAKER_CHARACTER),
+        Text.new(2,SPEAKER_PLAYER),
+        Text.new(43,SPEAKER_CHARACTER),
+        Text.new(44,SPEAKER_PLAYER),
+        Text.new(4, SPEAKER_PLAYER)
+    }),
+
+    -- Crystal
+    Dialogue.new({
+        Text.new(45, SPEAKER_CHARACTER),
+        Text.new(46, SPEAKER_CHARACTER),
+        Text.new(47, SPEAKER_CHARACTER),
+        Text.new(48, SPEAKER_BALL)
+    }),
+
+    {
+        Best = Dialogue.new({
+            Text.new(49, SPEAKER_PLAYER),
+            Text.new(50, SPEAKER_CHARACTER),
+            Text.new(51, SPEAKER_CHARACTER),
+            Text.new(52,SPEAKER_CHARACTER)
+        }),
+        Neutral = Dialogue.new({
+            Text.new(53, SPEAKER_PLAYER),
+            Text.new(54, SPEAKER_CHARACTER),
+            Text.new(55, SPEAKER_CHARACTER)
+        }),
+        Bad = Dialogue.new({
+            Text.new(56, SPEAKER_PLAYER),
+            Text.new(57, SPEAKER_CHARACTER),
+            Text.new(58, SPEAKER_CHARACTER)
+            
+        }),
+        Worst = Dialogue.new({
+            Text.new(59, SPEAKER_PLAYER),
+            Text.new(60, SPEAKER_CHARACTER),
+            Text.new(61, SPEAKER_CHARACTER),
+            Text.new(62, SPEAKER_CHARACTER)
+        }),
+    }
+)
+
+
+-- SECOND DAY
+Interaction_Star = Interaction.new(
+    -- Intro
+    Dialogue.new({
+        Text.new(63,SPEAKER_CHARACTER),
+        Text.new(2,SPEAKER_PLAYER),
+        Text.new(64,SPEAKER_CHARACTER),
+        Text.new(4, SPEAKER_PLAYER)
+    }),
+
+    -- Crystal
+    Dialogue.new({
+        Text.new(65, SPEAKER_CHARACTER),
+        Text.new(66, SPEAKER_CHARACTER),
+        Text.new(67, SPEAKER_CHARACTER),
+        Text.new(68, SPEAKER_BALL)
+    }),
+
+    {
+        Best = Dialogue.new({
+            Text.new(69, SPEAKER_PLAYER),
+            Text.new(70, SPEAKER_CHARACTER),
+            Text.new(71, SPEAKER_CHARACTER)
+        }),
+        Neutral = Dialogue.new({
+            Text.new(72, SPEAKER_PLAYER),
+            Text.new(73, SPEAKER_CHARACTER),
+            Text.new(74, SPEAKER_CHARACTER)
+        }),
+        Bad = Dialogue.new({
+            Text.new(75, SPEAKER_PLAYER),
+            Text.new(76, SPEAKER_CHARACTER),
+            Text.new(77, SPEAKER_CHARACTER)
+            
+        }),
+        Worst = Dialogue.new({
+            Text.new(78, SPEAKER_PLAYER),
+            Text.new(79, SPEAKER_CHARACTER),
+            Text.new(80, SPEAKER_CHARACTER)
+        }),
+    }
+)
+
+Interaction_Chariot = Interaction.new(
+    -- Intro
+    Dialogue.new({
+        Text.new(81,SPEAKER_CHARACTER),
+        Text.new(2,SPEAKER_PLAYER),
+        Text.new(82,SPEAKER_CHARACTER),
+        Text.new(4, SPEAKER_PLAYER)
+    }),
+
+    -- Crystal
+    Dialogue.new({
+        Text.new(83, SPEAKER_CHARACTER),
+        Text.new(84, SPEAKER_CHARACTER),
+        Text.new(85, SPEAKER_CHARACTER),
+        Text.new(86, SPEAKER_CHARACTER),
+        Text.new(87, SPEAKER_BALL)
+    }),
+
+    {
+        Best = Dialogue.new({
+            Text.new(88, SPEAKER_PLAYER),
+            Text.new(89, SPEAKER_CHARACTER),
+            Text.new(90, SPEAKER_CHARACTER),
+            Text.new(91, SPEAKER_CHARACTER)
+        }),
+        Neutral = Dialogue.new({
+            Text.new(92, SPEAKER_PLAYER),
+            Text.new(93, SPEAKER_CHARACTER),
+            Text.new(94, SPEAKER_CHARACTER)
+        }),
+        Bad = Dialogue.new({
+            Text.new(95, SPEAKER_PLAYER),
+            Text.new(96, SPEAKER_CHARACTER),
+            Text.new(97, SPEAKER_CHARACTER)
+            
+        }),
+        Worst = Dialogue.new({
+            Text.new(98, SPEAKER_PLAYER),
+            Text.new(99, SPEAKER_CHARACTER),
+            Text.new(100, SPEAKER_CHARACTER)
+        }),
+    }
+)
+
+Interaction_Temperance = Interaction.new(
+    -- Intro
+    Dialogue.new({
+        Text.new(101,SPEAKER_CHARACTER),
+        Text.new(2,SPEAKER_PLAYER),
+        Text.new(102,SPEAKER_CHARACTER),
+        Text.new(4, SPEAKER_PLAYER)
+    }),
+
+    -- Crystal
+    Dialogue.new({
+        Text.new(103, SPEAKER_CHARACTER),
+        Text.new(104, SPEAKER_CHARACTER),
+        Text.new(105, SPEAKER_CHARACTER),
+        Text.new(106, SPEAKER_CHARACTER),
+        Text.new(107, SPEAKER_BALL)
+    }),
+
+    {
+        Best = Dialogue.new({
+            Text.new(108, SPEAKER_PLAYER),
+            Text.new(109, SPEAKER_CHARACTER),
+        }),
+        Neutral = Dialogue.new({
+            Text.new(110, SPEAKER_PLAYER),
+            Text.new(111, SPEAKER_CHARACTER),
+            Text.new(112, SPEAKER_CHARACTER),
+            Text.new(113, SPEAKER_CHARACTER)
+        }),
+        Bad = Dialogue.new({
+            Text.new(114, SPEAKER_PLAYER),
+            Text.new(115, SPEAKER_CHARACTER),
+            Text.new(116, SPEAKER_CHARACTER)
+            
+        }),
+        Worst = Dialogue.new({
+            Text.new(117, SPEAKER_PLAYER),
+            Text.new(118, SPEAKER_CHARACTER),
+            Text.new(119, SPEAKER_CHARACTER),
+            Text.new(120, SPEAKER_CHARACTER)
+        }),
+    }
+)
