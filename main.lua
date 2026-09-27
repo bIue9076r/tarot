@@ -4,7 +4,7 @@ love.graphics.setDefaultFilter("nearest", "nearest")
 require("globals")
 
 function love.load()
-	Switch_State(ARENA)
+	GetText()
 	local f = LOAD[GAME_STATE]
 	if f then
 		f()

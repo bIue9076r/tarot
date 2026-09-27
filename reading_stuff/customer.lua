@@ -26,67 +26,69 @@ end
 
 --------------------------------------------------------
 
-THE_MAGICIAN = Customer.new("The Magician", TheMagician_BD)
--- doctor
+Characters = {
+    Customer.new("The Magician", TheMagician_BD),
+    -- doctor
 
-THE_HIGH_PRIESTESS = Customer.new("The High Priestess", TheHighPriestess_BD)
--- egotistical woman
+    Customer.new("The High Priestess", TheHighPriestess_BD),
+    -- egotistical woman
 
-THE_EMPRESS = Customer.new("The Empress", TheEmpress_BD)
--- businessman
+    Customer.new("The Empress", TheEmpress_BD),
+    -- businessman
 
-THE_EMPEROR = Customer.new("The Emperor", TheEmperor_BD)
---the mayor
+    Customer.new("The Emperor", TheEmperor_BD),
+    --the mayor
 
-THE_HIEROPHANT = Customer.new("The Hierophant", TheHIerophant_BD)
---dancer
+    Customer.new("The Hierophant", TheHierophant_BD),
+    --dancer
 
-THE_LOVERS = Customer.new("The Lovers", TheLovers_BD)
---cheater
+    Customer.new("The Lovers", TheLovers_BD),
+    --cheater
 
-THE_CHARIOT = Customer.new("The Chariot", TheChariot_BD)
---high school student
+    Customer.new("The Chariot", TheChariot_BD),
+    --high school student
 
-STRENGTH = Customer.new("Strength", Strength_BD)
---wants to be a mermaid
+    Customer.new("Strength", Strength_BD),
+    --wants to be a mermaid
 
-THE_HERMIT = Customer.new("The Hermit", TheHermit_BD)
---boy with a crush
+    Customer.new("The Hermit", TheHermit_BD),
+    --boy with a crush
 
-WHEEL_OF_FORTUNE = Customer.new("Wheel of Fortune", WheelOfFortune_BD)
---gambler
+    Customer.new("Wheel of Fortune", WheelOfFortune_BD),
+    --gambler
 
-JUSTICE = Customer.new("Justice", Justice_BD)
---reformed prisoner
+    Customer.new("Justice", Justice_BD),
+    --reformed prisoner
 
-THE_HANGED_MAN = Customer.new("The Hanged Man", TheHangedMan_BD)
---celebrity
+    Customer.new("The Hanged Man", TheHangedMan_BD),
+    --celebrity
 
-TEMPERANCE = Customer.new("Temperance", Temperance_BD)
--- beetroot enterpreneur
+    Customer.new("Temperance", Temperance_BD),
+    -- beetroot enterpreneur
 
-THE_DEVIL = Customer.new("The Devil", TheDevil_BD)
---a rule follower 
+    Customer.new("The Devil", TheDevil_BD),
+    --a rule follower 
 
-THE_TOWER = Customer.new("The Tower", TheTower_BD)
---a father who lost his son
+    Customer.new("The Tower", TheTower_BD),
+    --a father who lost his son
 
-THE_STAR = Customer.new("The Star", TheStar_BD)
---a patient in hospital
+    Customer.new("The Star", TheStar_BD),
+    --a patient in hospital
 
-THE_MOON = Customer.new("The Monn", TheMoon_BD)
---alien
+    Customer.new("The Monn", TheMoon_BD),
+    --alien
 
-THE_SUN = Customer.new("The Sun", TheSun_BD)
---birthday
+    Customer.new("The Sun", TheSun_BD),
+    --birthday
 
-JUDGEMENT = Customer.new("Judgement", Judgement_BD)
---ut alumni
+    Customer.new("Judgement", Judgement_BD),
+    --ut alumni
 
-THE_WORLD = Customer.new("The World", TheWorld_BD)
---physchic
+    Customer.new("The World", TheWorld_BD),
+    --physchic
 
-THE_FOOL = Customer.new("The Fool", TheFool_BD)
--- little girl
+    Customer.new("The Fool", TheFool_BD),
+    -- little girl
+}
 
 --------------------------------------------------------
