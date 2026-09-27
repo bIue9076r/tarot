@@ -62,39 +62,39 @@ function CheckBall(x,y,button)
     end
 end
 
-function SetTable()
+function SetTable3()
     if Is_Intro then
-        Current_TBL = All_Tables[Current_C][1]
+        Current_TBL = All_Tables3[Current_C][1]
     elseif Is_Intro2 then
-        Current_TBL = All_Tables[Current_C][2]
+        Current_TBL = All_Tables3[Current_C][2]
     elseif Is_CardPick then
-        Current_TBL = All_Tables[Current_C][3]
+        Current_TBL = All_Tables3[Current_C][3]
     end
 end
 
-function SetResponse()
+function SetResponse3()
     if Is_Response then
         if PICK == 2 then
-            Current_TBL = All_Tables[Current_C][3][2]
+            Current_TBL = All_Tables3[Current_C][3][2]
         elseif PICK == 1 then
-            Current_TBL = All_Tables[Current_C][3][3]
+            Current_TBL = All_Tables3[Current_C][3][3]
         elseif PICK == -1 then
-            Current_TBL = All_Tables[Current_C][3][4]
+            Current_TBL = All_Tables3[Current_C][3][4]
         elseif PICK == -2 then
-            Current_TBL = All_Tables[Current_C][3][5]
+            Current_TBL = All_Tables3[Current_C][3][5]
         end
     end
 end
 
-function CheckCard(key)
+function CheckCard3(key)
     if key == "1" then
-        PICK = Cust[Current_C][1].points
+        PICK = Cust3[Current_C][1].points
     elseif key == "2" then
-        PICK = Cust[Current_C][2].points
+        PICK = Cust3[Current_C][2].points
     elseif key == "3" then
-        PICK = Cust[Current_C][3].points
+        PICK = Cust3[Current_C][3].points
     elseif key == "4" then
-        PICK = Cust[Current_C][4].points
+        PICK = Cust3[Current_C][4].points
     else
         return
     end
@@ -103,21 +103,21 @@ function CheckCard(key)
     Is_Response = true
 end
 
-function DrawResponse()
+function DrawResponse3()
     if PICK == 2 then
-        love.graphics.print(Text(All_Tables[Current_C][3][2][Current_I][1]), 10, 20)
+        love.graphics.print(Text(All_Tables3[Current_C][3][2][Current_I][1]), 10, 20)
     elseif PICK == 1 then
-        love.graphics.print(Text(All_Tables[Current_C][3][3][Current_I][1]), 10, 20)
+        love.graphics.print(Text(All_Tables3[Current_C][3][3][Current_I][1]), 10, 20)
     elseif PICK == -1 then
-        love.graphics.print(Text(All_Tables[Current_C][3][4][Current_I][1]), 10, 20)
+        love.graphics.print(Text(All_Tables3[Current_C][3][4][Current_I][1]), 10, 20)
     elseif PICK == -2 then
-        love.graphics.print(Text(All_Tables[Current_C][3][5][Current_I][1]), 10, 20)
+        love.graphics.print(Text(All_Tables3[Current_C][3][5][Current_I][1]), 10, 20)
     end
 end
 
 --------------------------------------------------------
 -- Intro
-All_Tables = {
+All_Tables3 = {
     { -- HIEROPHANT
         { -- Intro Hierophant
             {speaker=SPEAKER_CHARACTER, 1},

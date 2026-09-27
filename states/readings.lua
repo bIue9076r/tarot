@@ -18,6 +18,16 @@ require("reading_stuff.dayFive")
 
 READINGS_DAY = DAY_ONE
 
+function NextDay()
+	READINGS_DAY = READINGS_DAY + 1
+	Current_C = 1
+	Current_I = 1
+	PICK = 0
+	Current_T = 0
+	local f = READINGS_LOAD[READINGS_DAY]
+	if f then f() end
+end
+
 LOAD[READINGS] = function()
 	local f = READINGS_LOAD[READINGS_DAY]
 	if f then f() end

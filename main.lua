@@ -5,7 +5,6 @@ require("globals")
 
 function love.load()
 	GetText()
-	-- Switch_State(ARENA)
 	local f = LOAD[GAME_STATE]
 	if f then
 		f()

@@ -13,16 +13,20 @@ Is_Fade = false
 Fade_t = 0
 
 READINGS_LOAD[DAY_ONE] = function()
-    Customer_List1 = {Characters[5], Characters[RandomCustomer()], Characters[RandomCustomer()], Characters[RandomCustomer()]}
+    Customer_List1 = {Characters[5], Characters[1], Characters[22]}
     Cust = {}
     Cust[1] = {TAROTCARDS[RandomCard()], TAROTCARDS[RandomCard()], TAROTCARDS[RandomCard()], TAROTCARDS[RandomCard()]}
     Cust[2] = {TAROTCARDS[RandomCard()], TAROTCARDS[RandomCard()], TAROTCARDS[RandomCard()], TAROTCARDS[RandomCard()]}
     Cust[3] = {TAROTCARDS[RandomCard()], TAROTCARDS[RandomCard()], TAROTCARDS[RandomCard()], TAROTCARDS[RandomCard()]}
-    Cust[4] = {TAROTCARDS[RandomCard()], TAROTCARDS[RandomCard()], TAROTCARDS[RandomCard()], TAROTCARDS[RandomCard()]}
+    --Cust[4] = {TAROTCARDS[RandomCard()], TAROTCARDS[RandomCard()], TAROTCARDS[RandomCard()], TAROTCARDS[RandomCard()]}
 
 end
 
 READINGS_UPDATE[DAY_ONE] = function(dt)
+    if Current_C > 3 then
+        --GoToArena()
+        NextDay()
+    end
     SetTable()
 	SetResponse()
 end
@@ -43,12 +47,14 @@ READINGS_KEYPRESSED[DAY_ONE] = function(key)
             if Current_I > #Current_TBL then
                 Current_I = #Current_TBL
             end
-        if Current_I == #Current_TBL and key == "space" then
+        end
+        if key == "return" then
             Is_Response = false
             Is_Fade = true
+            Customer_List1[Current_C].yap = false
+            Customer_List1[Current_C]:animate()
         end
     end
-end
 end
 
 READINGS_MOUSEPRESSED[DAY_ONE] = function(x,y,button)
@@ -108,17 +114,20 @@ READINGS_DRAW[DAY_ONE] = function()
         Customer_List1[Current_C]:animate()
         DrawResponse()
     elseif Is_Fade then
-        Fade_t = Fade_t + DT()
+        Fade_t = Fade_t + 3.5*DT()
         local t = math.min(Fade_t,1)
-        love.graphics.setColor(1,1,1,t)
+        love.graphics.setColor(0,0,0,(0.5*(1 - t) - 1)*(0.5*(1 - t) - 1))
+        love.graphics.rectangle("fill",0,0,800,600)
         Customer_List1[Current_C]:animate()
         love.graphics.setColor(1,1,1)
-        if Fade_t >= 4 then
+        if Fade_t >= 10 then
             Current_C = Current_C + 1
             Is_Fade = false
             Is_Intro = true
             Current_I = 1
             PICK = 0
+            Current_T = 0
+            Fade_t = 0
         end
     end
 end

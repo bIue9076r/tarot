@@ -10,12 +10,13 @@ function Customer.new(name, birth_date, sprite)
     return setmetatable(table, metaTable)
 end
 
-function Customer:animate()
+function Customer:animate(f)
 	self.sprite = self.sprite + DT()
 	if self.yap then
 		local n = (math.floor(2*self.sprite) % 2) + 1
 		local l = math.max((math.floor(self.sprite) % 5) - 3,0) * 2
 		local img = Image.get("c"..self.birth_date.."_"..(n + l))
+        print(self.birth_date)
         print("c"..self.birth_date.."_"..(n + l))
 		love.graphics.draw(img, 250, 180)
         local v = Sound.get("voice_1")
@@ -35,7 +36,7 @@ function Customer:animate()
     love.graphics.draw(TABL)
     local BALLZ = Image.get("ball")
     love.graphics.draw(BALLZ)
-    --love.graphics.circle("fill", 400, 440, 50)
+    -- love.graphics.circle("fill", 400, 440, 50)
 end
 
 --------------------------------------------------------
@@ -66,7 +67,7 @@ Characters = {
     --wants to be a mermaid
 
     [TheHermit_BD] = Customer.new("The Hermit", TheHermit_BD),
-    --boy with a crush
+    --the councellor
 
     [WheelOfFortune_BD] = Customer.new("Wheel of Fortune", WheelOfFortune_BD),
     --gambler

@@ -33,6 +33,7 @@ TB = {
 
 function Tarot_Cards:draw(n,c,t)
     CheckKarma()
+    print("t"..c[n].sprite.."v"..Version)
     local img = Image.get("t"..c[n].sprite.."v"..Version)
     local ox = 270*(1 - t) + self:Px(n)*t
     local oy = 400*(1 - t) + self:Py(n)*t
