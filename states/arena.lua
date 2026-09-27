@@ -10,6 +10,9 @@ Arena_Max_Velocity_Y = 400
 Arena_Combo = Combo.new()
 Empty_Combo = Combo.new()
 Arena_Combo_Delay = 0.5
+Arena_Combo_Show = ""
+Arena_Combo_Show_T = 0
+Arena_Combo_Show_Delay = 2
 
 PLAYER_IDLE_IMPATIENT = -1
 PLAYER_IDLE = 0
@@ -180,10 +183,11 @@ function Arena_Move_Combo()
 				combo = combo..cmb.name
 			else
 				for i,v in ipairs(Arena_Combo.moveset) do
-					combo = combo..v.." "
+					-- combo = combo..v.." "
 				end
 			end
-			print(combo)
+			Arena_Combo_Show = combo
+			Arena_Combo_Show_T = Arena_Combo_Show_Delay
 			Arena_Combo:clear()
 		end
 	end
@@ -226,9 +230,22 @@ MOUSEPRESSED[ARENA] = function(x,y,button)
 end
 
 DRAW[ARENA] = function()
+	local song = Sound.get("arena")
+	if song then
+		song:setVolume(Logarithming(GAME_MUSIC_VOLUME))
+		if not song:isPlaying() then
+			song:play()
+		end
+	end
+
 	local A = Arena_Space:findFirst(1)
 	love.graphics.rectangle("fill",A.x - Arena_Space.Xlax,A.y - Arena_Space.Ylax,A.w,A.h)
 	love.graphics.print("VX:"..A.vx.." VY:"..A.vy.." X:"..A.x.." Y:"..A.y)
 	A = Arena_Space.bounds[1]
 	love.graphics.rectangle("line",A.x - Arena_Space.Xlax,A.y - Arena_Space.Ylax,A.w,A.h)
+
+	if Arena_Combo_Show_T >= 0 then
+		love.graphics.print(Arena_Combo_Show,0,30,0,2)
+		Arena_Combo_Show_T = Arena_Combo_Show_T - DT()
+	end
 end

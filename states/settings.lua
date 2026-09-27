@@ -17,7 +17,15 @@ LOAD[SETTINGS] = function()
 end
 
 UPDATE[SETTINGS] = function(dt)
+	local x,y = love.mouse.getPosition()
 
+	Exit_But:focus(x,y)
+	Volume_Up:focus(x,y)
+	Volume_Down:focus(x,y)
+	Music_Volume_Up:focus(x,y)
+	Music_Volume_Down:focus(x,y)
+	Sfx_Volume_Up:focus(x,y)
+	Sfx_Volume_Down:focus(x,y)
 end
 
 KEYPRESSED[SETTINGS] = function(key)
@@ -28,7 +36,27 @@ MOUSEPRESSED[SETTINGS] = function(x,y,button)
     if Exit_But:click(x,y,button) then
         Switch_State(TITLE)
     end
-	print(x,y)
+
+	if Volume_Up:click(x,y,button) then
+		GAME_MAIN_VOLUME = math.min(GAME_MAIN_VOLUME + 0.1, 1)
+		love.audio.setVolume(Logarithming(GAME_MAIN_VOLUME))
+	end
+	if Volume_Down:click(x,y,button) then
+		GAME_MAIN_VOLUME = math.max(GAME_MAIN_VOLUME - 0.1, 0)
+		love.audio.setVolume(Logarithming(GAME_MAIN_VOLUME))
+	end
+	if Music_Volume_Up:click(x,y,button) then
+		GAME_MUSIC_VOLUME = math.min(GAME_MUSIC_VOLUME + 0.1, 1)
+	end
+	if Music_Volume_Down:click(x,y,button) then
+		GAME_MUSIC_VOLUME = math.max(GAME_MUSIC_VOLUME - 0.1, 0)
+	end
+	if Sfx_Volume_Up:click(x,y,button) then
+		GAME_SFX_VOLUME = math.min(GAME_SFX_VOLUME + 0.1, 1)
+	end
+	if Sfx_Volume_Down:click(x,y,button) then
+		GAME_SFX_VOLUME = math.max(GAME_SFX_VOLUME - 0.1, 0)
+	end
 end
 
 DRAW[SETTINGS] = function()
@@ -43,5 +71,7 @@ DRAW[SETTINGS] = function()
     love.graphics.setBackgroundColor(0,0,0)
 	love.graphics.setColor(1,1,1)
 	local x,y = love.mouse.getPosition()
-	love.graphics.print("Main Volume "..string.format("%.1f",M),x,y)
+	love.graphics.print("Main Volume "..string.format("%d%%",GAME_MAIN_VOLUME * 100),200,120)
+	love.graphics.print("Main Volume "..string.format("%d%%",GAME_MUSIC_VOLUME * 100),200,220)
+	love.graphics.print("Main Volume "..string.format("%d%%",GAME_SFX_VOLUME * 100),200,320)
 end

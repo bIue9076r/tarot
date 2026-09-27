@@ -54,6 +54,10 @@ GAME_MAIN_VOLUME = 1
 GAME_MUSIC_VOLUME = 1
 GAME_SFX_VOLUME = 1
 
+function Logarithming(vol)
+	return math.log(((math.exp(1) - 1) * vol) + 1)
+end
+
 function DT()
 	return love.timer.getDelta()
 end
