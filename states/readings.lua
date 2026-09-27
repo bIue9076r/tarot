@@ -414,6 +414,14 @@ Readings_Subdraw = {
 
 LOAD[READINGS] = function()
 	NextDay()
+	local f = READINGS_LOAD[READINGS_DAY]
+	local song = Sound.get("thePsychic")
+	if song then
+		if song:isPlaying() then
+			song:stop()
+		end
+	end
+	if f then f() end
 end
 
 UPDATE[READINGS] = function(dt)

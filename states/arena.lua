@@ -30,7 +30,6 @@ Arena_Idle_Time = 0
 Arena_Dead = 0
 Arena_Ending = 0
 
-INTRO_PLAYED = false
 
 Arena_Combo_List = ComboList.new({
 	{name = "Right Blast", cmb = Combo.new({"d","d"})},
@@ -393,6 +392,14 @@ LOAD[ARENA] = function()
 
 	local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
 	A.hp = 100
+	local intro = Sound.get("arenaIntro")
+		if intro then
+			intro:setVolume(Logarithming(GAME_MUSIC_VOLUME))
+			if not intro:isPlaying() and not INTRO_PLAYED then
+
+				intro:play()
+			end
+		end
 end
 
 UPDATE[ARENA] = function(dt)
@@ -492,13 +499,7 @@ DRAW[ARENA] = function()
 	if Arena_Dead <= 0 then
 		local song = Sound.get("arena")
 		local intro = Sound.get("arenaIntro")
-		if intro then
-			intro:setVolume(Logarithming(GAME_MUSIC_VOLUME))
-			if not intro:isPlaying() and not INTRO_PLAYED then
-				INTRO_PLAYED = true
-				intro:play()
-			end
-		end
+
 		if song and intro then
 			song:setVolume(Logarithming(GAME_MUSIC_VOLUME))
 			if not song:isPlaying() and not intro:isPlaying() then

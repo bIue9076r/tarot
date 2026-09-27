@@ -29,6 +29,13 @@ MOUSEPRESSED[TITLE] = function(x,y,button)
 end
 
 DRAW[TITLE] = function()
+	local song = Sound.get("thePsychic")
+	if song then
+		song:setVolume(GAME_MUSIC_VOLUME)
+		if not song:isPlaying() then
+			song:play()
+		end
+	end
 	love.graphics.setColor(1,1,1)
 	local img
 	img = Image.get("intro_back")
