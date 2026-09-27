@@ -25,7 +25,12 @@ TheFool_BD = 22
 --------------------------------------------------------
 
 function RandomCustomer()
-    local list = {1, 3, 5, 6, 7, 9, 10, 12, 14, 17, 18, 22}
+    local list = {
+		TheMagician_BD, TheEmpress_BD, TheHierophant_BD, TheLovers_BD,
+		TheChariot_BD, TheHermit_BD, WheelOfFortune_BD, TheHangedMan_BD,
+		Temperance_BD, TheDevil_BD, TheTower_BD, TheStar_BD, TheMoon_BD,
+		Judgement_BD, TheFool_BD,
+	}
     local n = love.math.random(1,#list)
     return list[n]
 end

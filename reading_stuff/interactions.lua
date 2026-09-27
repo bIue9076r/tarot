@@ -2,7 +2,42 @@ SPEAKER_PLAYER = 1
 SPEAKER_CHARACTER = 2
 SPEAKER_BALL = 3
 
-PICK = 0
+Text = {speaker = SPEAKER_PLAYER, text = ""}
+function Text.new(t,s)
+	return {text = t or "", speaker = s or SPEAKER_CHARACTER}
+end
+
+Dialogue = {
+	index = 0,
+	textlist = {},
+}
+function Dialogue.new(texts)
+	local tbl = {
+		textlist = texts or {},
+		index = 0,
+	}
+
+	local mt = {
+		__index = Dialogue
+	}
+
+	return setmetatable(tbl,mt)
+end
+
+function Dialogue:next()
+	local r = self.textlist[self.index]
+	if r then
+		self.index = math.min(self.index + 1,#self.textlist)
+		return r
+	end
+end
+
+Interaction = {
+	Intro = Dialogue.new(),
+	Crystal = Dialogue.new(),
+	Cards = {},
+	Choices = Dialogue.new(),
+}
 
 Current_I = 1
 function Printin(general_table)
@@ -150,3 +185,8 @@ All_Tables = {
 
     },
 }
+
+-- Interaction_Hierophant = Interaction.new(
+-- 	Dialogue.new(),
+-- 	Dialogue.new()
+-- )

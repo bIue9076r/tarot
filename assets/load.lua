@@ -57,6 +57,16 @@ Image.new("c14_2","/assets/14talk.png")
 Image.new("c14_3","/assets/14blink.png")
 Image.new("c14_4","/assets/14blinktalk.png")
 
+Image.new("c15_1", "/assets/15neutral.png")
+Image.new("c15_2","/assets/15talk.png")
+Image.new("c15_3","/assets/15blink.png")
+Image.new("c15_4","/assets/15blinktalk.png")
+
+Image.new("c16_1", "/assets/16neutral.png")
+Image.new("c16_2","/assets/16talk.png")
+Image.new("c16_3","/assets/16blink.png")
+Image.new("c16_4","/assets/16blinktalk.png")
+
 --the star
 Image.new("c17_1", "/assets/17neutral.png")
 Image.new("c17_2","/assets/17talk.png")
@@ -68,6 +78,11 @@ Image.new("c18_1", "/assets/18neutral.png")
 Image.new("c18_2","/assets/18talk.png")
 Image.new("c18_3","/assets/18blink.png")
 Image.new("c18_4","/assets/18blinktalk.png")
+
+Image.new("c20_1", "/assets/18neutral.png")
+Image.new("c20_2","/assets/18talk.png")
+Image.new("c20_3","/assets/18blink.png")
+Image.new("c20_4","/assets/18blinktalk.png")
 
 --the fool
 Image.new("c22_1", "/assets/22neutral.png")
@@ -123,6 +138,118 @@ Image.new("tent","/assets/background.png")
 Image.new("table_n_ball","/assets/table_and_ball.png")
 Image.new("table","/assets/table.png")
 Image.new("ball","/assets/ball.png")
+
+Image.new("arena_sky","/assets/arena_assets/arena_sky.png")
+Image.new("arena_far","/assets/arena_assets/arena_farcity.png")
+Image.new("arena_near","/assets/arena_assets/arena_frontcity.png")
+Image.new("arena_lot","/assets/arena_assets/arena_parkinglot_ORIGINAL.png")
+Image.new("arena_lamp","/assets/arena_assets/arena_parkinglotLamp_ORIGINAL.png")
+
+Image.new("intro_back","/assets/intro.png")
+Image.new("intro_play","/assets/Play.png")
+Image.new("intro_settings","/assets/Settings.png")
+Image.new("plus","/assets/plus.png")
+Image.new("minus","/assets/minus.png")
+Image.new("settingsbox","/assets/settingsbox.png")
+Image.new("exit","/assets/exit_button.png")
+
+-- Quads
+Image.new("arena_player","/assets/arena_assets/Sprite-mc-Sheet.png")
+local plr = Image.get("arena_player")
+Plr_Quad = {
+	[-1] = {
+		love.graphics.newQuad(32*0,32*2,32,32,plr),
+		love.graphics.newQuad(32*1,32*2,32,32,plr),
+		love.graphics.newQuad(32*2,32*2,32,32,plr),
+		love.graphics.newQuad(32*3,32*2,32,32,plr),
+		love.graphics.newQuad(32*4,32*2,32,32,plr),
+		love.graphics.newQuad(32*5,32*2,32,32,plr),
+		love.graphics.newQuad(32*6,32*2,32,32,plr),
+		love.graphics.newQuad(32*7,32*2,32,32,plr),
+		love.graphics.newQuad(32*8,32*2,32,32,plr),
+		love.graphics.newQuad(32*9,32*2,32,32,plr),
+		love.graphics.newQuad(32*10,32*2,32,32,plr),
+	},
+	[0] = {
+		love.graphics.newQuad(32*0,32*0,32,32,plr),
+	},
+	[1] = {
+		love.graphics.newQuad(32*0,32*4,32,32,plr),
+		love.graphics.newQuad(32*1,32*4,32,32,plr),
+		love.graphics.newQuad(32*2,32*4,32,32,plr),
+		love.graphics.newQuad(32*3,32*4,32,32,plr),
+		love.graphics.newQuad(32*4,32*4,32,32,plr),
+	},
+	[2] = {
+		love.graphics.newQuad(32*7,32*4,32,32,plr),
+		love.graphics.newQuad(32*8,32*4,32,32,plr),
+		love.graphics.newQuad(32*9,32*4,32,32,plr),
+		love.graphics.newQuad(32*10,32*4,32,32,plr),
+		love.graphics.newQuad(32*11,32*4,32,32,plr),
+	},
+	[3] = {
+		love.graphics.newQuad(32*0,32*3,32,32,plr),
+	},
+	[4] = {
+		-- love.graphics.newQuad(32*0,32*5,32,32,plr),
+		love.graphics.newQuad(32*1,32*5,32,32,plr),
+		love.graphics.newQuad(32*2,32*5,32,32,plr),
+		love.graphics.newQuad(32*3,32*5,32,32,plr),
+	},
+	[5] = {
+		love.graphics.newQuad(32*0,32*6,32,32,plr),
+		love.graphics.newQuad(32*1,32*6,32,32,plr),
+		love.graphics.newQuad(32*2,32*6,32,32,plr),
+		love.graphics.newQuad(32*3,32*6,32,32,plr),
+	},
+	[6] = {
+		love.graphics.newQuad(32*4,32*5,32,32,plr),
+		love.graphics.newQuad(32*5,32*5,32,32,plr),	
+		love.graphics.newQuad(32*6,32*5,32,32,plr),
+	},
+	[7] = {
+		love.graphics.newQuad(32*12,32*4,32,32,plr),
+		love.graphics.newQuad(32*13,32*4,32,32,plr),
+	},
+	[8] = {
+		love.graphics.newQuad(32*5,32*4,32,32,plr),
+		love.graphics.newQuad(32*6,32*4,32,32,plr),
+	},
+}
+
+Image.new("arena_magic","/assets/arena_assets/Magician_unscaled-Sheet.png")
+local mag = Image.get("arena_magic")
+Magician_Quad = {
+	love.graphics.newQuad(80*0,0,80,170,mag),
+	love.graphics.newQuad(80*1,0,80,170,mag),
+	-- love.graphics.newQuad(80*2,0,80,170,mag),
+	-- love.graphics.newQuad(80*3,0,80,170,mag),
+	-- love.graphics.newQuad(80*4,0,80,170,mag),
+}
+
+Image.new("arena_magic_anim","/assets/arena_assets/Magician-Sheet.png")
+local animmag = Image.get("arena_magic_anim")
+Magician_Quad2 = {
+	love.graphics.newQuad(64*0,64*0,64,64,animmag),
+	love.graphics.newQuad(64*0,64*1,64,64,animmag),
+	love.graphics.newQuad(64*1,64*1,64,64,animmag),
+	love.graphics.newQuad(64*2,64*1,64,64,animmag),
+	love.graphics.newQuad(64*0,64*2,64,64,animmag),
+	love.graphics.newQuad(64*1,64*2,64,64,animmag),
+	love.graphics.newQuad(64*2,64*2,64,64,animmag),
+	love.graphics.newQuad(64*3,64*2,64,64,animmag),
+	love.graphics.newQuad(64*4,64*2,64,64,animmag),
+	love.graphics.newQuad(64*5,64*2,64,64,animmag),
+	love.graphics.newQuad(64*6,64*2,64,64,animmag),
+	love.graphics.newQuad(64*0,64*3,64,64,animmag),
+	love.graphics.newQuad(64*1,64*3,64,64,animmag),
+	love.graphics.newQuad(64*2,64*3,64,64,animmag),
+	love.graphics.newQuad(64*3,64*3,64,64,animmag),
+	love.graphics.newQuad(64*4,64*3,64,64,animmag),
+	love.graphics.newQuad(64*5,64*3,64,64,animmag),
+	love.graphics.newQuad(64*6,64*3,64,64,animmag),
+	love.graphics.newQuad(64*7,64*3,64,64,animmag),
+}
 
 -- Songs
 Sound.new("arena","/assets/arena.ogg")

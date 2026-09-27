@@ -1,4 +1,6 @@
 require("arena/object")
+require("arena/projectile")
+require("arena/enemy")
 
 Space = {
 	G = 980,
@@ -66,8 +68,10 @@ end
 function Space:Collide(obj)
 	for i,v in pairs(self.objects) do
 		if not(v == obj) then
-			local c = obj:Collide(v)
-			if c then return c end
+			if v.c then
+				local c = obj:Collide(v)
+				if c then return v end
+			end
 		end
 	end
 end
@@ -75,8 +79,10 @@ end
 function Space:PreCollide(obj)
 	for i,v in pairs(self.objects) do
 		if not(v == obj) then
-			local c = obj:PreCollide(v)
-			if c then return c end
+			if v.c then
+				local c = obj:PreCollide(v)
+				if c then return v end
+			end
 		end
 	end
 end
@@ -84,20 +90,20 @@ end
 function Space:CollideWall(obj)
 	for i,v in pairs(self.bounds) do
 		local c = obj:Collide(v)
-		if c then return c end
+		if c then return v end
 	end
 end
 
 function Space:PreCollideWall(obj)
 	for i,v in pairs(self.bounds) do
 		local c = obj:PreCollide(v)
-		if c then return c end
+		if c then return v end
 	end
 end
 
 function Space:TopCollide(obj)
 	for i,v in pairs(self.bounds) do
 		local c = v:TopCollide(obj)
-		if c then return c end
+		if c then return v end
 	end
 end
