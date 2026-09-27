@@ -71,6 +71,10 @@ Image.new("c22_2","/assets/22talk.png")
 Image.new("c22_3","/assets/22blink.png")
 Image.new("c22_4","/assets/22blinktalk.png")
 
+Image.new("tent","/assets/background.png")
+Image.new("table_n_ball","/assets/table_and_ball.png")
+Image.new("table","/assets/table.png")
+Image.new("ball","/assets/ball.png")
 
 -- Songs
 Sound.new("arena","/assets/arena.mp3")
