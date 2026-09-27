@@ -62,6 +62,14 @@ MOUSEPRESSED[SETTINGS] = function(x,y,button)
 end
 
 DRAW[SETTINGS] = function()
+	local song = Sound.get("thePsychic")
+	if song then
+		song:setVolume(Logarithming(GAME_MUSIC_VOLUME))
+		if not song:isPlaying() then
+			song:play()
+		end
+	end
+
 	love.graphics.setColor(1,1,1)
 	local img
 	img = Image.get("tent")

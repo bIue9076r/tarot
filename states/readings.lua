@@ -442,7 +442,7 @@ end
 DRAW[READINGS] = function()
 	local song = Sound.get("shop")
 	if song then
-		song:setVolume(GAME_MUSIC_VOLUME)
+		song:setVolume(Logarithming(GAME_MUSIC_VOLUME))
 		if not song:isPlaying() then
 			song:play()
 		end
