@@ -24,11 +24,20 @@ function Tarot_Cards:Py(n)
     return 350
 end
 
+TB = {
+    Button.new(0, 0, 140, 190),
+    Button.new(0, 0, 140, 190),
+    Button.new(0, 0, 140, 190),
+    Button.new(0, 0, 140, 190),
+}
+
 function Tarot_Cards:draw(n,c,t)
     CheckKarma()
     local img = Image.get("t"..c[n].sprite.."v"..Version)
     local ox = 270*(1 - t) + self:Px(n)*t
     local oy = 400*(1 - t) + self:Py(n)*t
+    TB[n].x = ox
+    TB[n].y = oy
     love.graphics.draw(img, ox, oy, 0, 0.9)
 end
 

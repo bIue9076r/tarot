@@ -25,8 +25,9 @@ TheFool_BD = 22
 --------------------------------------------------------
 
 function RandomCustomer()
-    local n = love.math.random(21)
-    return n
+    local list = {1, 3, 5, 6, 7, 9, 10, 12, 14, 17, 18, 22}
+    local n = love.math.random(1,#list)
+    return list[n]
 end
 
 function RandomCard()

@@ -51,7 +51,7 @@ DRAW[READINGS] = function()
 
 	local bg = Image.get("tent")
 	love.graphics.draw(bg)
-	
+
 	local f = READINGS_DRAW[READINGS_DAY]
 	if f then f() end
 end
