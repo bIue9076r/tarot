@@ -166,6 +166,7 @@ Image.new("plus","/assets/plus.png")
 Image.new("minus","/assets/minus.png")
 Image.new("settingsbox","/assets/settingsbox.png")
 Image.new("exit","/assets/exit_button.png")
+Image.new("boss","/assets/Boss_Defeated.png")
 
 -- Quads
 Image.new("arena_player","/assets/arena_assets/Sprite-mc-Sheet.png")

@@ -55,6 +55,7 @@ function RandomCards(day)
 					break
 				end
 			end
+			table.insert(tbl,n)
 		else
 			table.insert(tbl,n)
 		end

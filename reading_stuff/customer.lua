@@ -16,7 +16,8 @@ function Customer:draw()
 		local n = (math.floor(2*self.sprite) % 2) + 1
 		local l = math.max((math.floor(self.sprite) % 5) - 3,0) * 2
 		local img = Image.get("c"..self.birth_date.."_"..(n + l))
-		love.graphics.draw(img, 250, 180)
+		local y = 5*math.sin(self.sprite*15)
+		love.graphics.draw(img, 250, 180 + y)
         local v = Sound.get("voice_1")
         if v and (not v:isPlaying()) then
            v:play()

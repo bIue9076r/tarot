@@ -51,3 +51,27 @@ TAROTCARDS = {
 	Tarot_Cards.new("Ace of Pentacles", -2),
 	Tarot_Cards.new("Three of Pentacles", 1),
 }
+
+MAJORCARDS = {
+	[TheMagician_BD] = "",
+	[TheHighPriestess_BD] = "",
+	[TheEmpress_BD] = "",
+	[TheEmperor_BD] = "",
+	[TheHierophant_BD] = "",
+	[TheLovers_BD] = "tm6",
+	[TheChariot_BD] = "tm7",
+	[Strength_BD] = "",
+	[TheHermit_BD] = "tm9",
+	[WheelOfFortune_BD] = "tm10",
+	[Justice_BD] = "",
+	[TheHangedMan_BD] = "tm12",
+	[Temperance_BD] = "",
+	[TheDevil_BD] = "tm15",
+	[TheTower_BD] = "tm16",
+	[TheStar_BD] = "",
+	[TheMoon_BD] = "",
+	[TheSun_BD] = "",
+	[Judgement_BD] = "tm20",
+	[TheWorld_BD] = "",
+	[TheFool_BD] = "",
+}
