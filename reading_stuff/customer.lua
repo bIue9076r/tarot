@@ -1,6 +1,6 @@
 require("reading_stuff.random")
 
-Customer = {name = "Name", birth_date = 0, sprite = 0, yap = false}
+Customer = {name = "Name", birth_date = 0, sprite = 0, yap = false, deepVoice = false}
 
 function Customer.new(name, birth_date, sprite)
     local table = {name = name, birth_date = birth_date, sprite = sprite}
@@ -12,6 +12,7 @@ end
 
 function Customer:draw()
 	self.sprite = self.sprite + DT()
+
 	if self.yap then
 		local n = (math.floor(2*self.sprite) % 2) + 1
 		local l = math.max((math.floor(self.sprite) % 5) - 3,0) * 2
@@ -19,6 +20,9 @@ function Customer:draw()
 		local y = 5*math.sin(self.sprite*15)
 		love.graphics.draw(img, 250, 180 + y)
         local v = Sound.get("voice_1")
+        if self.deepVoice then
+            v = Sound.get("voice_2")
+        end
         if v and (not v:isPlaying()) then
            v:setVolume(Logarithming(GAME_SFX_VOLUME) * 0.9)
            v:play()
@@ -28,6 +32,9 @@ function Customer:draw()
 		local img = Image.get("c"..self.birth_date.."_"..(m))
 		love.graphics.draw(img, 250, 180)
         local v = Sound.get("voice_1")
+        if self.deepVoice then
+            v = Sound.get("voice_2")
+        end
         if v then
            v:stop()
         end
