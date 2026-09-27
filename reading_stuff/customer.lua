@@ -20,6 +20,7 @@ function Customer:draw()
 		love.graphics.draw(img, 250, 180 + y)
         local v = Sound.get("voice_1")
         if v and (not v:isPlaying()) then
+           v:setVolume(Logarithming(GAME_SFX_VOLUME) * 0.9)
            v:play()
         end
 	else
