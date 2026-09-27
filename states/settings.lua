@@ -70,7 +70,6 @@ DRAW[SETTINGS] = function()
 
     love.graphics.setBackgroundColor(0,0,0)
 	love.graphics.setColor(1,1,1)
-	local x,y = love.mouse.getPosition()
 	love.graphics.print("Main Volume "..string.format("%d%%",GAME_MAIN_VOLUME * 100),200,120)
 	love.graphics.print("Main Volume "..string.format("%d%%",GAME_MUSIC_VOLUME * 100),200,220)
 	love.graphics.print("Main Volume "..string.format("%d%%",GAME_SFX_VOLUME * 100),200,320)
