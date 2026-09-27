@@ -13,6 +13,10 @@ function Getspeaker(general_table)
     return general_table[Current_I].speaker
 end
 
+function GetResponseSpeaker()
+    return
+end
+
 function PrintIntros(general_table)
     Printin(general_table)
 end
@@ -33,7 +37,11 @@ function SetTable()
         Current_TBL = All_Tables[Current_C][2]
     elseif Is_CardPick then
         Current_TBL = All_Tables[Current_C][3]
-    elseif Is_Response then
+    end
+end
+
+function SetResponse()
+    if Is_Response then
         if PICK == 2 then
             Current_TBL = All_Tables[Current_C][3][2][Current_I][1]
         elseif PICK == 1 then
