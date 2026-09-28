@@ -132,6 +132,46 @@ Image.new("t8v2", "/assets/threecup_good.png")
 Image.new("t8v3", "/assets/threecup_bad1.png")
 Image.new("t8v4", "/assets/threecup_bad2.png")
 
+Image.new("t9v1", "/assets/fivecup_neutral.png")
+Image.new("t9v2", "/assets/fivecup_good.png")
+Image.new("t9v3", "/assets/fivecup_bad1.png")
+Image.new("t9v4", "/assets/fivecup_bad2.png")
+
+Image.new("t10v1", "/assets/fivepentacle_neutral.png")
+Image.new("t10v2", "/assets/fivepentacle_good.png")
+Image.new("t10v3", "/assets/fivepentacle_bad1.png")
+Image.new("t10v4", "/assets/fivepentacle_bad2.png")
+
+Image.new("t11v1", "/assets/acepentacle_neutral.png")
+Image.new("t11v2", "/assets/acepentacle_good.png")
+Image.new("t11v3", "/assets/acepentacle_bad1.png")
+Image.new("t11v4", "/assets/acepentacle_bad2.png")
+
+Image.new("t12v1", "/assets/kingpentacle_neutral.png")
+Image.new("t12v2", "/assets/kingpentacle_good.png")
+Image.new("t12v3", "/assets/kingpentacle_bad1.png")
+Image.new("t12v4", "/assets/kingpentacle_bad2.png")
+
+Image.new("t13v1", "/assets/ninecup_neutral.png")
+Image.new("t13v2", "/assets/ninecup_good.png")
+Image.new("t13v3", "/assets/ninecup_bad1.png")
+Image.new("t13v4", "/assets/ninecup_bad2.png")
+
+Image.new("t14v1", "/assets/pagewand_neutral.png")
+Image.new("t14v2", "/assets/pagewand_good.png")
+Image.new("t14v3", "/assets/pagewand_bad1.png")
+Image.new("t14v4", "/assets/pagewand_bad2.png")
+
+Image.new("t15v1", "/assets/queenwand_neutral.png")
+Image.new("t15v2", "/assets/queenwand_good.png")
+Image.new("t15v3", "/assets/queenwand_bad1.png")
+Image.new("t15v4", "/assets/queenwand_bad2.png")
+
+Image.new("t16v1", "/assets/twocup_neutral.png")
+Image.new("t16v2", "/assets/twocup_good.png")
+Image.new("t16v3", "/assets/twocup_bad1.png")
+Image.new("t16v4", "/assets/twocup_bad2.png")
+
 Image.new("tm6","/assets/6lovers.png")
 Image.new("tm7","/assets/7chariot.png")
 Image.new("tm9","/assets/9hermit.png")
@@ -168,6 +208,11 @@ Image.new("settingsbox","/assets/settingsbox.png")
 Image.new("exit","/assets/exit_button.png")
 Image.new("boss","/assets/Boss_Defeated.png")
 Image.new("jumpscare","/assets/jumpscare.png")
+
+Image.new("final_1","/assets/final_1.png")
+Image.new("final_2","/assets/final_2.png")
+Image.new("final_3","/assets/final_3.png")
+Image.new("final_4","/assets/final_4.png")
 
 Image.new("n_wasd","/assets/blank_wasd.png")
 Image.new("w_wasd","/assets/w_wasd.png")

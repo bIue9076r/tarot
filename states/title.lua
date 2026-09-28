@@ -20,8 +20,7 @@ end
 
 MOUSEPRESSED[TITLE] = function(x,y,button)
 	if New_Game_But:click(x,y,button) then
-		-- Switch_State(INTRO)
-		Switch_State(READINGS)
+		Switch_State(INTRO)
 	end
 	if Setting_But:click(x,y,button) then
 		Switch_State(SETTINGS)

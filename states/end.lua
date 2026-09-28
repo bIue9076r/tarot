@@ -6,7 +6,6 @@ Finale_t = 0
 LOAD[ENDING] = function()
 	Finale = CheckKarma()
 	Finale_T = 0
-	Finale = 4
 end
 
 UPDATE[ENDING] = function(dt)
@@ -36,13 +35,20 @@ DRAW[ENDING] = function()
 			end
 		end
 	elseif Finale == 3 then
-		local len = 10
-		local n = math.min(len,math.floor(Finale_t))
-	elseif Finale == 2 then
-		local len = 10
-		local n = math.min(len,math.floor(Finale_t))
-	elseif Finale == 1 then
-		local len = 10
-		local n = math.min(len,math.floor(Finale_t))
+		local n = math.min(4,math.floor(Finale_t/2.5)) + 1
+		if n <= 4 then
+			local img = Image.get("final_"..n)
+			love.graphics.draw(img)
+		end
+	elseif Finale == 2 or Finale == 1 then
+		love.graphics.setColor(1,1,1)
+		local bg = Image.get("tent")
+		love.graphics.draw(bg)
+		local img = Image.get("table_n_ball")
+		love.graphics.draw(img)
+		TAROTCARDS[1]:draw(1,1)
+		TAROTCARDS[1]:draw(2,1)
+		TAROTCARDS[1]:draw(3,1)
+		TAROTCARDS[1]:draw(4,1)
 	end
 end
