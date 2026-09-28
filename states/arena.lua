@@ -264,6 +264,13 @@ function Arena_Move_Combo()
 				Arena_Combo_Show_T = Arena_Combo_Show_Delay
 				local f = Arena_Combo_Enact[cmb.name]
 				if f then f() end
+				local s = Sound.get("lowWhoosh")
+				if s then
+					s:setVolume(Logarithming(GAME_SFX_VOLUME))
+					if not s:isPlaying() then
+						s:play()
+					end
+				end
 			-- else
 			-- 	for i,v in ipairs(Arena_Combo.moveset) do
 			-- 		combo = combo..v.." "
