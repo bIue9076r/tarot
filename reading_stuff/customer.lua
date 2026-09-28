@@ -10,7 +10,8 @@ function Customer.new(name, birth_date, deepVoice, sprite)
     return setmetatable(table, metaTable)
 end
 
-function Customer:draw()
+function Customer:draw(glow)
+	glow = glow or false
 	self.sprite = self.sprite + DT()
 
 	if self.yap then
@@ -42,6 +43,10 @@ function Customer:draw()
 	
     local TABL = Image.get("table")
     love.graphics.draw(TABL)
+	if glow then
+		local t = self.sprite
+		love.graphics(0.3*math.sin(t) + 0.7,0.3*math.sin(t) + 0.7,0.3*math.sin(t) + 0.7)
+	end
     local BALLZ = Image.get("ball")
     love.graphics.draw(BALLZ)
     -- love.graphics.circle("fill", 400, 440, 50)

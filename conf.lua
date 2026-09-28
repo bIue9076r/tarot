@@ -1,6 +1,6 @@
 function love.conf(t)
 	t.version = "11.5"
-	t.console = true
+	t.console = false
 	t.window.title = "The Tarot Reader"
 	t.identity = "tarot"
 	t.window.width = 800
