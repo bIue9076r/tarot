@@ -458,6 +458,13 @@ UPDATE[ARENA] = function(dt)
 						if v.t == OBJ_TYPE_PROJECTILE_FOE and c.t == OBJ_TYPE_PLAYER then
 							c.hp = c.hp - v.hp
 							Arena_Space:remove(v)
+							local s = Sound.get("crunch")
+							if s then
+								s:setVolume(Logarithming(GAME_SFX_VOLUME))
+								if not s:isPlaying() then
+									s:play()
+								end
+							end
 						elseif v.t == OBJ_TYPE_PROJECTILE_JOE and c.t == OBJ_TYPE_ENEMY_1 then
 							c.hp = c.hp - v.hp
 							Arena_Space:remove(v)
