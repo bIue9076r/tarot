@@ -1,5 +1,6 @@
 INTRO = 2
 
+-- Intro animation variable
 Intro_t = 0
 
 LOAD[INTRO] = function()
@@ -12,6 +13,7 @@ end
 
 KEYPRESSED[INTRO] = function(key)
     if key == "return" then
+		-- skip cutscene
         Switch_State(READINGS)
     end
 
@@ -24,7 +26,9 @@ end
 DRAW[INTRO] = function()
 	Intro_t = Intro_t + DT()
 	local len = 10
-	local n = math.min(len,math.floor(Intro_t/4))
+	local n = math.min(len,math.floor(Intro_t/4)) -- slide show
+	-- n is forced to be an integer, and changes every 4 seconds
+
 	local bg = Image.get("tent")
 	love.graphics.draw(bg)
 	local img = Image.get("table_n_ball")

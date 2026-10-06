@@ -228,6 +228,10 @@ Image.new("s_wasd","/assets/s_wasd.png")
 Image.new("d_wasd","/assets/d_wasd.png")
 
 -- Quads
+-- This is a new section, but this will be added to the asset manager
+-- Quads are like slices of images
+-- They are really usefull for things like sprite sheets because
+-- you can put all of the quads into one table based on the animation
 Image.new("arena_player","/assets/arena_assets/Sprite-mc-Sheet.png")
 local plr = Image.get("arena_player")
 Plr_Quad = {

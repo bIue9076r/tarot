@@ -1,10 +1,10 @@
 ENDING = 6
 
-Finale = 0
+Finale = 0 -- Ending
 Finale_t = 0
 
 LOAD[ENDING] = function()
-	Finale = CheckKarma()
+	Finale = CheckKarma() -- Ending based of Karma
 	Finale_T = 0
 end
 
@@ -24,6 +24,7 @@ end
 
 DRAW[ENDING] = function()
 	Finale_t = Finale_t + DT()
+	-- Bad Ending
 	if Finale == 4 then
 		local song = Sound.get("murder")
 		local img = Image.get("jumpscare")
@@ -34,12 +35,15 @@ DRAW[ENDING] = function()
 				song:play()
 			end
 		end
+	-- Good Ending
 	elseif Finale == 3 then
+		-- slideshow from animation variable
 		local n = math.min(4,math.floor(Finale_t/2.5)) + 1
 		if n <= 4 then
 			local img = Image.get("final_"..n)
 			love.graphics.draw(img)
 		end
+	-- Neutral Ending
 	elseif Finale == 2 or Finale == 1 then
 		love.graphics.setColor(1,1,1)
 		local bg = Image.get("tent")

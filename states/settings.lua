@@ -1,6 +1,7 @@
 SETTINGS = 8
 
 -- Buttons
+-- X position, Y position, Witdh, Height
 Exit_But = Button.new(650,500,130,70)
 
 Volume_Up = Button.new(140,150,75,75)
@@ -19,6 +20,7 @@ end
 UPDATE[SETTINGS] = function(dt)
 	local x,y = love.mouse.getPosition()
 
+	-- Check if any button is in focus based on mouse position
 	Exit_But:focus(x,y)
 	Volume_Up:focus(x,y)
 	Volume_Down:focus(x,y)
@@ -30,11 +32,13 @@ end
 
 KEYPRESSED[SETTINGS] = function(key)
 	if key == "return" then
+		-- Exit settings
 		Switch_State(TITLE)
 	end
 end
 
 MOUSEPRESSED[SETTINGS] = function(x,y,button)
+	-- Exit if exit button is clicked
     if Exit_But:click(x,y,button) then
         Switch_State(TITLE)
     end
@@ -62,6 +66,7 @@ MOUSEPRESSED[SETTINGS] = function(x,y,button)
 end
 
 DRAW[SETTINGS] = function()
+	-- Play background title song
 	local song = Sound.get("thePsychic")
 	if song then
 		song:setVolume(Logarithming(GAME_MUSIC_VOLUME))
@@ -81,6 +86,10 @@ DRAW[SETTINGS] = function()
 	img = Image.get("settingsbox")
 	love.graphics.draw(img)
 
+	-- Alternative to Button:draw
+	-- it changes the color of the button when it is focused
+	-- Volume_Up.f is a boolean that means the button is focused
+	-- Volume_Up.t is an animation variable
 	if Volume_Up.f then
 		Volume_Up.t = Volume_Up.t + DT()
 		local t = math.min(Volume_Up.t,1)

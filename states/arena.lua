@@ -1,19 +1,29 @@
-require("arena/space")
-require("arena/combo")
+require("arena/space") -- World Physics modules
+require("arena/combo") -- Combo module
 ARENA = 4
 
-Arena_Space = Space.new()
+Arena_Space = Space.new() -- New Physics Space
 
+-- Max Speed
 Arena_Max_Velocity_X = 100
 Arena_Max_Velocity_Y = 400
 
+-- Current combo
 Arena_Combo = Combo.new()
+
 Empty_Combo = Combo.new()
+
+-- Delay between key input
 Arena_Combo_Delay = 0.25
+
+-- Combo string
 Arena_Combo_Show = ""
+
+-- Combo show timer
 Arena_Combo_Show_T = 0
 Arena_Combo_Show_Delay = 2
 
+-- Animation states
 PLAYER_IDLE_IMPATIENT = -1
 PLAYER_IDLE = 0
 PLAYER_RIGHT = 1
@@ -58,6 +68,7 @@ Arena_Combo_List = ComboList.new({
 })
 
 Arena_Combo_Enact = {
+	-- Circle blast around the player
 	["Ground Circle"] = function()
 		local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
 		for i = 1,11 do
@@ -72,16 +83,20 @@ Arena_Combo_Enact = {
 		end
 	end,
 
+	-- Horizontal plane down from the player
 	["Down Wall"] = function()
 		local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
 		Arena_Space:add(Projectile.joe(15,A.x - 5,A.y,42,5,math.pi/2,400))
 	end,
 
+	-- Horizontal plane up from the player
 	["Up Wall"] = function()
 		local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
 		Arena_Space:add(Projectile.joe(15,A.x - 5,A.y,42,5,-math.pi/2,400))
 	end,
 
+	-- Vertical plane right from the player
+	-- Also boosts them up and left
 	["Up Wave Right"] = function()
 		local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
 		Arena_Space:add(Projectile.joe(10,A.x,A.y - 5,5,42,0,400))
@@ -89,6 +104,8 @@ Arena_Combo_Enact = {
 		A.vy = A.vy - 300
 	end,
 
+	-- Vertical plane left from the player
+	-- Also boosts them up and right
 	["Up Wave Left"] = function()
 		local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
 		Arena_Space:add(Projectile.joe(10,A.x,A.y - 5,5,42,math.pi,400))
@@ -96,24 +113,32 @@ Arena_Combo_Enact = {
 		A.vy = A.vy - 300
 	end,
 
+	-- Vertical plane right from the player
+	-- Also boosts themdown
 	["Down Wave Right"] = function()
 		local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
 		Arena_Space:add(Projectile.joe(10,A.x,A.y - 5,5,42,0,400))
 		A.vy = A.vy + 300
 	end,
 
+	-- Vertical plane left from the player
+	-- Also boosts them down
 	["Down Wave Left"] = function()
 		local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
 		Arena_Space:add(Projectile.joe(10,A.x,A.y - 5,5,42,math.pi,400))
 		A.vy = A.vy + 300
 	end,
 
+	-- Blast to the right
+	-- Also boosts the player left
 	["Right Blast"] = function()
 		local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
 		Arena_Space:add(Projectile.joe(10,A.x,A.y + 16,5,5,0,400))
 		A.vx = A.vx - 500
 	end,
 
+	-- Blast to the left
+	-- Also boosts the player right
 	["Left Blast"] = function()
 		local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
 		Arena_Space:add(Projectile.joe(10,A.x,A.y + 16,5,5,math.pi,400))
@@ -146,6 +171,9 @@ function Lerp(t,a,b,c,d)
 	return m*(t - a) + c
 end
 
+-- Custom Player Physics functions
+
+-- Check if player hits a wall or projectile
 function Arena_Collision(A)
 	A = A or Arena_Space:findFirst(OBJ_TYPE_PLAYER)
 	local nx = A.nx
@@ -170,6 +198,8 @@ function Arena_Collision(A)
 	-- end	
 end
 
+-- Move the player in the up direction
+-- Jump
 function Arena_Move_Up()
 	local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
 	if A then
@@ -183,23 +213,27 @@ function Arena_Move_Up()
 	end
 end
 
+-- Move the player in the down direction
 function Arena_Move_Down()
 	local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
 	if A then A:ADown(); A.state = PLAYER_DOWN end
 end
 
+-- Move the player to the left
 function Arena_Move_Left()
 	local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
 	if A then A:ALeft(); A.state = PLAYER_LEFT end
 	return true
 end
 
+-- Move the player to the right
 function Arena_Move_Right()
 	local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
 	if A then A:ARight(); A.state = PLAYER_RIGHT end
 	return true
 end
 
+-- Paralax the world based on the player
 function Arena_Position()
 	local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
 	if A then A:PrePosition() end
@@ -210,6 +244,7 @@ function Arena_Position()
 	-- Arena_Space.Ylax = math.max(A.y - 200,0)
 end
 
+-- No x acceleration
 function Arena_Move_None_X()
 	local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
 	if A then
@@ -226,6 +261,7 @@ function Arena_Move_None_X()
 	end
 end
 
+-- No y acceleration
 function Arena_Move_None_Y()
 	local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
 	if A then
@@ -282,6 +318,7 @@ function Arena_Move_Combo()
 	end
 end
 
+-- Draw back paralax
 function Arena_BackParalax()
 	local img
 	img = Image.get("arena_sky")
@@ -300,11 +337,13 @@ function Arena_BackParalax()
 	love.graphics.draw(img,-800 - Arena_Space.Xlax,-110,0,2,1)
 end
 
+-- Draw front paralax
 function Arena_FrontParalax()
 	local img = Image.get("arena_lamp")
 	love.graphics.draw(img,-800 -1.25*Arena_Space.Xlax,-110,0,2,1)
 end
 
+-- Draw key pressed
 function Arena_KeyShow()
 	if not(Arena_Key == "w" or Arena_Key == "a" or Arena_Key == "s" or Arena_Key == "d") then
 		Arena_Key = "n"
@@ -314,6 +353,10 @@ function Arena_KeyShow()
 	love.graphics.draw(img,600,-150,0,0.5)
 end
 
+-- Animate player based on the state
+-- A simple modulus is enough to loop the animation
+-- but more work is needed for animations that have a transition
+-- (Running for example)
 function Arena_Animate()
 	local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
 	local img = Image.get("arena_player")
@@ -359,6 +402,7 @@ function Arena_Animate()
 	love.graphics.draw(img, Plr_Quad[A.state][N],A.x - Arena_Space.Xlax,A.y - Arena_Space.Ylax)
 end
 
+-- Draw other objects that are not the player
 function Arena_Objects()
 	for i,v in pairs(Arena_Space.objects) do
 		if not(v.t == OBJ_TYPE_PLAYER) then
@@ -374,6 +418,7 @@ function Arena_Objects()
 	end
 end
 
+-- Things to draw when the boss is defeated
 function Arena_BossEnd()
 	for i,v in pairs(Arena_Space.objects) do
 		if v.t == OBJ_TYPE_ENEMY_1 then
@@ -395,6 +440,7 @@ function Arena_BossEnd()
 	love.graphics.draw(img)
 end
 
+-- Show the players hp
 function Arena_Hp_Show()
 	local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
 	if A then
@@ -402,6 +448,7 @@ function Arena_Hp_Show()
 	end
 end
 
+-- Reset Arena
 LOAD[ARENA] = function()
 	Arena_Space = Space.new()
 	Arena_Space:add(Object.new(50,510,32,32,200,100,100,1))
@@ -411,7 +458,7 @@ LOAD[ARENA] = function()
 	Arena_Space:addWall(Wall.new(3200,-100,50,900))
 	Arena_Space:add(Enemy.new(250,50,80,170,100,OBJ_TYPE_ENEMY_1))
 	INTRO_PLAYED = false
-	Arena_Combo_Delay = 0.5
+	Arena_Combo_Delay = 0.25
 	Arena_Combo_Show = ""
 	Arena_Combo_Show_T = 0
 	Arena_Combo_Show_Delay = 2
@@ -420,6 +467,8 @@ LOAD[ARENA] = function()
 
 	local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
 	A.hp = 100
+
+	-- Play Intro
 	local intro = Sound.get("arenaIntro")
 	if intro then
 		intro:setVolume(Logarithming(GAME_MUSIC_VOLUME))
@@ -429,8 +478,11 @@ LOAD[ARENA] = function()
 	end
 end
 
+-- Arena update
 UPDATE[ARENA] = function(dt)
+	-- if the player is not dead
 	if Arena_Dead <= 0 then
+		-- check if the player moved left or right or up
 		local moved = {x=false,y=false}
 		if love.keyboard.isDown("a") or love.keyboard.isDown("left") then
 			moved.x = Arena_Move_Left()
@@ -449,12 +501,15 @@ UPDATE[ARENA] = function(dt)
 		Arena_Position()
 		Arena_Move_Combo()
 
+		-- if boss not killed
 		if Arena_Ending <= 0 then
 			for i,v in pairs(Arena_Space.objects) do
 				if not(v.t == OBJ_TYPE_PLAYER) then
 					v:Position()
+					-- this checks if any object hits anything in the space
 					local c = Arena_Space:Collide(v)
 					if c then
+						-- if an enemy projectile hits the player
 						if v.t == OBJ_TYPE_PROJECTILE_FOE and c.t == OBJ_TYPE_PLAYER then
 							c.hp = c.hp - v.hp
 							Arena_Space:remove(v)
@@ -465,14 +520,17 @@ UPDATE[ARENA] = function(dt)
 									s:play()
 								end
 							end
+						-- if a player projectile hits an enemy
 						elseif v.t == OBJ_TYPE_PROJECTILE_JOE and c.t == OBJ_TYPE_ENEMY_1 then
 							c.hp = c.hp - v.hp
 							Arena_Space:remove(v)
+						-- if a player projectile hits an enemy projectile
 						elseif v.t == OBJ_TYPE_PROJECTILE_JOE and c.t == OBJ_TYPE_PROJECTILE_FOE then
 							Arena_Space:remove(c)
 						end
 					end
 
+					-- if any projectile hits a wall, remove it
 					c = Arena_Space:CollideWall(v)
 					if c then
 						if not(v.t == OBJ_TYPE_ENEMY_1) then
@@ -482,6 +540,7 @@ UPDATE[ARENA] = function(dt)
 				end
 			end
 
+			-- if player hp is less than 0 they die
 			local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
 			if A then
 				if A.hp <= 0 then
@@ -489,6 +548,7 @@ UPDATE[ARENA] = function(dt)
 				end
 			end
 
+			-- if the boss hp is less than 0 the player wins
 			local E = Arena_Space:findFirst(OBJ_TYPE_ENEMY_1)
 			if E then
 				E:update(Arena_Space)
@@ -498,14 +558,17 @@ UPDATE[ARENA] = function(dt)
 			end
 		end
 	else
+		-- freeze the game and count the death timer
 		Arena_Dead = Arena_Dead - dt
 		if Arena_Dead <= 0 then
+			-- when finished, load the arena again
 			LOAD[ARENA]()
 		end
 	end
 end
 
 KEYPRESSED[ARENA] = function(key)
+	-- convert alternate keys to wasd
 	if key == "space" then
 		key = "w"
 	end
@@ -522,6 +585,7 @@ KEYPRESSED[ARENA] = function(key)
 		key = "d"
 	end
 
+	-- Add key to combo and set current key
 	Arena_Combo:addMove(key)
 	Arena_Key = key
 end
@@ -531,6 +595,7 @@ MOUSEPRESSED[ARENA] = function(x,y,button)
 end
 
 DRAW[ARENA] = function()
+	-- if player not dead
 	if Arena_Dead <= 0 then
 		local song = Sound.get("arena")
 		local intro = Sound.get("arenaIntro")
@@ -542,12 +607,15 @@ DRAW[ARENA] = function()
 			end
 		end
 
+		-- draw background
 		Arena_BackParalax()
 		Arena_Animate()
 
+		-- if boss alive
 		if Arena_Ending <= 0 then
 			Arena_Objects()
 		else
+			-- show ending
 			Arena_BossEnd()
 			Arena_Ending = Arena_Ending - DT()
 			if Arena_Ending <= 0 then
@@ -574,6 +642,7 @@ DRAW[ARENA] = function()
 		
 		Arena_FrontParalax()
 
+		-- show player info
 		Arena_KeyShow()
 		if Arena_Combo_Show_T >= 0 then
 			love.graphics.print(Arena_Combo_Show,0,30,0,2)
@@ -582,6 +651,7 @@ DRAW[ARENA] = function()
 
 		Arena_Hp_Show()
 	else
+		-- stop music
 		local song = Sound.get("arena")
 		local intro = Sound.get("arenaIntro")
 		if song then
@@ -591,10 +661,12 @@ DRAW[ARENA] = function()
 			intro:stop()
 		end
 
+		-- draw background
 		Arena_BackParalax()
 		Arena_Objects()
 		Arena_FrontParalax()
 		
+		-- gray overlay
 		love.graphics.setColor(0.5,0.5,0.5,0.5)
 		love.graphics.rectangle("fill",0,0,800,600)
 		love.graphics.setColor(1,1,1)
