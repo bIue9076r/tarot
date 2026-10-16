@@ -2,7 +2,16 @@
 require("modules/assets") -- asset manager
 require("modules/sfx") -- Sound effect queue
 require("modules/button") -- Button
-require("modules/draggable") -- Draggable items/buttons
+-- A button is an object that is defined by its position and its dimensions (x,y,w,h)
+-- plus other things: color, button text, focused, image, scale, image object
+-- the button checks if the mouse is hovering over it (button:focus)
+-- the button checks if its been clicked (button:click)
+-- button:draw is a default template
+-- it has two modes (image drawing or rectangle drawing)
+-- rectangle drawing, draws a rectangle at the specific dimensions
+-- it can also draw text if it provided
+-- image drawing, only draws an image at the (x,y) position
+require("modules/draggable") -- Draggable items/buttons (Unused)
 require("modules/lgraphics") -- Shorthands for love.graphics functions
 
 -- Loads game assets
@@ -87,10 +96,15 @@ end
 
 -- Gets Global Text file
 function GetText(path)
+	-- load the path or the defualt localization
 	path = path or "/assets/DD.txt"
 	local info = love.filesystem.getInfo(path)
+
+	-- if a something exists at that path
 	if info then
+		-- and if it its a file
 		if info.type == "file" then
+			-- insert every line into the text table
 			for v in love.filesystem.lines(path) do
 			table.insert(TEXT,v)
 			end

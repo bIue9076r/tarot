@@ -101,6 +101,13 @@ function Space:PreCollideWall(obj)
 	end
 end
 
+function Space:PreSideCollide(obj)
+	for i,v in pairs(self.bounds) do
+		local c = v:PreSideCollide(obj)
+		if c then return v end
+	end
+end
+
 function Space:TopCollide(obj)
 	for i,v in pairs(self.bounds) do
 		local c = v:TopCollide(obj)

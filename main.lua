@@ -10,9 +10,17 @@ love.graphics.setDefaultFilter("nearest", "nearest") -- tells graphics to use th
 require("globals")
 
 -- love.load is called when the program loads
-function love.load()
+function love.load(args)
 	-- Gets global text
 	GetText()
+
+	-- Argument parser
+	for i,v in pairs(args) do
+		if v == "-arena" or v == "-a" then
+			Switch_State(ARENA)
+			READINGS_DAY = 6
+		end
+	end
 
 	-- if a state has a load function
 	local f = LOAD[GAME_STATE]
@@ -57,6 +65,7 @@ end
 
 -- love.draw is called every frame to display to the screen
 function love.draw()
+	-- Play the SFX queue
 	Draw_Sfx()
 	-- if a state has a draw function
 	local f = DRAW[GAME_STATE]

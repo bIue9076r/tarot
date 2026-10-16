@@ -14,7 +14,7 @@ Arena_Combo = Combo.new()
 Empty_Combo = Combo.new()
 
 -- Delay between key input
-Arena_Combo_Delay = 0.25
+Arena_Combo_Delay = 0.125
 
 -- Combo string
 Arena_Combo_Show = ""
@@ -37,6 +37,7 @@ PLAYER_SLIDE_LEFT = 8
 OBJ_TYPE_PLAYER = 1
 
 Arena_Idle_Time = 0
+Arena_Idle_Time_Max = 5
 Arena_Dead = 0
 Arena_Ending = 0
 
@@ -156,7 +157,7 @@ function Sign(n)
 	return 0
 end
 
-function Lerp(t,a,b,c,d)
+function Lerp(t,a,c,b,d)
 	-- (a,b) to (c,d)
 	a = a or 0
 	b = b or 0
@@ -168,7 +169,7 @@ function Lerp(t,a,b,c,d)
 	end
 
 	local m = (d - b)/(c - a)
-	return m*(t - a) + c
+	return m*(t - a) + b
 end
 
 -- Custom Player Physics functions
@@ -187,15 +188,6 @@ function Arena_Collision(A)
 		A.nx = A.x
 		A.vx = - A.vx
 	end
-
-	-- for i = 1,3 do
-		if ((not Arena_Space:PreCollideWall(A)) or (not Arena_Space:PreCollide(A))) then
-			-- break
-			return
-		end
-		A.nx = A.x --Lerp(i/3,0,1,nx,A.x)
-		A.ny = A.y --Lerp(i/3,0,1,ny,A.y)
-	-- end	
 end
 
 -- Move the player in the up direction
@@ -236,12 +228,14 @@ end
 -- Paralax the world based on the player
 function Arena_Position()
 	local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
-	if A then A:PrePosition() end
-	Arena_Collision(A)
-	A:Position()
-	
-	Arena_Space.Xlax = math.min(math.max(A.x - 200,0),2000)
-	-- Arena_Space.Ylax = math.max(A.y - 200,0)
+	if A then
+		A:PrePosition()
+		Arena_Collision(A)
+		A:Position()
+		
+		Arena_Space.Xlax = math.min(math.max(A.x - 200,0),2000)
+		-- Arena_Space.Ylax = math.max(A.y - 200,0)
+	end
 end
 
 -- No x acceleration
@@ -250,7 +244,9 @@ function Arena_Move_None_X()
 	if A then
 		A:ANoneX()
 		if (A.vy == 0) and (A.vx == 0) then
-			A.state = PLAYER_IDLE
+			if Arena_Idle_Time <= Arena_Idle_Time_Max then
+				A.state = PLAYER_IDLE
+			end
 		else
 			if A.vx < 0 then
 				A.state = PLAYER_SLIDE_RIGHT
@@ -273,7 +269,9 @@ function Arena_Move_None_Y()
 		
 		A:ANoneY(Arena_Space.G)
 		if (A.vy == 0) and (A.vx == 0) then
-			A.state = PLAYER_IDLE
+			if Arena_Idle_Time <= Arena_Idle_Time_Max then
+				A.state = PLAYER_IDLE
+			end
 		else
 			if A.vy > 0 then
 				A.state = PLAYER_FLOAT
@@ -364,6 +362,10 @@ function Arena_Animate()
 	if A.state == PLAYER_IDLE then
 		A.substate = 0
 		N = A.substate + 1
+		if Arena_Idle_Time >= Arena_Idle_Time_Max then
+			A.state = PLAYER_IDLE_IMPATIENT
+			N = 1
+		end
 	elseif A.state == PLAYER_IDLE_IMPATIENT then
 		A.substate = A.substate + 4*DT()
 		N = (math.floor(A.substate) % 11) + 1
@@ -416,6 +418,10 @@ function Arena_Objects()
 			end
 		end
 	end
+
+	for i,v in pairs(Arena_Space.bounds) do
+		love.graphics.rectangle("line",v.x - Arena_Space.Xlax,v.y - Arena_Space.Ylax,v.w,v.h)
+	end
 end
 
 -- Things to draw when the boss is defeated
@@ -428,8 +434,8 @@ function Arena_BossEnd()
 			if (math.floor(v.state) + 1) >= 19 then
 				local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
 				if A then
-					v.x = Lerp(0.3,0,1,v.x,A.x)
-					v.y = Lerp(0.3,0,1,v.y,A.y)
+					v.x = Lerp(0.001,0,1,v.x,A.x)
+					v.y = Lerp(0.001,0,1,v.y,A.y)
 				end
 			end
 			love.graphics.draw(img, Magician_Quad2[N],v.x - Arena_Space.Xlax,v.y - Arena_Space.Ylax)
@@ -451,17 +457,17 @@ end
 -- Reset Arena
 LOAD[ARENA] = function()
 	Arena_Space = Space.new()
-	Arena_Space:add(Object.new(50,510,32,32,200,100,100,1))
+	Arena_Space:add(Object.new(50,0,32,32,200,100,100,OBJ_TYPE_PLAYER))
 	Arena_Space:addWall(Wall.new(0,550,3200,50))
 	Arena_Space:addWall(Wall.new(0,-50,3200,50))
 	Arena_Space:addWall(Wall.new(-50,-100,50,900))
 	Arena_Space:addWall(Wall.new(3200,-100,50,900))
 	Arena_Space:add(Enemy.new(250,50,80,170,100,OBJ_TYPE_ENEMY_1))
+	-- Arena_Space:addWall(Wall.new(200,500,100,50))
+	-- Arena_Space:addWall(Wall.new(500,300,100,50))
 	INTRO_PLAYED = false
-	Arena_Combo_Delay = 0.25
 	Arena_Combo_Show = ""
 	Arena_Combo_Show_T = 0
-	Arena_Combo_Show_Delay = 2
 	Arena_Idle_Time = 0
 	Arena_Dead = 0
 
@@ -497,6 +503,12 @@ UPDATE[ARENA] = function(dt)
 		end
 		if not moved.y then
 			Arena_Move_None_Y()
+		end
+		if moved.x or moved.y then
+			Arena_Idle_Time = 0
+		end
+		if (not moved.x) and (not moved.y) then
+			Arena_Idle_Time = Arena_Idle_Time + dt
 		end
 		Arena_Position()
 		Arena_Move_Combo()
@@ -586,8 +598,10 @@ KEYPRESSED[ARENA] = function(key)
 	end
 
 	-- Add key to combo and set current key
-	Arena_Combo:addMove(key)
-	Arena_Key = key
+	if #Arena_Combo.moveset < 5 then
+		Arena_Combo:addMove(key)
+		Arena_Key = key
+	end
 end
 
 MOUSEPRESSED[ARENA] = function(x,y,button)
