@@ -34,6 +34,50 @@ function Tarot_Cards:draw(n,t)
 	end
 end
 
+function Scramble(str,sev)
+	local s = {}
+	for i = 1,#str do
+		table.insert(s,str:sub(i,i))
+	end
+
+	sev = sev or 20
+	if sev < 2 then
+		sev = 2
+	end
+	for i = 1,#s do
+		if (math.random(1,sev) == sev) then
+			local ri = math.random(1,#s)
+			local c = s[i]
+			
+			s[i] = s[ri]
+			s[ri] = c
+		end
+	end
+
+	local sr = ""
+	for i = 1,#s do
+		sr = sr..s[i]
+	end
+	return sr
+end
+
+SCRAMBLE_K = 0.107295860829
+SCRAMBLE_A = 5.84803547643
+
+function Tarot_Cards:hint(n,t,card)
+	local k = CheckKarma()
+	local c = TEXTCOLORS[TAROTCARDS[card].points][k]
+	local s = math.floor(math.min(math.max((SCRAMBLE_A)*math.exp((SCRAMBLE_K)*k),2),50))
+
+	local ox = 15 + 200*(n - 1)
+	local oy = 335
+	love.graphics.setColor(0.67*t,0.58*t,0.38*t,1*t)
+	love.graphics.rectangle("fill",ox,oy,170,50)
+	love.graphics.setColor(1*t,1*t,1*t,1*t)
+	love.graphics.print({c,Scramble(TAROTCARDS[card].name,s)},ox+10,oy+10)
+	love.graphics.setColor(0.8*t + (1- t),0.8*t + (1- t),0.8*t + (1- t))
+end
+
 --------------------------------------------------------
 TAROTCARDS = {
 	Tarot_Cards.new("Ace of Swords", 2, 1),
@@ -77,4 +121,34 @@ MAJORCARDS = {
 	[Judgement_BD] = "tm20",
 	[TheWorld_BD] = "",
 	[TheFool_BD] = "",
+}
+
+TEXTCOLORS = {
+	[-2] = {
+		[2] = {1,0,0},
+		[1] = {1,0.25,0.25},
+		[3] = {0.9,0.7,0.7},
+		[4] = {0.7,0.7,0.7},
+	},
+
+	[-1] = {
+		[2] = {1,0.85,0.85},
+		[1] = {0.9,0.85,0.85},
+		[3] = {0.7,0.7,0.7},
+		[4] = {0.7,0.7,0.7},
+	},
+
+	[1] = {
+		[2] = {0.85,1,0.85},
+		[1] = {0.85,0.9,0.85},
+		[3] = {0.7,0.7,0.7},
+		[4] = {0.7,0.7,0.7},
+	},
+
+	[2] = {
+		[2] =  {0,1,0},
+		[1] =  {0.25,0.8,0.25},
+		[3] =  {0.7,0.8,0.7},
+		[4] =  {0.7,0.7,0.7},
+	},
 }

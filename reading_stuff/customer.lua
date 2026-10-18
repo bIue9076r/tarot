@@ -45,7 +45,8 @@ function Customer:draw(glow)
     love.graphics.draw(TABL)
 	if glow then
 		local t = self.sprite
-		love.graphics(0.3*math.sin(t) + 0.7,0.3*math.sin(t) + 0.7,0.3*math.sin(t) + 0.7)
+		local c = 0.1*math.sin(4*t) + 0.9
+		love.graphics.setColor(c,c,c)
 	end
     local BALLZ = Image.get("ball")
     love.graphics.draw(BALLZ)

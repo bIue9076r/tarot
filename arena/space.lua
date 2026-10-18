@@ -1,6 +1,7 @@
 require("arena/object")
 require("arena/projectile")
 require("arena/enemy")
+require("arena/sign")
 
 Space = {
 	G = 980,
@@ -99,6 +100,34 @@ function Space:PreCollideWall(obj)
 		local c = obj:PreCollide(v)
 		if c then return v end
 	end
+end
+
+function Space:PreCollideWallT(obj)
+	local tbl = {}
+	for i,v in pairs(self.bounds) do
+		local c = obj:PreCollide(v)
+		if c then table.insert(tbl,v) end
+	end
+	
+	if #tbl > 0 then
+		return tbl
+	end
+	return nil
+end
+
+function Space:CollideWallOff(obj,ox,oy)
+	local tbl = {}
+	ox = ox or 0
+	oy = oy or 0
+	for i,v in pairs(self.bounds) do
+		local c = obj:CollideOff(v,ox,oy)
+		if c then table.insert(tbl,v) end
+	end
+	
+	if #tbl > 0 then
+		return tbl
+	end
+	return nil
 end
 
 function Space:PreSideCollide(obj)

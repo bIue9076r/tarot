@@ -46,11 +46,12 @@ end
 
 function RandomCards(day)
 	local tbl = {}
+	local nmax = (math.min(16,4 + 3*(day - 1)))
 	for i = 1,4 do
-		local n = love.math.random(1,4 + day)
+		local n = love.math.random(1,nmax)
 		if Duplicate(tbl,n) then
 			for _ = 1,5 do
-				n = love.math.random(1,4 + day)
+				n = love.math.random(1,nmax)
 				if not Duplicate(tbl,n) then
 					break
 				end

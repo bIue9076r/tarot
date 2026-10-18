@@ -14,7 +14,7 @@ Arena_Combo = Combo.new()
 Empty_Combo = Combo.new()
 
 -- Delay between key input
-Arena_Combo_Delay = 0.125
+Arena_Combo_Delay = 0.1875
 
 -- Combo string
 Arena_Combo_Show = ""
@@ -44,28 +44,28 @@ Arena_Ending = 0
 Arena_Key = ""
 
 Arena_Combo_List = ComboList.new({
-	{name = "Right Blast", cmb = Combo.new({"d","d"})},
-	{name = "Left Blast", cmb = Combo.new({"a","a"})},
-
-	{name = "Down Wall", cmb = Combo.new({"w","s"})},
-	{name = "Up Wall", cmb = Combo.new({"s","w"})},
-
-	{name = "Up Wave Right", cmb = Combo.new({"d","s","w"})},
-	{name = "Up Wave Left", cmb = Combo.new({"a","s","w"})},
-
-	{name = "Down Wave Right", cmb = Combo.new({"d","w","s"})},
-	{name = "Down Wave Left", cmb = Combo.new({"a","w","s"})},
+	{name = "Aireal Circle", cmb = Combo.new({"w","d","w","a","s"})},
+	{name = "Aireal Circle", cmb = Combo.new({"w","w","a","s","d"})},
+	{name = "Aireal Circle", cmb = Combo.new({"w","a","s","d","w"})},
+	{name = "Aireal Circle", cmb = Combo.new({"w","s","d","w","a"})},
+	{name = "Aireal Circle", cmb = Combo.new({"w","d","w","a","s"})},
 
 	{name = "Ground Circle", cmb = Combo.new({"d","w","a","s"})},
 	{name = "Ground Circle", cmb = Combo.new({"w","a","s","d"})},
 	{name = "Ground Circle", cmb = Combo.new({"a","s","d","w"})},
 	{name = "Ground Circle", cmb = Combo.new({"s","d","w","a"})},
 
-	{name = "Aireal Circle", cmb = Combo.new({"w","d","w","a","s"})},
-	{name = "Aireal Circle", cmb = Combo.new({"w","w","a","s","d"})},
-	{name = "Aireal Circle", cmb = Combo.new({"w","a","s","d","w"})},
-	{name = "Aireal Circle", cmb = Combo.new({"w","s","d","w","a"})},
-	{name = "Aireal Circle", cmb = Combo.new({"w","d","w","a","s"})},
+	{name = "Down Wave Right", cmb = Combo.new({"d","w","s"})},
+	{name = "Down Wave Left", cmb = Combo.new({"a","w","s"})},
+
+	{name = "Up Wave Right", cmb = Combo.new({"d","s","w"})},
+	{name = "Up Wave Left", cmb = Combo.new({"a","s","w"})},
+
+	{name = "Down Wall", cmb = Combo.new({"w","s"})},
+	{name = "Up Wall", cmb = Combo.new({"s","w"})},
+
+	{name = "Right Blast", cmb = Combo.new({"d","d"})},
+	{name = "Left Blast", cmb = Combo.new({"a","a"})},
 })
 
 Arena_Combo_Enact = {
@@ -73,27 +73,27 @@ Arena_Combo_Enact = {
 	["Ground Circle"] = function()
 		local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
 		for i = 1,11 do
-			Arena_Space:add(Projectile.joe(5,A.x,A.y,5,5,-math.pi * (i - 1)/10,400))
+			Arena_Space:add(Projectile.joe(15,A.x,A.y,5,5,-math.pi * (i - 1)/10,400))
 		end
 	end,
 
 	["Aireal Circle"] = function()
 		local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
 		for i = 1,20 do
-			Arena_Space:add(Projectile.joe(5,A.x,A.y,5,5,-math.pi * (i - 1)/10,400))
+			Arena_Space:add(Projectile.joe(20,A.x,A.y,5,5,-math.pi * (i - 1)/10,400))
 		end
 	end,
 
 	-- Horizontal plane down from the player
 	["Down Wall"] = function()
 		local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
-		Arena_Space:add(Projectile.joe(15,A.x - 5,A.y,42,5,math.pi/2,400))
+		Arena_Space:add(Projectile.joe(10,A.x - 5,A.y,42,5,math.pi/2,400))
 	end,
 
 	-- Horizontal plane up from the player
 	["Up Wall"] = function()
 		local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
-		Arena_Space:add(Projectile.joe(15,A.x - 5,A.y,42,5,-math.pi/2,400))
+		Arena_Space:add(Projectile.joe(10,A.x - 5,A.y,42,5,-math.pi/2,400))
 	end,
 
 	-- Vertical plane right from the player
@@ -101,8 +101,8 @@ Arena_Combo_Enact = {
 	["Up Wave Right"] = function()
 		local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
 		Arena_Space:add(Projectile.joe(10,A.x,A.y - 5,5,42,0,400))
-		A.vx = A.vx - 500
-		A.vy = A.vy - 300
+		A.vx = A.vx - 250
+		A.vy = A.vy - 150
 	end,
 
 	-- Vertical plane left from the player
@@ -110,16 +110,16 @@ Arena_Combo_Enact = {
 	["Up Wave Left"] = function()
 		local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
 		Arena_Space:add(Projectile.joe(10,A.x,A.y - 5,5,42,math.pi,400))
-		A.vx = A.vx + 500
-		A.vy = A.vy - 300
+		A.vx = A.vx + 250
+		A.vy = A.vy - 150
 	end,
 
 	-- Vertical plane right from the player
-	-- Also boosts themdown
+	-- Also boosts them down
 	["Down Wave Right"] = function()
 		local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
 		Arena_Space:add(Projectile.joe(10,A.x,A.y - 5,5,42,0,400))
-		A.vy = A.vy + 300
+		A.vy = A.vy + 150
 	end,
 
 	-- Vertical plane left from the player
@@ -127,7 +127,7 @@ Arena_Combo_Enact = {
 	["Down Wave Left"] = function()
 		local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
 		Arena_Space:add(Projectile.joe(10,A.x,A.y - 5,5,42,math.pi,400))
-		A.vy = A.vy + 300
+		A.vy = A.vy + 150
 	end,
 
 	-- Blast to the right
@@ -135,7 +135,7 @@ Arena_Combo_Enact = {
 	["Right Blast"] = function()
 		local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
 		Arena_Space:add(Projectile.joe(10,A.x,A.y + 16,5,5,0,400))
-		A.vx = A.vx - 500
+		A.vx = A.vx - 150
 	end,
 
 	-- Blast to the left
@@ -143,7 +143,7 @@ Arena_Combo_Enact = {
 	["Left Blast"] = function()
 		local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
 		Arena_Space:add(Projectile.joe(10,A.x,A.y + 16,5,5,math.pi,400))
-		A.vx = A.vx + 500
+		A.vx = A.vx + 150
 	end,
 }
 
@@ -187,6 +187,31 @@ function Arena_Collision(A)
 	if nx >= 2700 then
 		A.nx = A.x
 		A.vx = - A.vx
+	end
+
+	local vt = Arena_Space:PreCollideWallT(A)
+	if vt then
+		for i, v in pairs(vt) do
+			if(A.ny + A.h > v.y) or (A.ny < v.y + v.h) then
+				A.ny = A.y
+				
+				if (A.nx < v.x + v.w) or (A.nx + A.w > v.x) then
+					A.falling = false
+					A.nx = A.x
+					if(Arena_Space:CollideWallOff(A,2,0)) or Arena_Space:CollideWallOff(A,-2,0) then
+						A.vx = -0.25 * A.vx
+					end
+				end
+			end
+		end
+	else
+		if A.vy > 0 then
+			A.falling = true
+		else
+			if (A.vy == 0) and (not Arena_Space:CollideWallOff(A,0,2)) then
+				A.falling = true
+			end
+		end
 	end
 end
 
@@ -260,13 +285,7 @@ end
 -- No y acceleration
 function Arena_Move_None_Y()
 	local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
-	if A then
-		if Arena_Space:CollideWall(A) then
-			A.falling = false
-		else
-			A.falling = true
-		end
-		
+	if A then		
 		A:ANoneY(Arena_Space.G)
 		if (A.vy == 0) and (A.vx == 0) then
 			if Arena_Idle_Time <= Arena_Idle_Time_Max then
@@ -415,6 +434,9 @@ function Arena_Objects()
 				love.graphics.draw(img, Magician_Quad[N],v.x - Arena_Space.Xlax,v.y - Arena_Space.Ylax)
 			else
 				love.graphics.rectangle("fill",v.x - Arena_Space.Xlax,v.y - Arena_Space.Ylax,v.w,v.h)
+				if v.text then
+					love.graphics.print({v.color,v.text},v.tx,v.ty)
+				end
 			end
 		end
 	end
@@ -444,6 +466,10 @@ function Arena_BossEnd()
 
 	local img = Image.get("boss")
 	love.graphics.draw(img)
+
+	for i,v in pairs(Arena_Space.bounds) do
+		love.graphics.rectangle("line",v.x - Arena_Space.Xlax,v.y - Arena_Space.Ylax,v.w,v.h)
+	end
 end
 
 -- Show the players hp
@@ -463,8 +489,8 @@ LOAD[ARENA] = function()
 	Arena_Space:addWall(Wall.new(-50,-100,50,900))
 	Arena_Space:addWall(Wall.new(3200,-100,50,900))
 	Arena_Space:add(Enemy.new(250,50,80,170,100,OBJ_TYPE_ENEMY_1))
-	-- Arena_Space:addWall(Wall.new(200,500,100,50))
-	-- Arena_Space:addWall(Wall.new(500,300,100,50))
+	Arena_Space:addWall(Wall.new(200,500,100,50))
+	Arena_Space:addWall(Wall.new(500,300,100,50))
 	INTRO_PLAYED = false
 	Arena_Combo_Show = ""
 	Arena_Combo_Show_T = 0
@@ -580,6 +606,19 @@ UPDATE[ARENA] = function(dt)
 end
 
 KEYPRESSED[ARENA] = function(key)
+	if key == "escape" then
+		local song = Sound.get("arena")
+		local intro = Sound.get("arenaIntro")
+		if song then
+			song:pause()
+		end
+
+		if intro then
+			intro:pause()
+		end
+		PauseState()
+	end
+
 	-- convert alternate keys to wasd
 	if key == "space" then
 		key = "w"

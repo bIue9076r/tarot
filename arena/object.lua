@@ -115,13 +115,20 @@ function Object:SetMaxVY(vy)
 end
 
 function Object:Collide(obj)
-	return	(self.x < obj.x + obj.w) and (self.x + self.w > obj.x) and
-			(self.y < obj.y + obj.h) and (self.y + self.h > obj.y)
+	return	(self.x <= obj.x + obj.w) and (self.x + self.w >= obj.x) and
+			(self.y <= obj.y + obj.h) and (self.y + self.h >= obj.y)
 end
 
 function Object:PreCollide(obj)
-	return	(self.nx < obj.x + obj.w) and (self.nx + self.w > obj.x) and
-			(self.ny < obj.y + obj.h) and (self.ny + self.h > obj.y)
+	return	(self.nx <= obj.x + obj.w) and (self.nx + self.w >= obj.x) and
+			(self.ny <= obj.y + obj.h) and (self.ny + self.h >= obj.y)
+end
+
+function Object:CollideOff(obj,ox,oy)
+	ox = ox or 0
+	oy = oy or 0
+	return	(self.x + ox <= obj.x + obj.w) and (self.x + ox + self.w >= obj.x) and
+			(self.y + oy <= obj.y + obj.h) and (self.y + oy + self.h >= obj.y)
 end
 
 Wall = {x = 0, y = 0, w = 0, h = 0}
@@ -140,11 +147,11 @@ function Wall.new(x,y,w,h)
 end
 
 function Wall:Collide(obj)
-	return	(self.x < obj.x + obj.w) and (self.x + self.w > obj.x) and
-			(self.y < obj.y + obj.h) and (self.y + self.h > obj.y)
+	return	(self.x <= obj.x + obj.w) and (self.x + self.w >= obj.x) and
+			(self.y <= obj.y + obj.h) and (self.y + self.h >= obj.y)
 end
 
 function Wall:TopCollide(obj)
-	return	(self.x < obj.x + obj.w) and (self.x + self.w > obj.x) and
-			(self.y < obj.y + obj.h)
+	return	(self.x <= obj.x + obj.w) and (self.x + self.w >= obj.x) and
+			(self.y <= obj.y + obj.h)
 end

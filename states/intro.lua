@@ -4,7 +4,8 @@ INTRO = 2
 Intro_t = 0
 
 LOAD[INTRO] = function()
-
+	READINGS_DAY = 0
+	Karma = 0
 end
 
 UPDATE[INTRO] = function(dt)

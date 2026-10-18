@@ -1,4 +1,4 @@
-SETTINGS = 8
+SETTINGS = 7
 
 -- Buttons
 -- X position, Y position, Witdh, Height

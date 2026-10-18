@@ -35,6 +35,9 @@ require("states/arena")
 require("states/shop") -- unused
 require("states/end")
 require("states/settings")
+require("states/pause")
+require("states/tutorial_read")
+require("states/tutorial_arena")
 
 -- Error State keypressed
 KEYPRESSED[-2] = function(key)
@@ -67,7 +70,9 @@ GAME_STATE = TITLE
 -- 5 - shop
 -- 6 - ending
 -- 7 - settings
--- 8 - 
+-- 8 - pause
+-- 9 - tutorial readings
+-- 10 - tutorial arena
 
 GAME_MAIN_VOLUME = 1
 GAME_MUSIC_VOLUME = 1
