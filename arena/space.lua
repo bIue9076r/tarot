@@ -1,7 +1,7 @@
 require("arena/object")
 require("arena/projectile")
 require("arena/enemy")
-require("arena/sign")
+require("arena/billboard")
 
 Space = {
 	G = 980,

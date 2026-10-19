@@ -64,9 +64,9 @@ end
 SCRAMBLE_K = 0.107295860829
 SCRAMBLE_A = 5.84803547643
 
-function Tarot_Cards:hint(n,t,card)
+function Tarot_Cards:hint(n,t)
 	local k = CheckKarma()
-	local c = TEXTCOLORS[TAROTCARDS[card].points][k]
+	local c = TEXTCOLORS[self.points][k]
 	local s = math.floor(math.min(math.max((SCRAMBLE_A)*math.exp((SCRAMBLE_K)*k),2),50))
 
 	local ox = 15 + 200*(n - 1)
@@ -74,7 +74,7 @@ function Tarot_Cards:hint(n,t,card)
 	love.graphics.setColor(0.67*t,0.58*t,0.38*t,1*t)
 	love.graphics.rectangle("fill",ox,oy,170,50)
 	love.graphics.setColor(1*t,1*t,1*t,1*t)
-	love.graphics.print({c,Scramble(TAROTCARDS[card].name,s)},ox+10,oy+10)
+	love.graphics.print({c,Scramble(self.name,s)},ox+10,oy+10)
 	love.graphics.setColor(0.8*t + (1- t),0.8*t + (1- t),0.8*t + (1- t))
 end
 

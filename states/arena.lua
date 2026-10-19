@@ -50,10 +50,28 @@ Arena_Combo_List = ComboList.new({
 	{name = "Aireal Circle", cmb = Combo.new({"w","s","d","w","a"})},
 	{name = "Aireal Circle", cmb = Combo.new({"w","d","w","a","s"})},
 
+	{name = "Right Blast x4", cmb = Combo.new({"d","d","d","d","d"})},
+	{name = "Left Blast x4", cmb = Combo.new({"a","a","a","a","a"})},
+
+	{name = "Air Right Blast x3", cmb = Combo.new({"w","d","d","d","d"})},
+	{name = "Air Left Blast x3", cmb = Combo.new({"w","a","a","a","a"})},
+
 	{name = "Ground Circle", cmb = Combo.new({"d","w","a","s"})},
 	{name = "Ground Circle", cmb = Combo.new({"w","a","s","d"})},
 	{name = "Ground Circle", cmb = Combo.new({"a","s","d","w"})},
 	{name = "Ground Circle", cmb = Combo.new({"s","d","w","a"})},
+
+	{name = "Down Circle", cmb = Combo.new({"a","d","w","s"})},
+	{name = "Down Circle", cmb = Combo.new({"d","a","w","s"})},
+
+	{name = "Rocket", cmb = Combo.new({"a","d","s","w"})},
+	{name = "Rocket", cmb = Combo.new({"d","a","s","w"})},
+
+	{name = "Right Blast x3", cmb = Combo.new({"d","d","d","d"})},
+	{name = "Left Blast x3", cmb = Combo.new({"a","a","a","a"})},
+
+	{name = "Air Right Blast x2", cmb = Combo.new({"w","d","d","d"})},
+	{name = "Air Left Blast x2", cmb = Combo.new({"w","a","a","a"})},
 
 	{name = "Down Wave Right", cmb = Combo.new({"d","w","s"})},
 	{name = "Down Wave Left", cmb = Combo.new({"a","w","s"})},
@@ -61,11 +79,18 @@ Arena_Combo_List = ComboList.new({
 	{name = "Up Wave Right", cmb = Combo.new({"d","s","w"})},
 	{name = "Up Wave Left", cmb = Combo.new({"a","s","w"})},
 
+	{name = "Right Blast x2", cmb = Combo.new({"d","d","d"})},
+	{name = "Left Blast x2", cmb = Combo.new({"a","a","a"})},
+
+	{name = "Air Right Blast", cmb = Combo.new({"w","d","d"})},
+	{name = "Air Left Blast", cmb = Combo.new({"w","a","a"})},
+
 	{name = "Down Wall", cmb = Combo.new({"w","s"})},
 	{name = "Up Wall", cmb = Combo.new({"s","w"})},
 
 	{name = "Right Blast", cmb = Combo.new({"d","d"})},
 	{name = "Left Blast", cmb = Combo.new({"a","a"})},
+
 })
 
 Arena_Combo_Enact = {
@@ -82,6 +107,26 @@ Arena_Combo_Enact = {
 		for i = 1,20 do
 			Arena_Space:add(Projectile.joe(20,A.x,A.y,5,5,-math.pi * (i - 1)/10,400))
 		end
+	end,
+
+	["Down Circle"] = function()
+		local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
+		for i = 1,11 do
+			Arena_Space:add(Projectile.joe(15,A.x,A.y,5,5,math.pi * (i - 1)/10,400))
+		end
+		A.vy = A.vy - 400
+	end,
+
+	["Rocket"] = function()
+		local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
+		for i = 1,11 do
+			local t = math.random()
+			local t2 = math.random()
+			local ang = (math.pi/2) + -0.261799387799*(1 - t) + 0.261799387799*t
+			local spd = 400*(1 - t2) + 300*t2
+			Arena_Space:add(Projectile.joe(5,A.x,A.y,5,5,ang,spd))
+		end
+		A.vy = A.vy - 600
 	end,
 
 	-- Horizontal plane down from the player
@@ -101,8 +146,8 @@ Arena_Combo_Enact = {
 	["Up Wave Right"] = function()
 		local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
 		Arena_Space:add(Projectile.joe(10,A.x,A.y - 5,5,42,0,400))
-		A.vx = A.vx - 250
-		A.vy = A.vy - 150
+		A.vx = A.vx - 350
+		A.vy = A.vy - 250
 	end,
 
 	-- Vertical plane left from the player
@@ -110,8 +155,8 @@ Arena_Combo_Enact = {
 	["Up Wave Left"] = function()
 		local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
 		Arena_Space:add(Projectile.joe(10,A.x,A.y - 5,5,42,math.pi,400))
-		A.vx = A.vx + 250
-		A.vy = A.vy - 150
+		A.vx = A.vx + 350
+		A.vy = A.vy - 250
 	end,
 
 	-- Vertical plane right from the player
@@ -135,7 +180,7 @@ Arena_Combo_Enact = {
 	["Right Blast"] = function()
 		local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
 		Arena_Space:add(Projectile.joe(10,A.x,A.y + 16,5,5,0,400))
-		A.vx = A.vx - 150
+		A.vx = A.vx - 175
 	end,
 
 	-- Blast to the left
@@ -143,7 +188,103 @@ Arena_Combo_Enact = {
 	["Left Blast"] = function()
 		local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
 		Arena_Space:add(Projectile.joe(10,A.x,A.y + 16,5,5,math.pi,400))
-		A.vx = A.vx + 150
+		A.vx = A.vx + 175
+	end,
+
+	-- Blast to the right
+	-- Also boosts the player left harder
+	["Right Blast x2"] = function()
+		local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
+		Arena_Space:add(Projectile.joe(10,A.x,A.y + 16,5,5,0,400))
+		A.vx = A.vx - 275
+	end,
+
+	-- Blast to the left
+	-- Also boosts the player right harder
+	["Left Blast x2"] = function()
+		local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
+		Arena_Space:add(Projectile.joe(10,A.x,A.y + 16,5,5,math.pi,400))
+		A.vx = A.vx + 275
+	end,
+
+	-- Blast to the right
+	-- Also boosts the player left even harder
+	["Right Blast x3"] = function()
+		local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
+		Arena_Space:add(Projectile.joe(10,A.x,A.y + 16,5,5,0,400))
+		A.vx = A.vx - 375
+	end,
+
+	-- Blast to the left
+	-- Also boosts the player right even harder
+	["Left Blast x3"] = function()
+		local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
+		Arena_Space:add(Projectile.joe(10,A.x,A.y + 16,5,5,math.pi,400))
+		A.vx = A.vx + 375
+	end,
+
+	-- Blast to the right
+	-- Also boosts the player left the hardest
+	["Right Blast x4"] = function()
+		local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
+		Arena_Space:add(Projectile.joe(10,A.x,A.y + 16,5,5,0,400))
+		A.vx = A.vx - 475
+	end,
+
+	-- Blast to the left
+	-- Also boosts the player right the hardest
+	["Left Blast x4"] = function()
+		local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
+		Arena_Space:add(Projectile.joe(10,A.x,A.y + 16,5,5,math.pi,400))
+		A.vx = A.vx + 475
+	end,
+
+	-- Blast to the right
+	-- Also boosts the player left
+	["Air Right Blast"] = function()
+		local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
+		Arena_Space:add(Projectile.joe(10,A.x,A.y + 16,5,5,0,400))
+		A.vx = A.vx - 175
+	end,
+
+	-- Blast to the left
+	-- Also boosts the player right
+	["Air Left Blast"] = function()
+		local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
+		Arena_Space:add(Projectile.joe(10,A.x,A.y + 16,5,5,math.pi,400))
+		A.vx = A.vx + 175
+	end,
+
+	-- Blast to the right
+	-- Also boosts the player left harder
+	["Air Right Blast x2"] = function()
+		local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
+		Arena_Space:add(Projectile.joe(10,A.x,A.y + 16,5,5,0,400))
+		A.vx = A.vx - 275
+	end,
+
+	-- Blast to the left
+	-- Also boosts the player right harder
+	["Air Left Blast x2"] = function()
+		local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
+		Arena_Space:add(Projectile.joe(10,A.x,A.y + 16,5,5,math.pi,400))
+		A.vx = A.vx + 275
+	end,
+
+	-- Blast to the right
+	-- Also boosts the player left even harder
+	["Air Right Blast x3"] = function()
+		local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
+		Arena_Space:add(Projectile.joe(10,A.x,A.y + 16,5,5,0,400))
+		A.vx = A.vx - 375
+	end,
+
+	-- Blast to the left
+	-- Also boosts the player right even harder
+	["Air Left Blast x3"] = function()
+		local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
+		Arena_Space:add(Projectile.joe(10,A.x,A.y + 16,5,5,math.pi,400))
+		A.vx = A.vx + 375
 	end,
 }
 
@@ -435,7 +576,7 @@ function Arena_Objects()
 			else
 				love.graphics.rectangle("fill",v.x - Arena_Space.Xlax,v.y - Arena_Space.Ylax,v.w,v.h)
 				if v.text then
-					love.graphics.print({v.color,v.text},v.tx,v.ty)
+					love.graphics.print({v.color,v.text},v.tx - Arena_Space.Xlax,v.ty - Arena_Space.Ylax,0,v.scale)
 				end
 			end
 		end
@@ -480,25 +621,20 @@ function Arena_Hp_Show()
 	end
 end
 
+ARENA_LOAD = {}
+ARENA_N = 1
+require("/arena/arenas")
+
 -- Reset Arena
 LOAD[ARENA] = function()
-	Arena_Space = Space.new()
-	Arena_Space:add(Object.new(50,0,32,32,200,100,100,OBJ_TYPE_PLAYER))
-	Arena_Space:addWall(Wall.new(0,550,3200,50))
-	Arena_Space:addWall(Wall.new(0,-50,3200,50))
-	Arena_Space:addWall(Wall.new(-50,-100,50,900))
-	Arena_Space:addWall(Wall.new(3200,-100,50,900))
-	Arena_Space:add(Enemy.new(250,50,80,170,100,OBJ_TYPE_ENEMY_1))
-	Arena_Space:addWall(Wall.new(200,500,100,50))
-	Arena_Space:addWall(Wall.new(500,300,100,50))
 	INTRO_PLAYED = false
 	Arena_Combo_Show = ""
 	Arena_Combo_Show_T = 0
 	Arena_Idle_Time = 0
 	Arena_Dead = 0
 
-	local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
-	A.hp = 100
+	local f = ARENA_LOAD[ARENA_N]
+	if f then f() end
 
 	-- Play Intro
 	local intro = Sound.get("arenaIntro")
@@ -542,7 +678,7 @@ UPDATE[ARENA] = function(dt)
 		-- if boss not killed
 		if Arena_Ending <= 0 then
 			for i,v in pairs(Arena_Space.objects) do
-				if not(v.t == OBJ_TYPE_PLAYER) then
+				if not(v.t == OBJ_TYPE_PLAYER) and not(v.t == OBJ_TYPE_BILLBOARD) then
 					v:Position()
 					-- this checks if any object hits anything in the space
 					local c = Arena_Space:Collide(v)

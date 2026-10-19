@@ -414,13 +414,13 @@ Readings_Subdraw = {
 			end
 			local t = math.min(Reading_Card_dim,1)
 			if i == 1 and Readings_Card_Button_1.f then
-				TAROTCARDS[cards[i]]:hint(i,t,cards[i])
+				TAROTCARDS[cards[i]]:hint(i,t)
 			elseif i == 2 and Readings_Card_Button_2.f then
-				TAROTCARDS[cards[i]]:hint(i,t,cards[i])
+				TAROTCARDS[cards[i]]:hint(i,t)
 			elseif i == 3 and Readings_Card_Button_3.f then
-				TAROTCARDS[cards[i]]:hint(i,t,cards[i])
+				TAROTCARDS[cards[i]]:hint(i,t)
 			elseif i == 4 and Readings_Card_Button_4.f then
-				TAROTCARDS[cards[i]]:hint(i,t,cards[i])
+				TAROTCARDS[cards[i]]:hint(i,t)
 			end
 			TAROTCARDS[cards[i]]:draw(i,tc)
 			love.graphics.setColor(1,1,1)

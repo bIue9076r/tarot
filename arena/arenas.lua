@@ -1,0 +1,12 @@
+ARENA_LOAD[1] = function()
+	Arena_Space = Space.new()
+	Arena_Space:add(Object.new(50,500,32,32,200,100,300,OBJ_TYPE_PLAYER))
+	Arena_Space:addWall(Wall.new(0,550,3200,50))
+	Arena_Space:addWall(Wall.new(0,-50,3200,50))
+	Arena_Space:addWall(Wall.new(-50,-100,50,900))
+	Arena_Space:addWall(Wall.new(3200,-100,50,900))
+	Arena_Space:add(Enemy.new(250,50,80,170,100,OBJ_TYPE_ENEMY_1))
+	Arena_Space:addWall(Wall.new(200,500,100,50))
+	Arena_Space:addWall(Wall.new(500,300,100,50))
+	Arena_Space:add(Billboard.new("Hello",100,100,{0,0,0},4))
+end

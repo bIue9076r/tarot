@@ -46,10 +46,6 @@ MOUSEPRESSED[PAUSE] = function(x,y,button)
 	end
 
 	if Title_But:click(x,y,button) then
-		local song = Sound.get("thePsychic")
-		if song then
-			song:stop()
-		end
 		Switch_State(TITLE)
 	end
 
