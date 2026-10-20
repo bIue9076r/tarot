@@ -17,8 +17,8 @@ function love.load(args)
 	-- Argument parser
 	for i,v in pairs(args) do
 		if v == "-arena" or v == "-a" then
-			Switch_State(ARENA)
-			READINGS_DAY = 6
+			READINGS_DAY = 7
+			GoToArena()
 		end
 	end
 

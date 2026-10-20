@@ -147,9 +147,9 @@ DRAW[SETTINGS] = function()
 	img = Image.get("minus")
 	love.graphics.draw(img,0,200)
 
-	love.graphics.print({{0,0,0},"Main Volume "..string.format("%d%%",GAME_MAIN_VOLUME * 100)},375,180)
-	love.graphics.print({{0,0,0},"Music Volume "..string.format("%d%%",GAME_MUSIC_VOLUME * 100)},375,280)
-	love.graphics.print({{0,0,0},"SFX Volume "..string.format("%d%%",GAME_SFX_VOLUME * 100)},375,380)
+	love.graphics.print({{0,0,0},Text(289)..string.format("%d%%",GAME_MAIN_VOLUME * 100)},375,180)
+	love.graphics.print({{0,0,0},Text(290)..string.format("%d%%",GAME_MUSIC_VOLUME * 100)},375,280)
+	love.graphics.print({{0,0,0},Text(291)..string.format("%d%%",GAME_SFX_VOLUME * 100)},375,380)
 
 	if Exit_But.f then
 		Exit_But.t = Exit_But.t + DT()

@@ -106,7 +106,7 @@ DRAW[PAUSE] = function()
 		love.graphics.setColor(1,0,1)
 	end
 	love.graphics.rectangle("fill",70,90+75*0,150,50)
-	love.graphics.print({{0,0,0},"Title Screen"},70+10,90+75*0+15)
+	love.graphics.print({{0,0,0},Text(292)},70+10,90+75*0+15)
 	
 	if Tutorial1_But.f then
 		Tutorial1_But.t = Tutorial1_But.t + DT()
@@ -116,7 +116,7 @@ DRAW[PAUSE] = function()
 		love.graphics.setColor(1,0,1)
 	end
 	love.graphics.rectangle("fill",70,90+75*1,150,50)
-	love.graphics.print({{0,0,0},"Readings Tutorial"},70+10,90+75*1+15)
+	love.graphics.print({{0,0,0},Text(293)},70+10,90+75*1+15)
 
 	if Tutorial2_But.f then
 		Tutorial2_But.t = Tutorial2_But.t + DT()
@@ -126,6 +126,6 @@ DRAW[PAUSE] = function()
 		love.graphics.setColor(1,0,1)
 	end
 	love.graphics.rectangle("fill",70,90+75*2,150,50)
-	love.graphics.print({{0,0,0},"Arena Tutorial"},70+10,90+75*2+15)
+	love.graphics.print({{0,0,0},Text(294)},70+10,90+75*2+15)
 	love.graphics.setColor(1,1,1)
 end

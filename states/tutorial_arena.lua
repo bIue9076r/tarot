@@ -6,6 +6,7 @@ Last_Key = ""
 Last_Idle_Time = 0
 Last_Combo_Show = ""
 Last_Combo_Show_T = 0
+Last_Red = 0
 
 LOAD[TUTORIAL_ARENA] = function()
 	Last_Space = Arena_Space
@@ -14,9 +15,10 @@ LOAD[TUTORIAL_ARENA] = function()
 	Last_Idle_Time = Arena_Idle_Time
 	Last_Combo_Show = Arena_Combo_Show
 	Last_Combo_Show_T = Arena_Combo_Show_T
+	Last_Red = Arena_Red
 
 	Arena_Space = Space.new()
-	Arena_Space:add(Object.new(100,500,32,32,200,100,300,OBJ_TYPE_PLAYER))
+	Arena_Space:add(Object.new(100,500,32,32,200,100,200,OBJ_TYPE_PLAYER))
 	Arena_Space:addWall(Wall.new(0,550,3200,50))
 	Arena_Space:addWall(Wall.new(0,-50,3200,50))
 	Arena_Space:addWall(Wall.new(-50,-100,50,900))
@@ -92,6 +94,7 @@ LOAD[TUTORIAL_ARENA] = function()
 	Arena_Combo_Show = ""
 	Arena_Combo_Show_T = 0
 	Arena_Idle_Time = 0
+	Arena_Red = 0
 end
 
 UPDATE[TUTORIAL_ARENA] = function(dt)
@@ -168,6 +171,12 @@ KEYPRESSED[TUTORIAL_ARENA] = function(key)
 		Arena_Idle_Time = Last_Idle_Time
 		Arena_Combo_Show = Last_Combo_Show
 		Arena_Combo_Show_T = Last_Combo_Show_T
+		Arena_Red = Last_Red
+
+		local song = Sound.get("arena")
+		if song then
+			song:stop()
+		end
 	end
 
 	-- convert alternate keys to wasd
@@ -195,7 +204,7 @@ KEYPRESSED[TUTORIAL_ARENA] = function(key)
 end
 
 MOUSEPRESSED[TUTORIAL_ARENA] = function(x,y,button)
-	print(x,y)
+	
 end
 
 DRAW[TUTORIAL_ARENA] = function()

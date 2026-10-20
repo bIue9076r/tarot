@@ -67,7 +67,7 @@ SCRAMBLE_A = 5.84803547643
 function Tarot_Cards:hint(n,t)
 	local k = CheckKarma()
 	local c = TEXTCOLORS[self.points][k]
-	local s = math.floor(math.min(math.max((SCRAMBLE_A)*math.exp((SCRAMBLE_K)*k),2),50))
+	local s = math.floor(math.min(math.max((SCRAMBLE_A)*math.exp((SCRAMBLE_K)*Karma),2),50))
 
 	local ox = 15 + 200*(n - 1)
 	local oy = 335
@@ -126,8 +126,8 @@ MAJORCARDS = {
 TEXTCOLORS = {
 	[-2] = {
 		[2] = {1,0,0},
-		[1] = {1,0.25,0.25},
-		[3] = {0.9,0.7,0.7},
+		[1] = {0.9,0.85,0.85},
+		[3] = {0.8,0.7,0.7},
 		[4] = {0.7,0.7,0.7},
 	},
 
@@ -147,8 +147,8 @@ TEXTCOLORS = {
 
 	[2] = {
 		[2] =  {0,1,0},
-		[1] =  {0.25,0.8,0.25},
-		[3] =  {0.7,0.8,0.7},
+		[1] =  {0.85,0.9,0.85},
+		[3] =  {0.7,0.75,0.7},
 		[4] =  {0.7,0.7,0.7},
 	},
 }

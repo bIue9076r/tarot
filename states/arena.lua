@@ -40,6 +40,8 @@ Arena_Idle_Time = 0
 Arena_Idle_Time_Max = 5
 Arena_Dead = 0
 Arena_Ending = 0
+Arena_Red = 0
+Arena_Red_Max = 0.25
 
 Arena_Key = ""
 
@@ -112,11 +114,12 @@ Arena_Combo_Enact = {
 	["Down Circle"] = function()
 		local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
 		for i = 1,11 do
-			Arena_Space:add(Projectile.joe(15,A.x,A.y,5,5,math.pi * (i - 1)/10,400))
+			Arena_Space:add(Projectile.joe(5,A.x,A.y,5,5,math.pi * (i - 1)/10,400))
 		end
 		A.vy = A.vy - 400
 	end,
 
+	-- Rocket blast under the player
 	["Rocket"] = function()
 		local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
 		for i = 1,11 do
@@ -124,7 +127,7 @@ Arena_Combo_Enact = {
 			local t2 = math.random()
 			local ang = (math.pi/2) + -0.261799387799*(1 - t) + 0.261799387799*t
 			local spd = 400*(1 - t2) + 300*t2
-			Arena_Space:add(Projectile.joe(5,A.x,A.y,5,5,ang,spd))
+			Arena_Space:add(Projectile.joe(1,A.x,A.y,5,5,ang,spd))
 		end
 		A.vy = A.vy - 600
 	end,
@@ -179,7 +182,7 @@ Arena_Combo_Enact = {
 	-- Also boosts the player left
 	["Right Blast"] = function()
 		local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
-		Arena_Space:add(Projectile.joe(10,A.x,A.y + 16,5,5,0,400))
+		Arena_Space:add(Projectile.joe(5,A.x,A.y + 16,5,5,0,400))
 		A.vx = A.vx - 175
 	end,
 
@@ -187,7 +190,7 @@ Arena_Combo_Enact = {
 	-- Also boosts the player right
 	["Left Blast"] = function()
 		local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
-		Arena_Space:add(Projectile.joe(10,A.x,A.y + 16,5,5,math.pi,400))
+		Arena_Space:add(Projectile.joe(5,A.x,A.y + 16,5,5,math.pi,400))
 		A.vx = A.vx + 175
 	end,
 
@@ -195,7 +198,7 @@ Arena_Combo_Enact = {
 	-- Also boosts the player left harder
 	["Right Blast x2"] = function()
 		local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
-		Arena_Space:add(Projectile.joe(10,A.x,A.y + 16,5,5,0,400))
+		Arena_Space:add(Projectile.joe(5,A.x,A.y + 16,5,5,0,400))
 		A.vx = A.vx - 275
 	end,
 
@@ -203,7 +206,7 @@ Arena_Combo_Enact = {
 	-- Also boosts the player right harder
 	["Left Blast x2"] = function()
 		local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
-		Arena_Space:add(Projectile.joe(10,A.x,A.y + 16,5,5,math.pi,400))
+		Arena_Space:add(Projectile.joe(5,A.x,A.y + 16,5,5,math.pi,400))
 		A.vx = A.vx + 275
 	end,
 
@@ -211,7 +214,7 @@ Arena_Combo_Enact = {
 	-- Also boosts the player left even harder
 	["Right Blast x3"] = function()
 		local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
-		Arena_Space:add(Projectile.joe(10,A.x,A.y + 16,5,5,0,400))
+		Arena_Space:add(Projectile.joe(5,A.x,A.y + 16,5,5,0,400))
 		A.vx = A.vx - 375
 	end,
 
@@ -219,7 +222,7 @@ Arena_Combo_Enact = {
 	-- Also boosts the player right even harder
 	["Left Blast x3"] = function()
 		local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
-		Arena_Space:add(Projectile.joe(10,A.x,A.y + 16,5,5,math.pi,400))
+		Arena_Space:add(Projectile.joe(5,A.x,A.y + 16,5,5,math.pi,400))
 		A.vx = A.vx + 375
 	end,
 
@@ -227,7 +230,7 @@ Arena_Combo_Enact = {
 	-- Also boosts the player left the hardest
 	["Right Blast x4"] = function()
 		local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
-		Arena_Space:add(Projectile.joe(10,A.x,A.y + 16,5,5,0,400))
+		Arena_Space:add(Projectile.joe(5,A.x,A.y + 16,5,5,0,400))
 		A.vx = A.vx - 475
 	end,
 
@@ -235,7 +238,7 @@ Arena_Combo_Enact = {
 	-- Also boosts the player right the hardest
 	["Left Blast x4"] = function()
 		local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
-		Arena_Space:add(Projectile.joe(10,A.x,A.y + 16,5,5,math.pi,400))
+		Arena_Space:add(Projectile.joe(5,A.x,A.y + 16,5,5,math.pi,400))
 		A.vx = A.vx + 475
 	end,
 
@@ -243,7 +246,7 @@ Arena_Combo_Enact = {
 	-- Also boosts the player left
 	["Air Right Blast"] = function()
 		local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
-		Arena_Space:add(Projectile.joe(10,A.x,A.y + 16,5,5,0,400))
+		Arena_Space:add(Projectile.joe(5,A.x,A.y + 16,5,5,0,400))
 		A.vx = A.vx - 175
 	end,
 
@@ -251,7 +254,7 @@ Arena_Combo_Enact = {
 	-- Also boosts the player right
 	["Air Left Blast"] = function()
 		local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
-		Arena_Space:add(Projectile.joe(10,A.x,A.y + 16,5,5,math.pi,400))
+		Arena_Space:add(Projectile.joe(5,A.x,A.y + 16,5,5,math.pi,400))
 		A.vx = A.vx + 175
 	end,
 
@@ -259,7 +262,7 @@ Arena_Combo_Enact = {
 	-- Also boosts the player left harder
 	["Air Right Blast x2"] = function()
 		local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
-		Arena_Space:add(Projectile.joe(10,A.x,A.y + 16,5,5,0,400))
+		Arena_Space:add(Projectile.joe(5,A.x,A.y + 16,5,5,0,400))
 		A.vx = A.vx - 275
 	end,
 
@@ -267,7 +270,7 @@ Arena_Combo_Enact = {
 	-- Also boosts the player right harder
 	["Air Left Blast x2"] = function()
 		local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
-		Arena_Space:add(Projectile.joe(10,A.x,A.y + 16,5,5,math.pi,400))
+		Arena_Space:add(Projectile.joe(5,A.x,A.y + 16,5,5,math.pi,400))
 		A.vx = A.vx + 275
 	end,
 
@@ -275,7 +278,7 @@ Arena_Combo_Enact = {
 	-- Also boosts the player left even harder
 	["Air Right Blast x3"] = function()
 		local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
-		Arena_Space:add(Projectile.joe(10,A.x,A.y + 16,5,5,0,400))
+		Arena_Space:add(Projectile.joe(5,A.x,A.y + 16,5,5,0,400))
 		A.vx = A.vx - 375
 	end,
 
@@ -283,7 +286,7 @@ Arena_Combo_Enact = {
 	-- Also boosts the player right even harder
 	["Air Left Blast x3"] = function()
 		local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
-		Arena_Space:add(Projectile.joe(10,A.x,A.y + 16,5,5,math.pi,400))
+		Arena_Space:add(Projectile.joe(5,A.x,A.y + 16,5,5,math.pi,400))
 		A.vx = A.vx + 375
 	end,
 }
@@ -561,7 +564,12 @@ function Arena_Animate()
 		N = math.min(math.floor(A.substate),1) + 1
 	end
 
+	if Arena_Red > 0 then
+		Arena_Red = Arena_Red - DT()
+		love.graphics.setColor(1,0,0)
+	end
 	love.graphics.draw(img, Plr_Quad[A.state][N],A.x - Arena_Space.Xlax,A.y - Arena_Space.Ylax)
+	love.graphics.setColor(1,1,1)
 end
 
 -- Draw other objects that are not the player
@@ -569,10 +577,41 @@ function Arena_Objects()
 	for i,v in pairs(Arena_Space.objects) do
 		if not(v.t == OBJ_TYPE_PLAYER) then
 			if v.t == OBJ_TYPE_ENEMY_1 then
-				v.state = v.state + 5*DT()
-				local N = (math.floor(v.state) % 2) + 1
-				local img = Image.get("arena_magic")
-				love.graphics.draw(img, Magician_Quad[N],v.x - Arena_Space.Xlax,v.y - Arena_Space.Ylax)
+				if not v.remove then
+					v.state = v.state + 5*DT()
+					local N = (math.floor(v.state) % 2) + 1
+					local img = Image.get("arena_magic")
+					love.graphics.draw(img, Magician_Quad[N],v.x - Arena_Space.Xlax,v.y - Arena_Space.Ylax)
+				else
+					v.state = v.state + 5*DT()
+					local N = math.min(math.floor(v.state) + 1,19)
+					local img = Image.get("arena_magic_anim")
+					if (math.floor(v.state) + 1) >= 19 then
+						local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
+						if A then
+							v.x = Lerp(0.001,0,1,v.x,A.x)
+							v.y = Lerp(0.001,0,1,v.y,A.y)
+						end
+					end
+					love.graphics.draw(img, Magician_Quad2[N],v.x - Arena_Space.Xlax,v.y - Arena_Space.Ylax)
+				end
+			elseif v.t == OBJ_TYPE_ENEMY_2 then
+				v.substate = v.substate + 5*DT()
+				local N = 1
+				if v.state == 2 or v.state == 3 then
+					N = (math.floor(v.substate) % 3) + 1
+				elseif v.state == 4 then
+					N = (math.floor(v.substate) % 6) + 1
+				elseif v.state == 5 then
+					N = math.min(math.floor(v.substate),7) + 1
+				end
+				local img = Image.get("arena_ghost")
+				if v.direction then
+					love.graphics.draw(img, Ghost_Quad[math.max(1,v.state)][N],v.x - Arena_Space.Xlax,v.y - Arena_Space.Ylax)
+				else
+					love.graphics.draw(img, Ghost_Quad[math.max(1,v.state)][N],v.x - Arena_Space.Xlax + 32,v.y - Arena_Space.Ylax,0,-1,1)
+				end
+			-- elseif v.t == OBJ_TYPE_ENEMY_3 then
 			else
 				love.graphics.rectangle("fill",v.x - Arena_Space.Xlax,v.y - Arena_Space.Ylax,v.w,v.h)
 				if v.text then
@@ -591,6 +630,10 @@ end
 function Arena_BossEnd()
 	for i,v in pairs(Arena_Space.objects) do
 		if v.t == OBJ_TYPE_ENEMY_1 then
+			if not v.once then
+				v.once = true
+				v.state = 0
+			end
 			v.state = v.state + 5*DT()
 			local N = math.min(math.floor(v.state) + 1,19)
 			local img = Image.get("arena_magic_anim")
@@ -602,6 +645,22 @@ function Arena_BossEnd()
 				end
 			end
 			love.graphics.draw(img, Magician_Quad2[N],v.x - Arena_Space.Xlax,v.y - Arena_Space.Ylax)
+		elseif v.t == OBJ_TYPE_ENEMY_2 then
+			if not v.once then
+				v.once = true
+				v.state = 5
+				v.substate = 0
+			end
+			v.substate = v.substate + 5*DT()
+			local N = math.min(math.floor(v.substate),7) + 1
+			local img = Image.get("arena_ghost")
+			if v.direction then
+				love.graphics.draw(img, Ghost_Quad[v.state][N],v.x - Arena_Space.Xlax,v.y - Arena_Space.Ylax)
+			else
+				love.graphics.draw(img, Ghost_Quad[v.state][N],v.x - Arena_Space.Xlax + 32,v.y - Arena_Space.Ylax,0,-1,1)
+			end
+		-- elseif v.t == OBJ_TYPE_ENEMY_3 then
+
 		end
 	end
 
@@ -632,6 +691,7 @@ LOAD[ARENA] = function()
 	Arena_Combo_Show_T = 0
 	Arena_Idle_Time = 0
 	Arena_Dead = 0
+	Arena_Red = 0
 
 	local f = ARENA_LOAD[ARENA_N]
 	if f then f() end
@@ -686,6 +746,7 @@ UPDATE[ARENA] = function(dt)
 						-- if an enemy projectile hits the player
 						if v.t == OBJ_TYPE_PROJECTILE_FOE and c.t == OBJ_TYPE_PLAYER then
 							c.hp = c.hp - v.hp
+							Arena_Red = Arena_Red_Max
 							Arena_Space:remove(v)
 							local s = Sound.get("crunch")
 							if s then
@@ -695,7 +756,7 @@ UPDATE[ARENA] = function(dt)
 								end
 							end
 						-- if a player projectile hits an enemy
-						elseif v.t == OBJ_TYPE_PROJECTILE_JOE and c.t == OBJ_TYPE_ENEMY_1 then
+						elseif v.t == OBJ_TYPE_PROJECTILE_JOE and (c.t == OBJ_TYPE_ENEMY_1 or c.t == OBJ_TYPE_ENEMY_2 or c.t == OBJ_TYPE_ENEMY_3) then
 							c.hp = c.hp - v.hp
 							Arena_Space:remove(v)
 						-- if a player projectile hits an enemy projectile
@@ -707,7 +768,7 @@ UPDATE[ARENA] = function(dt)
 					-- if any projectile hits a wall, remove it
 					c = Arena_Space:CollideWall(v)
 					if c then
-						if not(v.t == OBJ_TYPE_ENEMY_1) then
+						if not(v.t == OBJ_TYPE_ENEMY_1) and not(v.t == OBJ_TYPE_ENEMY_2) and not(v.t == OBJ_TYPE_ENEMY_3) then
 							Arena_Space:remove(v)
 						end
 					end
@@ -716,19 +777,57 @@ UPDATE[ARENA] = function(dt)
 
 			-- if player hp is less than 0 they die
 			local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
+			local php
 			if A then
+				php = A.hp
 				if A.hp <= 0 then
 					Arena_Dead = 3
 				end
 			end
 
 			-- if the boss hp is less than 0 the player wins
-			local E = Arena_Space:findFirst(OBJ_TYPE_ENEMY_1)
+			local E = Arena_Space:findType({OBJ_TYPE_ENEMY_1,OBJ_TYPE_ENEMY_2,OBJ_TYPE_ENEMY_3})
 			if E then
-				E:update(Arena_Space)
-				if E.hp <= 0 then
+				local allimp = false
+				for i,v in pairs(E) do
+					if not v.remove then
+						v:update(Arena_Space)
+					end
+
+					
+					if v.hp >= 0 then
+						if v.important then
+							allimp = true
+						end
+					else
+						if not v.remove then
+							v.remove = 5
+							if v.t == OBJ_TYPE_ENEMY_1 then
+								v.state = 0
+							elseif v.t == OBJ_TYPE_ENEMY_2 then
+								v.state = 5
+								v.substate = 0
+							elseif v.t == OBJ_TYPE_ENEMY_3 then
+
+							end
+						end
+					end
+
+					if v.remove then
+						v.remove = v.remove - dt
+						if v.remove <= 0 then
+							Arena_Space:remove(v)
+						end
+					end
+				end
+
+				if not allimp then
 					Arena_Ending = 10
 				end
+			end
+
+			if (php > A.hp) then
+				Arena_Red = Arena_Red_Max
 			end
 		end
 	else
@@ -816,15 +915,10 @@ DRAW[ARENA] = function()
 					intro:stop()
 				end
 
-				if (READINGS_DAY + 1) <= 4 then
+				if (READINGS_DAY + 1) <= 5 then
 					Switch_State(READINGS)
 				else
-					if (READINGS_DAY + 1) == 5 then
-						READINGS_DAY = (READINGS_DAY + 1)
-						Switch_State(ENDING)
-					else
-						GoToArena() -- Endless boss fight
-					end
+					GoToArena() -- Endless boss fight
 				end
 			end
 		end

@@ -18,7 +18,9 @@ UPDATE[TITLE] = function(dt)
 end
 
 KEYPRESSED[TITLE] = function(key)
-
+	if key == "return" or key == "space" then
+		Switch_State(INTRO)
+	end
 end
 
 MOUSEPRESSED[TITLE] = function(x,y,button)

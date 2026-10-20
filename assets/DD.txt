@@ -252,8 +252,7 @@ I will find other ways to show my spirit.
 The pain of losing a limb is not to gloss over, I advise against it.
 Do you think Longhorns are weak?!
 I’m tough, I can endure it with my dedication.
-Many people have disabilities and have to endure living with them everyday, it is insensitive to get one for
-aesthetic reasons.
+Many people have disabilities and have to endure living with them everyday, it is insensitive to get one for aesthetic reasons.
 You think I haven’t mulled this over already?!
 I was already disabled beforehand.
 I lost my finger, what’s another?
@@ -286,3 +285,32 @@ What comes next?
 How do I raise my little girl without her?
 Is life still worth it?
 He need not have undying strength, for there will be many to help him hold the torch up in the dark tunnel.
+
+Main Volume 
+Music Volume 
+SFX Volume 
+Title Screen
+Readings Tutorial
+Arena Tutorial
+I heard someone was going to kill you this week.
+I suppose you want to make the customers happy this week.
+...
+It's pretty easy actually.
+Listen to what they tell you.
+After that, i'll appear to you with their current fate.
+Destiny is never set in stone, so feel free to cheer them up a bit.
+Maybe you might even make it to the end of the week.
+Anyway.
+This is a tarot card.
+You draw four of these every reading, and they each correspond to a specific fate.
+You will have to pick one to give to them.
+This card in specific, corresponds to an okay fate.
+You can't tell right now because you've been slacking on your spells.
+You'll get back into it later though.
+Good Luck.
+The same reading? At least I'm not dead. (press enter)
+Luckily, You survived the attack.
+The same cannot be said for your client.
+The authorities have identified the killer to be Sol Eveline.
+Her fate is sealed.
+(press enter)

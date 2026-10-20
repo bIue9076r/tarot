@@ -35,6 +35,34 @@ Readings_Card_Button_4 = Button.new(630,400,150,175)
 
 READINGS_DAY = 0
 
+function ResetTexts()
+	local t = {
+		Interaction_Hierophant,
+		Interaction_Magician,
+		Interaction_Fool,
+		Interaction_Star,
+		Interaction_Chariot,
+		Interaction_Temperance,
+		Interaction_Hermit,
+		Interaction_Lovers,
+		Interaction_Devil,
+		Interaction_Moon,
+		Interaction_HngedMan,
+		Interaction_Empress,
+		Interaction_Judgement,
+		Interaction_WheelOfFortune,
+		Interaction_TheTower,
+	}
+
+	for i,v in pairs(t) do
+		v.Intro.index = 1
+		v.Crystal.index = 1
+		for j,k in pairs(v.Choices) do
+			k.index = 1
+		end
+	end
+end
+
 function NextDay()
 	READINGS_DAY = READINGS_DAY + 1
 
@@ -133,6 +161,26 @@ READINGS_LOAD[4] = function()
 	}
 end
 
+READINGS_LOAD[5] = function()
+	Reading_Interactions = {
+		Interaction_Judgement,
+		Interaction_WheelOfFortune,
+		Interaction_TheTower,
+	}
+
+	Reading_Customers = {
+		Characters[Judgement_BD],
+		Characters[WheelOfFortune_BD],
+		Characters[TheTower_BD],
+	}
+
+	Reading_Customers_Cards = {
+		RandomCards(READINGS_DAY),
+		RandomCards(READINGS_DAY),
+		RandomCards(READINGS_DAY),
+	}
+end
+
 function GoToArena()
 	local song = Sound.get("shop")
 	if song then
@@ -143,6 +191,25 @@ function GoToArena()
 		vo:stop()
 	end
 
+	ARENA_N = 1
+	local Diff = 0
+	if READINGS_DAY >= 2 then
+		if math.random(1,2) == 1 then
+			Diff = Diff + 1
+		end
+	end
+
+	if READINGS_DAY >= 3 then
+		Diff = Diff + 1
+	end
+
+	if READINGS_DAY >= 4 then
+		if math.random(1,2) == 1 then
+			Diff = Diff + 1
+		end
+	end
+	
+	ARENA_N = math.min(6,ARENA_N + Diff)
 	Switch_State(ARENA)
 end
 
@@ -442,7 +509,15 @@ Readings_Subdraw = {
 
 		customer:draw(Reading_Ball_Glow)
 		local img = Image.get("dialogue_"..text.speaker)
+		if text.speaker == SPEAKER_PLAYER then
+			love.graphics.setColor(0.97,0.7,0.97)
+		elseif text.speaker == SPEAKER_BALL then
+			love.graphics.setColor(0.97,0.97,0.7)
+		else
+			love.graphics.setColor(1,1,1)
+		end
 		love.graphics.draw(img,0,-15,0,1,0.5)
+		love.graphics.setColor(1,1,1)
 		love.graphics.printf({{0,0,0},Text(text.text)},130,100,370,"left")
 
 		if Reading_Dofade then
@@ -461,7 +536,11 @@ Readings_Subdraw = {
 						Reading_Interactions_Index = Reading_Interactions_Index + 1
 						if Reading_Interactions_Index > #Reading_Interactions then
 							Reading_Interactions_Index = 1
-							GoToArena()
+							if READINGS_DAY < 5 then
+								GoToArena()
+							else
+								Switch_State(ENDING)
+							end
 						else
 							Readings_state = Readings_Intro
 						end
@@ -506,6 +585,16 @@ KEYPRESSED[READINGS] = function(key)
 		local song = Sound.get("shop")
 		if song then
 			song:pause()
+		end
+
+		local v = Sound.get("voice_1")
+		local v2 = Sound.get("voice_2")
+		if v then
+			v:pause()
+		end
+
+		if v2 then
+			v2:pause()
 		end
 		PauseState()
 	end

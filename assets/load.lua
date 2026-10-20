@@ -57,11 +57,13 @@ Image.new("c14_2","/assets/14talk.png")
 Image.new("c14_3","/assets/14blink.png")
 Image.new("c14_4","/assets/14blinktalk.png")
 
+-- the devil
 Image.new("c15_1", "/assets/15neutral.png")
 Image.new("c15_2","/assets/15talk.png")
 Image.new("c15_3","/assets/15blink.png")
 Image.new("c15_4","/assets/15blinktalk.png")
 
+-- the tower
 Image.new("c16_1", "/assets/16neutral.png")
 Image.new("c16_2","/assets/16talk.png")
 Image.new("c16_3","/assets/16blink.png")
@@ -79,10 +81,11 @@ Image.new("c18_2","/assets/18talk.png")
 Image.new("c18_3","/assets/18blink.png")
 Image.new("c18_4","/assets/18blinktalk.png")
 
-Image.new("c20_1", "/assets/18neutral.png")
-Image.new("c20_2","/assets/18talk.png")
-Image.new("c20_3","/assets/18blink.png")
-Image.new("c20_4","/assets/18blinktalk.png")
+-- judgement
+Image.new("c20_1", "/assets/20neutral.png")
+Image.new("c20_2","/assets/20talk.png")
+Image.new("c20_3","/assets/20blink.png")
+Image.new("c20_4","/assets/20blinktalk.png")
 
 --the fool
 Image.new("c22_1", "/assets/22neutral.png")
@@ -195,6 +198,10 @@ Image.new("table_n_ball","/assets/table_and_ball.png")
 Image.new("table","/assets/table.png")
 Image.new("ball","/assets/ball.png")
 Image.new("ballsmug","/assets/ballsmug.png")
+Image.new("Orb","/assets/cryball.png")
+Image.new("ballshock","/assets/smugball_shocked.png")
+Image.new("ballno","/assets/smugball_no.png")
+Image.new("ballupside","/assets/smugball_upside.png")
 
 Image.new("dialogue_1","/assets/dialogue_1.png")
 Image.new("dialogue_2","/assets/dialogue_2.png")
@@ -220,6 +227,13 @@ Image.new("final_1","/assets/final_1.png")
 Image.new("final_2","/assets/final_2.png")
 Image.new("final_3","/assets/final_3.png")
 Image.new("final_4","/assets/final_4.png")
+
+Image.new("intro_1","/assets/Intro_1.png")
+Image.new("intro_2","/assets/Intro_2.png")
+Image.new("intro_3","/assets/Intro_3.png")
+Image.new("intro_4","/assets/Intro_4.png")
+Image.new("intro_5","/assets/Intro_5.png")
+Image.new("intro_6","/assets/Intro_6.png")
 
 Image.new("n_wasd","/assets/blank_wasd.png")
 Image.new("w_wasd","/assets/w_wasd.png")
@@ -327,6 +341,46 @@ Magician_Quad2 = {
 	love.graphics.newQuad(64*5,64*3,64,64,animmag),
 	love.graphics.newQuad(64*6,64*3,64,64,animmag),
 	love.graphics.newQuad(64*7,64*3,64,64,animmag),
+}
+
+Image.new("arena_ghost","/assets/arena_assets/ghost-Sheet.png")
+local ghos = Image.get("arena_ghost")
+Ghost_Quad = {
+	[1] = {
+		love.graphics.newQuad(32*0,32*0,32,32,ghos),
+	},
+
+	[2] = {
+		love.graphics.newQuad(32*0,32*1,32,32,ghos),
+		love.graphics.newQuad(32*1,32*1,32,32,ghos),
+		love.graphics.newQuad(32*2,32*1,32,32,ghos),
+	},
+
+	[3] = {
+		love.graphics.newQuad(32*0,32*2,32,32,ghos),
+		love.graphics.newQuad(32*1,32*2,32,32,ghos),
+		love.graphics.newQuad(32*2,32*2,32,32,ghos),
+	},
+
+	[4] = {
+		love.graphics.newQuad(32*0,32*3,32,32,ghos),
+		love.graphics.newQuad(32*1,32*3,32,32,ghos),
+		love.graphics.newQuad(32*2,32*3,32,32,ghos),
+		love.graphics.newQuad(32*3,32*3,32,32,ghos),
+		love.graphics.newQuad(32*4,32*3,32,32,ghos),
+		love.graphics.newQuad(32*5,32*3,32,32,ghos),
+	},
+
+	[5] = {
+		love.graphics.newQuad(32*0,32*4,32,32,ghos),
+		love.graphics.newQuad(32*1,32*4,32,32,ghos),
+		love.graphics.newQuad(32*2,32*4,32,32,ghos),
+		love.graphics.newQuad(32*3,32*4,32,32,ghos),
+		love.graphics.newQuad(32*4,32*4,32,32,ghos),
+		love.graphics.newQuad(32*5,32*4,32,32,ghos),
+		love.graphics.newQuad(32*6,32*4,32,32,ghos),
+		love.graphics.newQuad(32*6,32*3,32,32,ghos),
+	},
 }
 
 -- Songs
