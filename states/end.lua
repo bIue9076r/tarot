@@ -6,7 +6,6 @@ Finale_t = 0
 LOAD[ENDING] = function()
 	Finale = CheckKarma() -- Ending based of Karma
 	Finale_t = 0
-	Finale = 4
 end
 
 UPDATE[ENDING] = function(dt)
