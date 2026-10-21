@@ -15,10 +15,66 @@ function love.load(args)
 	GetText()
 
 	-- Argument parser
+	local next = false
+	local last = ""
 	for i,v in pairs(args) do
-		if v == "-arena" or v == "-a" then
-			READINGS_DAY = 7
-			GoToArena()
+		if not next then
+			if v == "-arena" or v == "-a" then
+				READINGS_DAY = 7
+				if not Arena_Custom_Difficulty then
+					Arena_Custom_Difficulty = {0,5}
+				end
+				GoToArena()
+			end
+
+			if v == "-diff" or v == "-d" then
+				next = true
+				last = "diff"
+			end
+
+			if v == "-diff-max" or v == "-dmx" then
+				next = true
+				last = "diffmx"
+			end
+
+			if v == "-diff-min" or v == "-dmn" then
+				next = true
+				last = "diffmn"
+			end
+		else
+			local difn = math.min(5,math.max(0,tonumber(v) or 5))
+
+			if last == "diff" then
+				Arena_Custom_Difficulty = {0,difn}
+			end
+
+			if last == "diffmx" then
+				if not(Arena_Custom_Difficulty) then
+					Arena_Custom_Difficulty = {0,difn}
+				else
+					Arena_Custom_Difficulty[2] = difn
+					local t = Arena_Custom_Difficulty[2]
+					if Arena_Custom_Difficulty[1] > t then
+						Arena_Custom_Difficulty[2] = Arena_Custom_Difficulty[1]
+						Arena_Custom_Difficulty[1] = t
+					end
+				end
+			end
+
+			if last == "diffmn" then
+				if not(Arena_Custom_Difficulty) then
+					Arena_Custom_Difficulty = {difn,5}
+				else
+					Arena_Custom_Difficulty[2] = difn
+					local t = Arena_Custom_Difficulty[2]
+					if Arena_Custom_Difficulty[1] > t then
+						Arena_Custom_Difficulty[2] = Arena_Custom_Difficulty[1]
+						Arena_Custom_Difficulty[1] = t
+					end
+				end
+			end
+
+			next = false
 		end
 	end
 

@@ -193,19 +193,13 @@ function GoToArena()
 
 	ARENA_N = 1
 	local Diff = 0
-	if READINGS_DAY >= 2 then
-		if math.random(1,2) == 1 then
-			Diff = Diff + 1
-		end
-	end
-
-	if READINGS_DAY >= 3 then
-		Diff = Diff + 1
-	end
-
-	if READINGS_DAY >= 4 then
-		if math.random(1,2) == 1 then
-			Diff = Diff + 1
+	if Arena_Custom_Difficulty then
+		Diff = math.random(Arena_Custom_Difficulty[1],Arena_Custom_Difficulty[2])
+	else
+		for i = READINGS_DAY,2,-1 do
+			if math.random(1,5) > 1 then
+				Diff = Diff + 1
+			end
 		end
 	end
 	

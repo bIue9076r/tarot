@@ -21,6 +21,10 @@ KEYPRESSED[TITLE] = function(key)
 	if key == "return" or key == "space" then
 		Switch_State(INTRO)
 	end
+
+	if key == "escape" then
+		GAME_STATE = PAUSE
+	end
 end
 
 MOUSEPRESSED[TITLE] = function(x,y,button)

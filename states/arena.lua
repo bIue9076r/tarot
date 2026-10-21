@@ -23,6 +23,8 @@ Arena_Combo_Show = ""
 Arena_Combo_Show_T = 0
 Arena_Combo_Show_Delay = 2
 
+Arena_Custom_Difficulty = nil
+
 -- Animation states
 PLAYER_IDLE_IMPATIENT = -1
 PLAYER_IDLE = 0
@@ -403,7 +405,7 @@ function Arena_Position()
 		A:Position()
 		
 		Arena_Space.Xlax = math.min(math.max(A.x - 200,0),2000)
-		-- Arena_Space.Ylax = math.max(A.y - 200,0)
+		Arena_Space.Ylax = math.min(A.y,0)
 	end
 end
 
@@ -460,7 +462,8 @@ function Arena_Move_Combo()
 				Arena_Combo_Show = combo..")"
 				Arena_Combo_Show_T = Arena_Combo_Show_Delay
 				local f = Arena_Combo_Enact[cmb.name]
-				if f then f() end
+				local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
+				if f and A then f() end
 				local s = Sound.get("lowWhoosh")
 				if s then
 					s:setVolume(Logarithming(GAME_SFX_VOLUME))
@@ -486,22 +489,25 @@ function Arena_BackParalax()
 	love.graphics.draw(img,0,0,0,1,2)
 
 	img = Image.get("arena_far")
-	love.graphics.draw(img,-0.25*Arena_Space.Xlax,-Arena_Space.Ylax,0,1,1.45)
-	love.graphics.draw(img,-0.25*Arena_Space.Xlax + img:getWidth(),-Arena_Space.Ylax,0,1,1.45)
+	love.graphics.draw(img,-0.25*Arena_Space.Xlax,-0.25*Arena_Space.Ylax,0,1,1.45)
+	love.graphics.draw(img,-0.25*Arena_Space.Xlax + img:getWidth(),-0.25*Arena_Space.Ylax,0,1,1.45)
+	love.graphics.setColor(76/255,92/255,135/255)
+	love.graphics.rectangle("fill",0,460,800,260)
+	love.graphics.setColor(1,1,1)
 
 	img = Image.get("arena_near")
-	love.graphics.draw(img,-0.5*Arena_Space.Xlax,-Arena_Space.Ylax,0,1,1.45)
-	love.graphics.draw(img,-0.5*Arena_Space.Xlax + img:getWidth(),-Arena_Space.Ylax,0,1,1.45)
-	love.graphics.draw(img,-0.5*Arena_Space.Xlax + 2*img:getWidth(),-Arena_Space.Ylax,0,1,1.45)
+	love.graphics.draw(img,-0.5*Arena_Space.Xlax,-0.5*Arena_Space.Ylax,0,1,1.45)
+	love.graphics.draw(img,-0.5*Arena_Space.Xlax + img:getWidth(),-0.5*Arena_Space.Ylax,0,1,1.45)
+	love.graphics.draw(img,-0.5*Arena_Space.Xlax + 2*img:getWidth(),-0.5*Arena_Space.Ylax,0,1,1.45)
 	
 	img = Image.get("arena_lot")
-	love.graphics.draw(img,-800 - Arena_Space.Xlax,-110,0,2,1)
+	love.graphics.draw(img,-800 - Arena_Space.Xlax,-110 -0.5*Arena_Space.Ylax,0,2,1)
 end
 
 -- Draw front paralax
 function Arena_FrontParalax()
 	local img = Image.get("arena_lamp")
-	love.graphics.draw(img,-800 -1.25*Arena_Space.Xlax,-110,0,2,1)
+	love.graphics.draw(img,-800 -1.25*Arena_Space.Xlax,-110 -0.5*Arena_Space.Ylax,0,2,1)
 end
 
 -- Draw key pressed
@@ -520,6 +526,9 @@ end
 -- (Running for example)
 function Arena_Animate()
 	local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
+	if not A then
+		return
+	end
 	local img = Image.get("arena_player")
 	local N = 1
 	if A.state == PLAYER_IDLE then
@@ -826,8 +835,10 @@ UPDATE[ARENA] = function(dt)
 				end
 			end
 
-			if (php > A.hp) then
-				Arena_Red = Arena_Red_Max
+			if A then
+				if (php > A.hp) then
+					Arena_Red = Arena_Red_Max
+				end
 			end
 		end
 	else
@@ -918,6 +929,7 @@ DRAW[ARENA] = function()
 				if (READINGS_DAY + 1) <= 5 then
 					Switch_State(READINGS)
 				else
+					READINGS_DAY = math.min(7,READINGS_DAY + 1)
 					GoToArena() -- Endless boss fight
 				end
 			end

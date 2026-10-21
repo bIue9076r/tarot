@@ -11,7 +11,7 @@ Resume_But = Button.new(650,500,130,70)
 Title_But = Button.new(70,90+75*0,150,50)
 Tutorial1_But = Button.new(70,90+75*1,150,50)
 Tutorial2_But = Button.new(70,90+75*2,150,50)
-Key_But = Button.new(70,90+75*2,150,50)
+Arena_But = Button.new(70,90+75*3,150,50)
 
 LOAD[PAUSE] = function()
 
@@ -24,6 +24,7 @@ UPDATE[PAUSE] = function(dt)
 	Title_But:focus(x,y)
 	Tutorial1_But:focus(x,y)
 	Tutorial2_But:focus(x,y)
+	Arena_But:focus(x,y)
 end
 
 KEYPRESSED[PAUSE] = function(key)
@@ -63,6 +64,16 @@ MOUSEPRESSED[PAUSE] = function(x,y,button)
 			song:stop()
 		end
 		Switch_State(TUTORIAL_ARENA)
+	end
+
+	if Arena_But:click(x,y,button) then
+		local song = Sound.get("thePsychic")
+		if song then
+			song:stop()
+		end
+
+		READINGS_DAY = 7
+		GoToArena()
 	end
 end
 
@@ -127,5 +138,16 @@ DRAW[PAUSE] = function()
 	end
 	love.graphics.rectangle("fill",70,90+75*2,150,50)
 	love.graphics.print({{0,0,0},Text(294)},70+10,90+75*2+15)
+	love.graphics.setColor(1,1,1)
+
+	if Arena_But.f then
+		Arena_But.t = Arena_But.t + DT()
+		local t = math.min(Arena_But.t,1)
+		love.graphics.setColor(0.7*t+(1 - t),0.7*t+0*(1 - t),0.7*t+(1 - t))
+	else
+		love.graphics.setColor(1,0,1)
+	end
+	love.graphics.rectangle("fill",70,90+75*3,150,50)
+	love.graphics.print({{0,0,0},Text(317)},70+10,90+75*3+15)
 	love.graphics.setColor(1,1,1)
 end
