@@ -390,6 +390,7 @@ Sound.new("shop","/assets/shop.ogg")
 Sound.new("thePsychic","assets/thePyschic.ogg")
 Sound.new("gloomy", "assets/gloomy.ogg")
 Sound.new("triumph","assets/triumph.ogg")
+Sound.new("arenaTut","assets/arenatut.mp3")
 
 -- SFX
 Sound.new("voice_1","/assets/VoiceHigh.mp3","static")

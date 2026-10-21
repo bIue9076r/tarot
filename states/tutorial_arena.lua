@@ -7,6 +7,7 @@ Last_Idle_Time = 0
 Last_Combo_Show = ""
 Last_Combo_Show_T = 0
 Last_Red = 0
+Last_Intro = false
 
 LOAD[TUTORIAL_ARENA] = function()
 	Last_Space = Arena_Space
@@ -16,6 +17,7 @@ LOAD[TUTORIAL_ARENA] = function()
 	Last_Combo_Show = Arena_Combo_Show
 	Last_Combo_Show_T = Arena_Combo_Show_T
 	Last_Red = Arena_Red
+	Last_Intro = INTRO_PLAYED
 
 	Arena_Space = Space.new()
 	Arena_Space:add(Object.new(100,500,32,32,200,100,200,OBJ_TYPE_PLAYER))
@@ -95,6 +97,7 @@ LOAD[TUTORIAL_ARENA] = function()
 	Arena_Combo_Show_T = 0
 	Arena_Idle_Time = 0
 	Arena_Red = 0
+	INTRO_PLAYED = false
 end
 
 UPDATE[TUTORIAL_ARENA] = function(dt)
@@ -172,10 +175,16 @@ KEYPRESSED[TUTORIAL_ARENA] = function(key)
 		Arena_Combo_Show = Last_Combo_Show
 		Arena_Combo_Show_T = Last_Combo_Show_T
 		Arena_Red = Last_Red
+		INTRO_PLAYED = Last_Intro
 
-		local song = Sound.get("arena")
+		local song = Sound.get("arenaTut")
 		if song then
 			song:stop()
+		end
+
+		local intro = Sound.get("arenaIntro")
+		if intro then
+			intro:stop()
 		end
 	end
 
@@ -208,13 +217,18 @@ MOUSEPRESSED[TUTORIAL_ARENA] = function(x,y,button)
 end
 
 DRAW[TUTORIAL_ARENA] = function()
-	local song = Sound.get("arena")
+	local song = Sound.get("arenaTut")
 	local intro = Sound.get("arenaIntro")
 
 	if song and intro then
-		song:setVolume(Logarithming(GAME_MUSIC_VOLUME))
-		if not song:isPlaying() and not intro:isPlaying() then
-			song:play()
+		if not INTRO_PLAYED then
+			intro:play()
+			INTRO_PLAYED = true
+		else
+			song:setVolume(Logarithming(GAME_MUSIC_VOLUME))
+			if not song:isPlaying() and not intro:isPlaying() then
+				song:play()
+			end
 		end
 	end
 
