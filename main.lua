@@ -65,7 +65,7 @@ function love.load(args)
 				if not(Arena_Custom_Difficulty) then
 					Arena_Custom_Difficulty = {difn,5}
 				else
-					Arena_Custom_Difficulty[2] = difn
+					Arena_Custom_Difficulty[1] = difn
 					local t = Arena_Custom_Difficulty[2]
 					if Arena_Custom_Difficulty[1] > t then
 						Arena_Custom_Difficulty[2] = Arena_Custom_Difficulty[1]

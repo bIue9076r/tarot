@@ -79,7 +79,7 @@ function Enemy:update(space)
 
 			if self.target_t <= 0 then
 				self.target_t = self.target_time - 0.1*math.random()
-				if math.abs(self.x - A.x) <= 200 then
+				if math.abs(self.x - A.x) <= 500 then
 					self.tx = A.x
 				else
 					self.tx = math.random(1,2600)

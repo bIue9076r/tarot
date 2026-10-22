@@ -102,14 +102,14 @@ Arena_Combo_Enact = {
 	["Ground Circle"] = function()
 		local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
 		for i = 1,11 do
-			Arena_Space:add(Projectile.joe(15,A.x,A.y,5,5,-math.pi * (i - 1)/10,400))
+			Arena_Space:add(Projectile.joe(10,A.x,A.y,5,5,-math.pi * (i - 1)/10,400))
 		end
 	end,
 
 	["Aireal Circle"] = function()
 		local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
 		for i = 1,20 do
-			Arena_Space:add(Projectile.joe(20,A.x,A.y,5,5,-math.pi * (i - 1)/10,400))
+			Arena_Space:add(Projectile.joe(10,A.x,A.y,5,5,-math.pi * (i - 1)/10,400))
 		end
 	end,
 
@@ -137,20 +137,20 @@ Arena_Combo_Enact = {
 	-- Horizontal plane down from the player
 	["Down Wall"] = function()
 		local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
-		Arena_Space:add(Projectile.joe(10,A.x - 5,A.y,42,5,math.pi/2,400))
+		Arena_Space:add(Projectile.joe(20,A.x - 5,A.y,42,5,math.pi/2,400))
 	end,
 
 	-- Horizontal plane up from the player
 	["Up Wall"] = function()
 		local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
-		Arena_Space:add(Projectile.joe(10,A.x - 5,A.y,42,5,-math.pi/2,400))
+		Arena_Space:add(Projectile.joe(15,A.x - 5,A.y,42,5,-math.pi/2,400))
 	end,
 
 	-- Vertical plane right from the player
 	-- Also boosts them up and left
 	["Up Wave Right"] = function()
 		local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
-		Arena_Space:add(Projectile.joe(10,A.x,A.y - 5,5,42,0,400))
+		Arena_Space:add(Projectile.joe(15,A.x,A.y - 5,5,42,0,400))
 		A.vx = A.vx - 350
 		A.vy = A.vy - 250
 	end,
@@ -159,7 +159,7 @@ Arena_Combo_Enact = {
 	-- Also boosts them up and right
 	["Up Wave Left"] = function()
 		local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
-		Arena_Space:add(Projectile.joe(10,A.x,A.y - 5,5,42,math.pi,400))
+		Arena_Space:add(Projectile.joe(15,A.x,A.y - 5,5,42,math.pi,400))
 		A.vx = A.vx + 350
 		A.vy = A.vy - 250
 	end,
@@ -168,7 +168,7 @@ Arena_Combo_Enact = {
 	-- Also boosts them down
 	["Down Wave Right"] = function()
 		local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
-		Arena_Space:add(Projectile.joe(10,A.x,A.y - 5,5,42,0,400))
+		Arena_Space:add(Projectile.joe(15,A.x,A.y - 5,5,42,0,400))
 		A.vy = A.vy + 150
 	end,
 
@@ -176,7 +176,7 @@ Arena_Combo_Enact = {
 	-- Also boosts them down
 	["Down Wave Left"] = function()
 		local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
-		Arena_Space:add(Projectile.joe(10,A.x,A.y - 5,5,42,math.pi,400))
+		Arena_Space:add(Projectile.joe(15,A.x,A.y - 5,5,42,math.pi,400))
 		A.vy = A.vy + 150
 	end,
 
@@ -200,7 +200,7 @@ Arena_Combo_Enact = {
 	-- Also boosts the player left harder
 	["Right Blast x2"] = function()
 		local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
-		Arena_Space:add(Projectile.joe(5,A.x,A.y + 16,5,5,0,400))
+		Arena_Space:add(Projectile.joe(10,A.x,A.y + 16,5,5,0,400))
 		A.vx = A.vx - 275
 	end,
 
@@ -208,7 +208,7 @@ Arena_Combo_Enact = {
 	-- Also boosts the player right harder
 	["Left Blast x2"] = function()
 		local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
-		Arena_Space:add(Projectile.joe(5,A.x,A.y + 16,5,5,math.pi,400))
+		Arena_Space:add(Projectile.joe(10,A.x,A.y + 16,5,5,math.pi,400))
 		A.vx = A.vx + 275
 	end,
 
@@ -216,7 +216,7 @@ Arena_Combo_Enact = {
 	-- Also boosts the player left even harder
 	["Right Blast x3"] = function()
 		local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
-		Arena_Space:add(Projectile.joe(5,A.x,A.y + 16,5,5,0,400))
+		Arena_Space:add(Projectile.joe(15,A.x,A.y + 16,5,5,0,400))
 		A.vx = A.vx - 375
 	end,
 
@@ -224,7 +224,7 @@ Arena_Combo_Enact = {
 	-- Also boosts the player right even harder
 	["Left Blast x3"] = function()
 		local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
-		Arena_Space:add(Projectile.joe(5,A.x,A.y + 16,5,5,math.pi,400))
+		Arena_Space:add(Projectile.joe(15,A.x,A.y + 16,5,5,math.pi,400))
 		A.vx = A.vx + 375
 	end,
 
@@ -232,7 +232,7 @@ Arena_Combo_Enact = {
 	-- Also boosts the player left the hardest
 	["Right Blast x4"] = function()
 		local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
-		Arena_Space:add(Projectile.joe(5,A.x,A.y + 16,5,5,0,400))
+		Arena_Space:add(Projectile.joe(20,A.x,A.y + 16,5,5,0,400))
 		A.vx = A.vx - 475
 	end,
 
@@ -240,7 +240,7 @@ Arena_Combo_Enact = {
 	-- Also boosts the player right the hardest
 	["Left Blast x4"] = function()
 		local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
-		Arena_Space:add(Projectile.joe(5,A.x,A.y + 16,5,5,math.pi,400))
+		Arena_Space:add(Projectile.joe(20,A.x,A.y + 16,5,5,math.pi,400))
 		A.vx = A.vx + 475
 	end,
 
@@ -264,7 +264,7 @@ Arena_Combo_Enact = {
 	-- Also boosts the player left harder
 	["Air Right Blast x2"] = function()
 		local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
-		Arena_Space:add(Projectile.joe(5,A.x,A.y + 16,5,5,0,400))
+		Arena_Space:add(Projectile.joe(10,A.x,A.y + 16,5,5,0,400))
 		A.vx = A.vx - 275
 	end,
 
@@ -272,7 +272,7 @@ Arena_Combo_Enact = {
 	-- Also boosts the player right harder
 	["Air Left Blast x2"] = function()
 		local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
-		Arena_Space:add(Projectile.joe(5,A.x,A.y + 16,5,5,math.pi,400))
+		Arena_Space:add(Projectile.joe(10,A.x,A.y + 16,5,5,math.pi,400))
 		A.vx = A.vx + 275
 	end,
 
@@ -280,7 +280,7 @@ Arena_Combo_Enact = {
 	-- Also boosts the player left even harder
 	["Air Right Blast x3"] = function()
 		local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
-		Arena_Space:add(Projectile.joe(5,A.x,A.y + 16,5,5,0,400))
+		Arena_Space:add(Projectile.joe(15,A.x,A.y + 16,5,5,0,400))
 		A.vx = A.vx - 375
 	end,
 
@@ -288,7 +288,7 @@ Arena_Combo_Enact = {
 	-- Also boosts the player right even harder
 	["Air Left Blast x3"] = function()
 		local A = Arena_Space:findFirst(OBJ_TYPE_PLAYER)
-		Arena_Space:add(Projectile.joe(5,A.x,A.y + 16,5,5,math.pi,400))
+		Arena_Space:add(Projectile.joe(15,A.x,A.y + 16,5,5,math.pi,400))
 		A.vx = A.vx + 375
 	end,
 }

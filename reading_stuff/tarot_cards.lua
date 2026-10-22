@@ -48,6 +48,13 @@ function Scramble(str,sev)
 		if (math.random(1,sev) == sev) then
 			local ri = math.random(1,#s)
 			local c = s[i]
+			if math.random(1,5) == 1 then
+				if math.random(1,2) == 1 then
+					c = string.char(math.random(97,122))
+				else
+					c = string.char(math.random(65,90))
+				end
+			end
 			
 			s[i] = s[ri]
 			s[ri] = c
